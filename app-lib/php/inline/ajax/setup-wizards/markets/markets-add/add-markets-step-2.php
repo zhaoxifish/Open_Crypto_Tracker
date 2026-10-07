@@ -81,7 +81,7 @@ If the 'add asset market' search result does NOT return a PAIRING VALUE, WE LOG 
      	<?php
      	foreach ( $ct['api']->exchange_apis as $exchange_key => $unused ) {
      	?>
-     	<option value='<?=$exchange_key?>' <?=( isset($_POST['add_markets_search_exchange']) && $_POST['add_markets_search_exchange'] == $exchange_key ? 'selected' : '' )?> > <?=$ct['gen']->key_to_name($exchange_key)?> </option>
+        <option translate='no' value='<?=$exchange_key?>' <?=( isset($_POST['add_markets_search_exchange']) && $_POST['add_markets_search_exchange'] == $exchange_key ? 'selected' : '' )?> > <?=$ct['gen']->key_to_name($exchange_key)?> </option>
      	<?php
      	}
      	?>

@@ -1,0 +1,585 @@
+[
+  {
+    "pattern": "^Loading\\ (.+?)\\ chart\\ for:$",
+    "flags": "i",
+    "replacement": "正在加载$1图表：",
+    "translateGroups": [
+      1
+    ]
+  },
+  {
+    "pattern": "^(.+?)\\ API\\ key\\ is\\ required\\.$",
+    "flags": "i",
+    "replacement": "需要配置 $1 API 密钥。"
+  },
+  {
+    "pattern": "^(.+?)\\ API\\ may\\ be\\ offline\\ /\\ under\\ heavy\\ load,\\ OR\\ marketcap\\ range\\ not\\ set\\ high\\ enough\\ \\(current\\ range\\ is\\ top\\ (.+?)\\ marketcaps,\\ set\\ in\\ the\\ \"Power\\ User\"\\ ADMIN\\ area\\ section\\)\\.$",
+    "flags": "i",
+    "replacement": "$1 API 可能暂时不可用或负载过高，也可能是市值排名获取范围过小；当前仅获取市值前 $2 名，可在管理区的“高级设置”中调整。"
+  },
+  {
+    "pattern": "^(.+?)\\.com\\ Summary\\ For:\\ (.+?)\\ \\((.+?)\\)$",
+    "flags": "i",
+    "replacement": "$2（$3）概况 · $1.com"
+  },
+  {
+    "pattern": "^(.+?)\\ minute\\(s\\)$",
+    "flags": "i",
+    "replacement": "$1 分钟"
+  },
+  {
+    "pattern": "^\\*Current\\ config\\ setting\\ retrieves\\ the\\ top\\ (.+?)\\ rankings\\.$",
+    "flags": "i",
+    "replacement": "*当前配置获取排名前 $1 的资产。"
+  },
+  {
+    "pattern": "^Miscellaneous\\ (.+?)\\ value\\ can\\ be\\ included\\ in\\ you\\ portfolio\\ stats,\\ by\\ entering\\ it\\ under\\ the\\ \"MISCASSETS\"\\ asset\\ on\\ the\\ \"Update\"\\ page\\.$",
+    "flags": "i",
+    "replacement": "在“更新持仓”页面的 MISCASSETS 资产项中填写以 $1 计价的其他资产估值，即可纳入组合统计。"
+  },
+  {
+    "pattern": "^This\\ can\\ be\\ useful\\ for\\ including\\ (.+?)\\ Checking\\ /\\ Savings\\ accounts\\ at\\ banks,\\ stable\\ coin\\ holdings,\\ etc\\.$",
+    "flags": "i",
+    "replacement": "可用于计入银行的 $1 活期或储蓄存款、稳定币持仓等。"
+  },
+  {
+    "pattern": "^Additionally,\\ you\\ can\\ see\\ it's\\ potential\\ market\\ value\\ in\\ another\\ asset\\ by\\ changing\\ the\\ \"Market\"\\ value\\ on\\ the\\ \"Portfolio\"\\ page\\ to\\ an\\ asset\\ other\\ than\\ (.+?)\\.$",
+    "flags": "i",
+    "replacement": "还可以在资产组合页面将“交易对”改为 $1 以外的资产，查看折算为该资产的估值。"
+  },
+  {
+    "pattern": "^(.+?)\\ value\\ of\\ NFTS\\ can\\ be\\ included\\ in\\ you\\ portfolio\\ stats,\\ by\\ entering\\ it\\ under\\ the\\ \"ALTNFTS\"\\ asset\\ on\\ the\\ \"Update\"\\ page\\.$",
+    "flags": "i",
+    "replacement": "在“更新持仓”页面的 ALTNFTS 项中填写 NFT 的 $1 估值，即可纳入组合统计。"
+  },
+  {
+    "pattern": "^No\\ (.+?)\\.com\\ data\\ for\\ (.+?)\\ \\((.+?)\\)\\ has\\ been\\ configured\\ yet\\.$",
+    "flags": "i",
+    "replacement": "尚未配置 $2（$3）的 $1.com 数据。"
+  },
+  {
+    "pattern": "^(.+?)x\\ Long\\ For\\ (.+?)\\ \\((.+?)\\)$",
+    "flags": "i",
+    "replacement": "$2（$3）· $1 倍做多"
+  },
+  {
+    "pattern": "^(.+?)x\\ Short\\ For\\ (.+?)\\ \\((.+?)\\)$",
+    "flags": "i",
+    "replacement": "$2（$3）· $1 倍做空"
+  },
+  {
+    "pattern": "^Margin\\ \\((.+?)x\\):$",
+    "flags": "i",
+    "replacement": "杠杆部分（$1 倍）："
+  },
+  {
+    "pattern": "^Total\\ \\((.+?)x\\):$",
+    "flags": "i",
+    "replacement": "合计（$1 倍）："
+  },
+  {
+    "pattern": "^Bitcoin\\ Halving:\\ (.+?)$",
+    "flags": "i",
+    "replacement": "比特币减半：$1",
+    "translateGroups": [
+      1
+    ]
+  },
+  {
+    "pattern": "^\"(.+?)\\ Value\"\\ charts\\)$",
+    "flags": "i",
+    "replacement": "“$1 计价”图表）"
+  },
+  {
+    "pattern": "^(.+?)\\-paired\\ BTC\\ exchanges\\ supported\\ in\\ this\\ app\\ are:$",
+    "flags": "i",
+    "replacement": "本应用支持 BTC／$1 交易对的平台包括："
+  },
+  {
+    "pattern": "^(.+?)\\ primary\\ currency\\ pairs\\ are\\ supported\\ for\\ conversion\\ charts\\ \\(in\\ the\\ Admin\\ Config\\ GENERAL\\ section,\\ using\\ the\\ \"bitcoin_primary_currency_pair\"\\ setting\\):$",
+    "flags": "i",
+    "replacement": "转换计价图表支持 $1 种基准币种（在管理设置的“常规”中，通过 bitcoin_primary_currency_pair 设置）："
+  },
+  {
+    "pattern": "^(.+?)\\ Value$",
+    "flags": "i",
+    "replacement": "$1 计价"
+  },
+  {
+    "pattern": "^(.+?)\\ Mining\\ Calculator$",
+    "flags": "i",
+    "replacement": "$1 挖矿计算器"
+  },
+  {
+    "pattern": "^RSS\\ feed\\ data\\ is\\ cached\\ \\(randomly\\)\\ between\\ (.+?)\\ /\\ (.+?)\\ minutes\\ for\\ quicker\\ load\\ times\\.$",
+    "flags": "i",
+    "replacement": "为加快加载，RSS 订阅数据会随机缓存 $1 至 $2 分钟。"
+  },
+  {
+    "pattern": "^Visual\\ Alerts:$",
+    "flags": "i",
+    "replacement": "界面提醒："
+  },
+  {
+    "pattern": "^Visual\\ /\\ Audio\\ Alerts:$",
+    "flags": "i",
+    "replacement": "界面／声音提醒："
+  },
+  {
+    "pattern": "^Portfolio\\ Value\\ In\\ (.+?)$",
+    "flags": "i",
+    "replacement": "资产组合总值（$1 计价）"
+  },
+  {
+    "pattern": "^The\\ value\\ of\\ your\\ ENTIRE\\ portfolio,\\ based\\ off\\ your\\ selected\\ primary\\ currency\\ \\((.+?)\\),\\ in\\ the\\ \"Primary\\ Currency\\ Market\"\\ setting,\\ on\\ the\\ Settings\\ page\\.$",
+    "flags": "i",
+    "replacement": "按个人设置中“基准币种市场”选择的 $1，计算整个资产组合的总值。"
+  },
+  {
+    "pattern": "^\\((.+?)\\)\\ for\\ value\\ comparisons\\.$",
+    "flags": "i",
+    "replacement": "（$1）进行价值对比。"
+  },
+  {
+    "pattern": "^The\\ \"Custom\\ Start\\ Date\"\\ is\\ OPTIONAL,\\ for\\ choosing\\ a\\ custom\\ date\\ in\\ time\\ the\\ asset\\ performance\\ comparisons\\ begin,\\ starting\\ at\\ 0%\\ (.+?)\\ value\\ increase\\ /\\ decrease\\.\\ The\\ Custom\\ Start\\ Date\\ can\\ only\\ go\\ back\\ in\\ time\\ as\\ far\\ back\\ as\\ you\\ have\\ (.+?)\\ Value\\ price\\ charts\\ \\(per\\ asset\\)\\ for\\ the\\ \"All\"\\ chart,\\ and\\ only\\ as\\ far\\ back\\ as\\ the\\ beginning\\ date\\ of\\ smaller\\ time\\ period\\ charts\\.$",
+    "flags": "i",
+    "replacement": "“自定义开始日期”为选填项，用于指定资产表现对比的起点，并将该日的 $1 计价涨跌幅设为 0%。开始日期不得早于各资产“全部历史”图表中最早的 $2 计价数据，也不得早于所选较短时间范围图表的起始日期。"
+  },
+  {
+    "pattern": "^\\((.+?)\\ Day\\ Report\\)$",
+    "flags": "i",
+    "replacement": "（最近 $1 天的报告）"
+  },
+  {
+    "pattern": "^(.+?)\\ price\\ alerts$",
+    "flags": "i",
+    "replacement": "$1 价格提醒"
+  },
+  {
+    "pattern": "^Password\\-based\\ proxy\\ mode$",
+    "flags": "i",
+    "replacement": "密码认证代理模式"
+  },
+  {
+    "pattern": "^IP\\-athenticated\\ proxy\\ mode$",
+    "flags": "i",
+    "replacement": "IP 认证代理模式"
+  },
+  {
+    "pattern": "^in\\ the\\ configuration\\ file\\ \\(sent\\ out\\ every\\ (.+?)\\ days,\\ log\\ files\\ purged\\ every\\ (.+?)\\ days\\)\\.$",
+    "flags": "i",
+    "replacement": "（配置为每 $1 天发送一次，每 $2 天清理日志文件）。"
+  },
+  {
+    "pattern": "^in\\ the\\ configuration\\ file\\ \\(run\\ every\\ (.+?)\\ days,\\ purged\\ after\\ (.+?)\\ days\\ old\\)\\.$",
+    "flags": "i",
+    "replacement": "（配置为每 $1 天运行一次，超过 $2 天的备份将清理）。"
+  },
+  {
+    "pattern": "^Debug\\ Mode:\\ (.+?)$",
+    "flags": "i",
+    "replacement": "调试模式：$1"
+  },
+  {
+    "pattern": "^Per\\-Unit\\ \\((.+?)\\):\\ (.+?)$",
+    "flags": "i",
+    "replacement": "单价（$1）：$2"
+  },
+  {
+    "pattern": "^Total:\\ (.+?)$",
+    "flags": "i",
+    "replacement": "合计：$1"
+  },
+  {
+    "pattern": "^Calculating\\ Average\\ (.+?)\\ Price\\ Paid\\ Per\\ Token$",
+    "flags": "i",
+    "replacement": "计算代币平均买入单价（$1）"
+  },
+  {
+    "pattern": "^Total\\ (.+?)\\ Paid\\ For\\ All\\ Tokens$",
+    "flags": "i",
+    "replacement": "累计买入支出（$1）"
+  },
+  {
+    "pattern": "^Average\\ (.+?)\\ Price\\ Paid\\ Per\\ Token$",
+    "flags": "i",
+    "replacement": "平均买入单价（$1）"
+  },
+  {
+    "pattern": "^,\\ re\\-calculate\\ your\\ Average\\ (.+?)\\ Price\\ Paid\\ Per\\ Token\\ with\\ this\\ formula:$",
+    "flags": "i",
+    "replacement": "，请按以下公式重新计算以 $1 计价的平均买入单价："
+  },
+  {
+    "pattern": "^Total\\ (.+?)\\ Received\\ From\\ All\\ Sold\\ Tokens$",
+    "flags": "i",
+    "replacement": "累计卖出所得（$1）"
+  },
+  {
+    "pattern": "^b\\)\\ What\\ you\\ paid\\ /\\ received\\ in\\ (.+?)\\ value$",
+    "flags": "i",
+    "replacement": "b）以 $1 计价的实际支出或收入"
+  },
+  {
+    "pattern": "^Set\\ the\\ \"Holdings\"\\ field\\ to\\ match\\ your\\ margin\\ leverage\\ deposit\\ \\(example:\\ buying\\ 1\\ BTC\\ @\\ 5x\\ leverage\\ would\\ be\\ 0\\.2\\ BTC\\ in\\ the\\ \"Holdings\"\\ field\\ in\\ this\\ app\\)\\.\\ You'll\\ also\\ need\\ to\\ fill\\ in\\ the\\ \"Average\\ Paid\\ \\(per\\-unit\\)\"\\ field\\ with\\ the\\ average\\ price\\ paid\\ in\\ (.+?)\\ per\\-unit\\.\\ Finally,\\ set\\ the\\ \"Margin\\ Leverage\"\\ fields\\ to\\ match\\ your\\ leverage\\ and\\ whether\\ you\\ are\\ long\\ or\\ short\\.\\ When\\ you\\ are\\ done,\\ click\\ \"Save\\ Updated\\ Portfolio\"\\.$",
+    "flags": "i",
+    "replacement": "“持仓数量”应填写投入的保证金，而非杠杆放大后的总仓位。例如，用 5 倍杠杆买入 1 BTC，此处应填 0.2 BTC。然后在“平均买入单价”中填写以 $1 计价的成交均价，设置杠杆倍数及做多或做空方向，最后点击“保存持仓”。"
+  },
+  {
+    "pattern": "^To\\ see\\ your\\ margin\\ leverage\\ stats\\ after\\ updating\\ your\\ portfolio,\\ go\\ to\\ the\\ bottom\\ of\\ the\\ Portfolio\\ page,\\ where\\ you'll\\ find\\ a\\ summary\\ section\\.\\ Hovering\\ over\\ the\\ \"I\"\\ icon\\ next\\ to\\ the\\ Gain\\ /\\ Loss\\ summary\\ will\\ display\\ any\\ margin\\ leverage\\ stats\\ per\\-asset\\.\\ There\\ is\\ also\\ an\\ \"I\"\\ icon\\ in\\ the\\ far\\ right\\-side\\ data\\ table\\ column\\ \"\\((.+?)\\)\"\\ per\\-asset,\\ which\\ you\\ can\\ also\\ hover\\ over\\ for\\ margin\\ leverage\\ stats\\.$",
+    "flags": "i",
+    "replacement": "保存后，在资产组合页面底部的汇总区域，将鼠标移到盈亏旁的“i”图标上，即可查看各资产的杠杆统计。表格最右侧“（$1）”列中的“i”图标也可显示对应资产的杠杆详情。"
+  },
+  {
+    "pattern": "^\\*Current\\ maximum\\ margin\\ leverage\\ setting\\ of\\ (.+?)x\\ can\\ be\\ adjusted\\ in\\ the\\ Admin\\ Config\\ POWER\\ USER\\ section\\.$",
+    "flags": "i",
+    "replacement": "*当前杠杆倍数上限为 $1 倍，可在管理设置的“高级设置”中调整。"
+  },
+  {
+    "pattern": "^Current\\ (.+?)\\ Value\\ Per\\ Coin:$",
+    "flags": "i",
+    "replacement": "当前单币价格（$1）："
+  },
+  {
+    "pattern": "^Average\\ (.+?)\\ Earned\\ Daily\\ \\(block\\ reward\\ only\\):$",
+    "flags": "i",
+    "replacement": "日均产出（$1，仅区块奖励）："
+  },
+  {
+    "pattern": "^Average\\ (.+?)\\ Earned\\ Weekly\\ \\(block\\ reward\\ only\\):$",
+    "flags": "i",
+    "replacement": "周均产出（$1，仅区块奖励）："
+  },
+  {
+    "pattern": "^STEP\\ \\#3:\\ Select\\ Asset\\ Markets\\ Found\\ For\\ \\(EXACT\\ (.+?)\\ Market\\ ID\\ Match\\)\\ Search\\ \"(.+?)\"$",
+    "flags": "i",
+    "replacement": "第 3 步：选择“$2”的搜索结果（$1 市场 ID 完全匹配）"
+  },
+  {
+    "pattern": "^STEP\\ \\#3:\\ Select\\ Asset\\ Markets\\ Found\\ For\\ \\(Exact\\ Match\\)\\ Search\\ \"(.+?)\"$",
+    "flags": "i",
+    "replacement": "第 3 步：选择“$1”的搜索结果（完全匹配）"
+  },
+  {
+    "pattern": "^STEP\\ \\#3:\\ Select\\ Asset\\ Markets\\ Found\\ For\\ \\(Similar\\ Match\\)\\ Search\\ \"(.+?)\"$",
+    "flags": "i",
+    "replacement": "第 3 步：选择“$1”的搜索结果（相近匹配）"
+  },
+  {
+    "pattern": "^FOR\\ QUICKER\\ /\\ MORE\\ SPECIFIC\\ SEARCH\\ RESULTS,\\ TRY\\ INCLUDING\\ A\\ PAIRING\\ IN\\ YOUR\\ SEARCH\\ PARAMETERS\\ \\(example:\\ (.+?)/(.+?)\\)\\.$",
+    "flags": "i",
+    "replacement": "为加快搜索并缩小范围，可在关键词中加入计价币种，例如：$1/$2。"
+  },
+  {
+    "pattern": "^WE\\ LIMIT\\ JUPITER\\ AGGREGATOR\\ SEARCH\\ RESULTS\\ TO\\ (.+?)$",
+    "flags": "i",
+    "replacement": "Jupiter 搜索结果数量上限为 $1"
+  },
+  {
+    "pattern": "^,\\ (.+?)\\ results\\ below\\ \\[including\\ any\\ marked\\ as\\ skipped\\]\\ are\\ from\\ Jupiter\\ Aggregator\\)$",
+    "flags": "i",
+    "replacement": "，下方有 $1 条结果来自 Jupiter（含已标记为跳过的项目））"
+  },
+  {
+    "pattern": "^Pairing\\ Not\\ Supported:\\ \\(ADD\\ BTC\\ /\\ (.+?)\\ MARKET,\\ TO\\ ENABLE\\ SUPPORT\\ \\[DETERMINED\\ BY\\ MARKET\\ ID\\]\\)$",
+    "flags": "i",
+    "replacement": "暂不支持此计价币种：请添加 BTC／$1 市场以启用支持（按市场 ID 识别）"
+  },
+  {
+    "pattern": "^Flagged\\ Market:\\ (.+?)$",
+    "flags": "i",
+    "replacement": "已标记的市场：$1"
+  },
+  {
+    "pattern": "^Exchange:\\ (.+?)$",
+    "flags": "i",
+    "replacement": "交易平台：$1"
+  },
+  {
+    "pattern": "^Name:\\ (.+?)$",
+    "flags": "i",
+    "replacement": "名称：$1"
+  },
+  {
+    "pattern": "^Asset:\\ (.+?)$",
+    "flags": "i",
+    "replacement": "资产：$1"
+  },
+  {
+    "pattern": "^Pairing:\\ (.+?)$",
+    "flags": "i",
+    "replacement": "计价币种：$1"
+  },
+  {
+    "pattern": "^ORIGINAL\\ Pairing\\ Ticker:\\ (.+?)$",
+    "flags": "i",
+    "replacement": "原始计价币种代码：$1"
+  },
+  {
+    "pattern": "^Market\\ ID:\\ (.+?)$",
+    "flags": "i",
+    "replacement": "市场 ID：$1"
+  },
+  {
+    "pattern": "^would\\ replace\\ market\\ ID:\\ (.+?)$",
+    "flags": "i",
+    "replacement": "将替换市场 ID：$1"
+  },
+  {
+    "pattern": "^Time\\ remaining\\ until\\ next\\ Bitcoin\\ halving\\ is\\ (.+?)\\ month\\(s\\)\\ /\\ (.+?)\\ block\\(s\\)\\.\\ \\(click\\ to\\ view\\ the\\ CoinGecko\\.com\\ Bitcoin\\ Halving\\ portal\\)$",
+    "flags": "i",
+    "replacement": "距离下一次比特币减半约 $1 个月／$2 个区块。点击查看 CoinGecko.com 的减半专题。"
+  },
+  {
+    "pattern": "^View\\ Information\\ Page\\ For\\ (.+?)$",
+    "flags": "i",
+    "replacement": "查看 $1 的详情页"
+  },
+  {
+    "pattern": "^Batch\\-loading\\ (.+?)\\ news\\ feeds\\.\\.\\.$",
+    "flags": "i",
+    "replacement": "正在批量加载 $1 个新闻订阅源…"
+  },
+  {
+    "pattern": "^ERROR\\ Batch\\-loading\\ (.+?)\\ news\\ feeds\\.\\.\\.$",
+    "flags": "i",
+    "replacement": "批量加载 $1 个新闻订阅源失败…"
+  },
+  {
+    "pattern": "^Sorting\\ by\\ the\\ Holdings\\ /\\ Value\\ /\\ \\((.+?)\\)\\ columns\\ is\\ currently\\ disabled,\\ as\\ Privacy\\ Mode\\ is\\ turned\\ ON\\.$",
+    "flags": "i",
+    "replacement": "当前已开启隐私模式，无法按“持仓”“价值”或“（$1）”列排序。"
+  },
+  {
+    "pattern": "^Chrome\\ users\\ can\\ open\\ chrome://settings/content/sound,\\ enable\\ \"Sites\\ can\\ play\\ sound\",\\ and\\ under\\ \"Allowed\\ to\\ play\\ sound\"\\ add\\ the\\ address:\\ (.+?)$",
+    "flags": "i",
+    "replacement": "Chrome 用户可打开 chrome://settings/content/sound，启用“网站可以播放声音”，并在“允许播放声音”中添加：$1"
+  },
+  {
+    "pattern": "^kWh\\ Rate\\ \\((.+?)/kWh\\):$",
+    "flags": "i",
+    "replacement": "电价（$1/千瓦时）："
+  },
+  {
+    "pattern": "^Calculate\\ (.+?)\\ Mining\\ Profit$",
+    "flags": "i",
+    "replacement": "计算 $1 挖矿收益"
+  },
+  {
+    "pattern": "^Loading\\ chart\\ \\#(.+?)\\ for\\ system\\ data\\.\\.\\.$",
+    "flags": "i",
+    "replacement": "正在加载第 $1 张系统数据图表…"
+  },
+  {
+    "pattern": "^System\\ Chart\\ \\#(.+?)$",
+    "flags": "i",
+    "replacement": "系统图表 $1"
+  },
+  {
+    "pattern": "^No\\ data\\ for\\ this\\ '(.+?)'\\ light\\ chart\\ yet,\\ please\\ check\\ back\\ in\\ awhile\\.$",
+    "flags": "i",
+    "replacement": "“$1”轻量图表尚无数据，请稍后再查看。",
+    "translateGroups": [
+      1
+    ]
+  },
+  {
+    "pattern": "^No\\ data\\ exists\\ for\\ this\\ '(.+?)'\\ light\\ chart\\ yet,\\ please\\ check\\ back\\ in\\ awhile\\.$",
+    "flags": "i",
+    "replacement": "“$1”轻量图表尚无数据，请稍后再查看。",
+    "translateGroups": [
+      1
+    ]
+  },
+  {
+    "pattern": "^No\\ '(.+?)'\\ light\\ chart\\ data\\ for\\ any\\ assets\\ yet,\\ please\\ check\\ back\\ in\\ awhile\\.$",
+    "flags": "i",
+    "replacement": "各资产的“$1”轻量图表尚无数据，请稍后再查看。",
+    "translateGroups": [
+      1
+    ]
+  },
+  {
+    "pattern": "^Asset\\ Performance\\ Comparison\\ \\((.+?)\\)$",
+    "flags": "i",
+    "replacement": "资产表现对比（$1）"
+  },
+  {
+    "pattern": "^(.+?)\\ Value\\ Percentage\\ Change$",
+    "flags": "i",
+    "replacement": "$1 计价涨跌幅"
+  },
+  {
+    "pattern": "^Market\\ Value:\\ (.+?)$",
+    "flags": "i",
+    "replacement": "市场价格：$1"
+  },
+  {
+    "pattern": "^Volume:\\ (.+?)$",
+    "flags": "i",
+    "replacement": "成交量：$1"
+  },
+  {
+    "pattern": "^(.+?)\\ Circulating\\ Marketcap\\ Comparison\\ \\((.+?)\\)$",
+    "flags": "i",
+    "replacement": "$1 流通市值对比（$2）"
+  },
+  {
+    "pattern": "^(.+?)\\ Total\\ Marketcap\\ Comparison\\ \\((.+?)\\)$",
+    "flags": "i",
+    "replacement": "$1 总市值对比（$2）"
+  },
+  {
+    "pattern": "^Circulating\\ Marketcap\\ Comparison\\ \\((.+?)\\)$",
+    "flags": "i",
+    "replacement": "流通市值对比（$1）"
+  },
+  {
+    "pattern": "^Total\\ Marketcap\\ Comparison\\ \\((.+?)\\)$",
+    "flags": "i",
+    "replacement": "总市值对比（$1）"
+  },
+  {
+    "pattern": "^(.+?)\\ Marketcap\\ \\(circulating\\):\\ (.+?)$",
+    "flags": "i",
+    "replacement": "$1 流通市值：$2"
+  },
+  {
+    "pattern": "^(.+?)\\ Marketcap\\ \\(total\\):\\ (.+?)$",
+    "flags": "i",
+    "replacement": "$1 总市值：$2"
+  },
+  {
+    "pattern": "^(.+?)\\ Circulating\\ Marketcap$",
+    "flags": "i",
+    "replacement": "$1 流通市值"
+  },
+  {
+    "pattern": "^(.+?)\\ Total\\ Marketcap$",
+    "flags": "i",
+    "replacement": "$1 总市值"
+  },
+  {
+    "pattern": "^The\\ (.+?)\\ exchange\\ API\\ is\\ less\\ reliable\\ than\\ some\\ others\\ \\(by\\ NOT\\ consolidating\\ enough\\ API\\ requests\\ into\\ one\\ single\\ call\\ per\\ session\\)\\.\\ It\\ is\\ recommended\\ to\\ use\\ a\\ different\\ marketplace\\ IF\\ FEASIBLE,\\ as\\ there\\ MAY\\ be\\ occasional\\ API\\ data\\ retrieval\\ issues\\ with\\ some\\ BTC\\ /\\ (.+?)\\ marketplaces\\ like\\ (.+?)\\.$",
+    "flags": "i",
+    "replacement": "$1 的 API 未充分合并数据请求，稳定性可能弱于其他平台。若条件允许，建议换用其他市场；$3 等平台的部分 BTC／$2 市场可能偶尔无法取得数据。"
+  },
+  {
+    "pattern": "^If\\ you\\ experience\\ issues\\ with\\ primary\\ currency\\ values\\ NOT\\ displaying\\ in\\ this\\ app\\ when\\ using\\ the\\ (.+?)\\ marketplace\\ \\(or\\ your\\ other\\ crypto\\ apps\\ get\\ (.+?)\\ data\\ requests\\ refused\\),\\ try\\ a\\ different\\ exchange\\ for\\ your\\ preferred\\ primary\\ currency\\ market,\\ and\\ the\\ issue\\ should\\ go\\ away\\.$",
+    "flags": "i",
+    "replacement": "使用 $1 市场时，如果基准币种估值无法显示，或其他加密货币应用对 $2 的请求被拒绝，可尝试为基准币种选择其他交易平台。"
+  },
+  {
+    "pattern": "^(.+?)x\\ \\(long\\ Mode\\)\\ Leverage\\ trading\\ in\\ crypto\\ assets\\ is\\ EXTREMELY\\ RISKY\\.\\ NEVER\\ put\\ more\\ than\\ \\~5%\\ of\\ your\\ crypto\\ investments\\ in\\ leveraged\\ trades\\ EVER,\\ OR\\ YOU\\ \\#\\#\\#COULD\\ LOSE\\ EVERYTHING\\#\\#\\#\\.$",
+    "flags": "i",
+    "replacement": "$1 倍杠杆（做多）。加密资产杠杆交易风险极高。原作者建议投入杠杆交易的资金不超过加密资产总投资的约 5%，否则可能损失全部资金。"
+  },
+  {
+    "pattern": "^(.+?)x\\ \\(short\\ Mode\\)\\ Leverage\\ trading\\ in\\ crypto\\ assets\\ is\\ EXTREMELY\\ RISKY\\.\\ NEVER\\ put\\ more\\ than\\ \\~5%\\ of\\ your\\ crypto\\ investments\\ in\\ leveraged\\ trades\\ EVER,\\ OR\\ YOU\\ \\#\\#\\#COULD\\ LOSE\\ EVERYTHING\\#\\#\\#\\.$",
+    "flags": "i",
+    "replacement": "$1 倍杠杆（做空）。加密资产杠杆交易风险极高。原作者建议投入杠杆交易的资金不超过加密资产总投资的约 5%，否则可能损失全部资金。"
+  },
+  {
+    "pattern": "^No\\ light\\ chart\\ build\\ /\\ re\\-build\\ found\\ for:\\ System\\ Chart\\ \\#(.+?)$",
+    "flags": "i",
+    "replacement": "系统图表 $1 尚未生成或重建，请等待后台任务完成。"
+  },
+  {
+    "pattern": "^\\((.+?)\\ threads\\ /\\ cores\\)$",
+    "flags": "i",
+    "replacement": "（$1 个线程／核心）"
+  },
+  {
+    "pattern": "^(.+?)\\ \\(1\\ min\\ avg\\)\\ (.+?)\\ \\(5\\ min\\ avg\\)\\ (.+?)\\ \\(15\\ min\\ avg\\)$",
+    "flags": "i",
+    "replacement": "$1（1 分钟平均）$2（5 分钟平均）$3（15 分钟平均）"
+  },
+  {
+    "pattern": "^(.+?)\\ days,\\ (.+?)\\ hours,\\ (.+?)\\ minutes,\\ (.+?)\\ seconds$",
+    "flags": "i",
+    "replacement": "$1 天 $2 小时 $3 分 $4 秒"
+  },
+  {
+    "pattern": "^\\((.+?)\\ Megabytes\\ /\\ (.+?)%\\)$",
+    "flags": "i",
+    "replacement": "（$1 MB／$2%）"
+  },
+  {
+    "pattern": "^\\((.+?)\\ Megabytes\\)$",
+    "flags": "i",
+    "replacement": "（$1 MB）"
+  },
+  {
+    "pattern": "^\\((.+?)\\ Gigabytes\\)$",
+    "flags": "i",
+    "replacement": "（$1 GB）"
+  },
+  {
+    "pattern": "^(.+?)\\ Kilobytes$",
+    "flags": "i",
+    "replacement": "$1 KB"
+  },
+  {
+    "pattern": "^(.+?)\\ Megabytes$",
+    "flags": "i",
+    "replacement": "$1 MB"
+  },
+  {
+    "pattern": "^(.+?)\\ Gigabytes$",
+    "flags": "i",
+    "replacement": "$1 GB"
+  },
+  {
+    "pattern": "^(.+?)\\ Terabytes$",
+    "flags": "i",
+    "replacement": "$1 TB"
+  },
+  {
+    "pattern": "^\\(\\~(.+?)%\\ of$",
+    "flags": "i",
+    "replacement": "（约占 $1%，参照"
+  },
+  {
+    "pattern": "^(~?[\\d,.]+) year(?:\\(s\\)|s)?$",
+    "flags": "i",
+    "replacement": "$1 年"
+  },
+  {
+    "pattern": "^(~?[\\d,.]+) month(?:\\(s\\)|s)?$",
+    "flags": "i",
+    "replacement": "$1 个月"
+  },
+  {
+    "pattern": "^(~?[\\d,.]+) day(?:\\(s\\)|s)?$",
+    "flags": "i",
+    "replacement": "$1 天"
+  },
+  {
+    "pattern": "^(~?[\\d,.]+) hour(?:\\(s\\)|s)?$",
+    "flags": "i",
+    "replacement": "$1 小时"
+  },
+  {
+    "pattern": "^(~?[\\d,.]+) minute(?:\\(s\\)|s)?$",
+    "flags": "i",
+    "replacement": "$1 分钟"
+  },
+  {
+    "pattern": "^(~?[\\d,.]+) second(?:\\(s\\)|s)?$",
+    "flags": "i",
+    "replacement": "$1 秒"
+  },
+  {
+    "pattern": "^(.+?)x\\ \\((.+?)\\ Mode\\)\\ Leverage\\ trading\\ in\\ crypto\\ assets\\ is\\ EXTREMELY\\ RISKY\\.\\ NEVER\\ put\\ more\\ than\\ \\~5%\\ of\\ your\\ crypto\\ investments\\ in\\ leveraged\\ trades\\ EVER,\\ OR\\ YOU\\ \\#\\#\\#COULD\\ LOSE\\ EVERYTHING\\#\\#\\#\\.$",
+    "flags": "i",
+    "replacement": "$1 倍杠杆（$2模式）。加密资产杠杆交易风险极高。原作者建议投入杠杆交易的资金不超过加密资产总投资的约 5%，否则可能损失全部资金。",
+    "translateGroups": [
+      2
+    ]
+  },
+  {
+    "pattern": "^Portfolio Value \\(([^)]+)\\):$",
+    "flags": "i",
+    "replacement": "资产组合总值（$1）："
+  }
+]

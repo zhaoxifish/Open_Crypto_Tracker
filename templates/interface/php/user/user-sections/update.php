@@ -528,7 +528,7 @@
 	       <input type='checkbox' value='<?=strtolower($asset_array_key)?>' id='<?=$field_var_watchonly?>' onchange='watch_toggle(this);' <?=( $ct['var']->rem_num_format($asset_amnt_val) > 0 && $ct['var']->rem_num_format($asset_amnt_val) <= $watch_only_flag_val ? 'checked' : '' )?> /> &nbsp;
 				    
 				    
-			<b class='blue'><?=$asset_array_val['name']?> (<?=strtoupper($asset_array_key)?>)</b> /  
+			<b translate='no' class='blue'><?=$asset_array_val['name']?> (<?=strtoupper($asset_array_key)?>)</b> /
 	       
 	       
 				    <select class='browser-default custom-select' onchange='
@@ -568,13 +568,13 @@
 					 	}
 						
 					?>
-					<option value='<?=$pair_key?>' <?=( $sel_pair == $pair_key ? ' selected ' : '' )?>> <?=strtoupper(preg_replace("/_/i", " ", $pair_key))?> </option>
+					<option translate='no' value='<?=$pair_key?>' <?=( $sel_pair == $pair_key ? ' selected ' : '' )?>> <?=strtoupper(preg_replace("/_/i", " ", $pair_key))?> </option>
 					<?php
 					
 									foreach ( $asset_array_val['pair'][$pair_key] as $mrkt_key => $mrkt_id ) {
 									$loop2 = $loop2 + 1;
 							
-									$html_mrkt_list[$pair_key] .= "\n<option value='".$loop2."'" . ( 
+									$html_mrkt_list[$pair_key] .= "\n<option translate='no' value='".$loop2."'" . (
 									isset($asset_mrkt_id) && ($asset_mrkt_id) == $loop2 
 									|| !isset($asset_mrkt_id) && strtolower($asset_array_val['name']) == 'bitcoin' && $loop2 == $ct['asset']->btc_mrkt($ct['conf']['currency']['bitcoin_primary_currency_exchange']) ? ' selected ' : '' ) . ">" . $ct['gen']->key_to_name($mrkt_key) . " </option>\n";
 								
@@ -646,7 +646,7 @@
 	     
 	     $("#<?=strtolower($asset_array_key)?>_restore").val( $("#<?=strtolower($asset_array_key)?>_amnt").val() );
 	     
-	     ' <?=( $ct['var']->rem_num_format($asset_amnt_val) > 0 && $ct['var']->rem_num_format($asset_amnt_val) <= $watch_only_flag_val ? 'readonly' : '' )?> /> <span class='blue'><?=strtoupper($asset_array_key)?></span>  &nbsp;  &nbsp; 
+	     ' <?=( $ct['var']->rem_num_format($asset_amnt_val) > 0 && $ct['var']->rem_num_format($asset_amnt_val) <= $watch_only_flag_val ? 'readonly' : '' )?> /> <span translate='no' class='blue'><?=strtoupper($asset_array_key)?></span>  &nbsp;  &nbsp;
 			    
 			
 	     <b>Average Paid (per-unit):</b> <?=$ct['opt_conf']['conversion_currency_symbols'][ $ct['conf']['currency']['bitcoin_primary_currency_pair'] ]?><input class='private_data' type='text' size='10' id='<?=$field_var_paid?>' name='<?=$field_var_paid?>' value='<?=$asset_paid_val?>' <?=$disable_fields?> /> 

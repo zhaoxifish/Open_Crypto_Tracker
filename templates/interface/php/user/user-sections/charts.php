@@ -212,7 +212,7 @@
 	
 		<div class='<?=$zebra_stripe?> long_list <?=( $last_rendered != $show_asset ? 'activate_chart_sections' : '' )?>'>
 				
-				<input type='checkbox' id='<?=$show_asset_params[0]?>_<?=$show_asset_params[2]?>' value='<?=$show_asset_params[0]?>_<?=$show_asset_params[2]?>' onchange='chart_toggle(this);' /> <span class='blue'><?=$show_asset?></span> / <?=strtoupper($show_asset_params[2])?> @ <?=$ct['gen']->key_to_name($show_asset_params[1])?>
+				<input type='checkbox' id='<?=$show_asset_params[0]?>_<?=$show_asset_params[2]?>' value='<?=$show_asset_params[0]?>_<?=$show_asset_params[2]?>' onchange='chart_toggle(this);' /> <span translate='no' class='blue'><?=$show_asset?></span> / <?=strtoupper($show_asset_params[2])?> @ <?=$ct['gen']->key_to_name($show_asset_params[1])?>
 				
 				<script>
 				

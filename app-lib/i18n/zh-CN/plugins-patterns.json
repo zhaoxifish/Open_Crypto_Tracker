@@ -1,0 +1,130 @@
+[
+  {
+    "pattern": "^Debt Amount (.+)$",
+    "flags": "i",
+    "replacement": "债务金额 $1"
+  },
+  {
+    "pattern": "^Monthly Interest: (.+)$",
+    "flags": "i",
+    "replacement": "每月利息：$1"
+  },
+  {
+    "pattern": "^Yearly Interest: (.+)$",
+    "flags": "i",
+    "replacement": "全年利息：$1"
+  },
+  {
+    "pattern": "^Total Monthly Interest: (.+)$",
+    "flags": "i",
+    "replacement": "每月利息合计：$1"
+  },
+  {
+    "pattern": "^Total Yearly Interest: (.+)$",
+    "flags": "i",
+    "replacement": "全年利息合计：$1"
+  },
+  {
+    "pattern": "^Invalid crypto address: \"(.+)\"$",
+    "flags": "i",
+    "replacement": "加密资产地址无效：“$1”"
+  },
+  {
+    "pattern": "^Label missing \\(for crypto address: \"(.+)\"\\)$",
+    "flags": "i",
+    "replacement": "请为地址“$1”填写备注名称。"
+  },
+  {
+    "pattern": "^The network \"(.+)\" is NOT a valid option$",
+    "flags": "i",
+    "replacement": "不支持区块链网络“$1”。"
+  },
+  {
+    "pattern": "^Price target MARKET was USED TWICE \\(DUPLICATE\\): \"(.+)\" \\(no duplicate markets allowed\\)$",
+    "flags": "i",
+    "replacement": "目标价格设置中的市场重复：“$1”。同一市场只能设置一次。"
+  },
+  {
+    "pattern": "^No market data found for (.+) \\(in submission: \"(.+)\"\\)$",
+    "flags": "i",
+    "replacement": "未找到 $1 的市场数据（提交内容：“$2”）。"
+  },
+  {
+    "pattern": "^Please use a numeric value for target price \\(in submission: \"(.+)\"\\)$",
+    "flags": "i",
+    "replacement": "目标价格须填写数字（提交内容：“$1”）。"
+  },
+  {
+    "pattern": "^IN HIGH SECURITY ADMIN MODE, by updating the file plug-conf\\.php \\(in this plugin's subdirectory: (.+)\\) with a text editor\\. You can change the security level in the \"Security\" section\\.$",
+    "flags": "i",
+    "replacement": "：请用文本编辑器修改插件目录 $1 中的 plug-conf.php 文件。可在“安全设置”中调整安全级别。"
+  },
+  {
+    "pattern": "^In Privacy Mode, the current asset balance is converted to it's (.+) value\\.$",
+    "flags": "i",
+    "replacement": "开启隐私模式后，当前资产余额将折算为 $1 显示。"
+  },
+  {
+    "pattern": "^Activate more networks in \"Admin Area => Plugins => (.+)\"\\.$",
+    "flags": "i",
+    "replacement": "可在“管理后台 → 插件管理 → $1”中启用更多网络。",
+    "translateGroups": [
+      1
+    ]
+  },
+  {
+    "pattern": "^Zoom: (\\d+)$",
+    "flags": "i",
+    "replacement": "缩放级别：$1"
+  },
+  {
+    "pattern": "^Last Update: (.+)$",
+    "flags": "i",
+    "replacement": "最近更新：$1"
+  },
+  {
+    "pattern": "^Loaded (\\d+) map location\\(s\\)$",
+    "flags": "i",
+    "replacement": "已加载 $1 个地图位置"
+  },
+  {
+    "pattern": "^No '(.+)' light chart data for any Solana TPS yet, please check back in awhile\\.$",
+    "flags": "i",
+    "replacement": "暂无“$1”时间范围内的 Solana 交易吞吐量数据，请稍后再查看。",
+    "translateGroups": [
+      1
+    ]
+  },
+  {
+    "pattern": "^No '(.+)' light chart data for any Bitcoin TPS yet, please check back in awhile\\.$",
+    "flags": "i",
+    "replacement": "暂无“$1”时间范围内的 Bitcoin 交易吞吐量数据，请稍后再查看。",
+    "translateGroups": [
+      1
+    ]
+  },
+  {
+    "pattern": "^No '(.+)' light chart data for any Solana nodes yet, please check back in awhile\\.$",
+    "flags": "i",
+    "replacement": "暂无“$1”时间范围内的 Solana 节点数据，请稍后再查看。",
+    "translateGroups": [
+      1
+    ]
+  },
+  {
+    "pattern": "^No '(.+)' light chart data for any Bitcoin nodes yet, please check back in awhile \\(~16 hours\\)\\.$",
+    "flags": "i",
+    "replacement": "暂无“$1”时间范围内的 Bitcoin 节点数据，请约 16 小时后再查看。",
+    "translateGroups": [
+      1
+    ]
+  },
+  {
+    "pattern": "^Plugin: (.+)$",
+    "flags": "i",
+    "replacement": "插件：$1",
+    "translateGroups": [
+      1
+    ]
+  }
+]

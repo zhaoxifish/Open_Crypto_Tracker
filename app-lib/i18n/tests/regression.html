@@ -1,0 +1,132 @@
+<!doctype html>
+<!-- Regression fixture only. Original application license / attribution is untouched. -->
+<html lang="en"><head><meta charset="utf-8"><title>Fixture title</title>
+<link rel="stylesheet" href="../zh-CN.css">
+<script src="../zh-CN.js"></script>
+<script>
+localStorage.removeItem('oct_interface_language');
+Object.assign(window.OCT_ZH_CN.messages, {
+  'Fixture title': '测试标题', 'Fixture save': '保存测试设置',
+  'Fixture queued': '正在排队', 'Fixture finished': '已完成',
+  'Fixture tooltip': '测试提示', 'Fixture second tooltip': '更新后的提示',
+  'Fixture placeholder': '请输入测试内容',
+  'Fixture heading': '测试图表', 'Fixture series': '测试系列',
+  '<b>Fixture complete</b> sentence': '<b>完整测试</b>语句'
+});
+window.OCT_ZH_CN.patterns.push({pattern:'^<b>Fixture dynamic</b> ([A-Z]+) amount$', flags:'i', replacement:'<b>动态测试</b> $1 金额'});
+window.chartCalls=[]; window.chartExecCalls=[];
+window.zingchart={render(options){ chartCalls.push(options); return 'chart-render-result'; }, exec(...args){chartExecCalls.push(args);return 'chart-exec-result';}};
+window.nativeCalls=[];
+for(const kind of ['alert','confirm','prompt']) window[kind]=function(...args){nativeCalls.push({kind,args});return kind==='confirm'?true:'fixture response';};
+window.datepickerDefaults=null;
+window.jQuery={datepicker:{setDefaults(value){datepickerDefaults=value;}}};
+window.fixtureErrors=[];
+window.addEventListener('error',event=>fixtureErrors.push(String(event.message)));
+</script><script src="../i18n.js"></script>
+<style>body{padding:24px} #test-form{display:grid;gap:10px;max-width:900px}.row{display:flex;gap:20px} .oct-input-wrap{margin:2px} #result{white-space:pre-wrap} #performance{display:none}</style>
+</head><body>
+<h1 id="static">Fixture save</h1>
+<p id="whitespace">   Fixture save   </p>
+<form id="test-form">
+<input id="text-value" type="text" name="portfolio" value="Fixture save" placeholder="Fixture placeholder" title="Fixture tooltip">
+<input id="password-value" type="password" name="password" value="Fixture save">
+<input id="hidden-value" type="hidden" name="token" value="Fixture save">
+<textarea id="textarea-value" name="notes">Fixture save</textarea>
+<div class="row"><input id="submit" type="submit" name="action" value="Fixture save"><input id="sync-button" type="button" value="Fixture save"><input id="async-button" type="button" value="Fixture save"></div>
+<select id="explicit-option" name="explicit"><option value="asset-code">Fixture save</option></select>
+<select id="implicit-option" name="implicit"><option>Fixture save</option></select>
+</form>
+<p id="no-translate" translate="no">Fixture save</p><p id="skip-marker" data-i18n="skip">Fixture save</p>
+<div translate="no"><input id="protected-button" type="button" value="Fixture save"></div>
+<pre id="pre-code">Fixture save</pre><code id="inline-code">Fixture save</code>
+<div id="editable-true" contenteditable="true">Fixture save</div>
+<div id="editable-empty" contenteditable="">Fixture save</div>
+<div id="editable-plain" contenteditable="plaintext-only">Fixture save</div>
+<div class="asset_info"><span translate="no" class="blue" id="asset-ticker">ON</span></div>
+<table><tbody><tr id="onstock_row"><td><span translate="no" id="stock-ticker">ON</span><span class="extra_data bitcoin">(stock)</span></td></tr></tbody></table>
+<svg id="chart-svg" width="80" height="40"><text id="chart-ticker" x="0" y="20">ALL</text></svg>
+<a id="asset-link" href="https://example.invalid/Fixture%20save?token=Fixture%20save" data-id="Fixture save" title="Fixture tooltip">Fixture save</a>
+<div id="dynamic"></div><div id="performance"></div>
+<pre id="result" translate="no">Test is running.</pre>
+<script>
+document.getElementById('test-form').addEventListener('submit',event=>event.preventDefault());
+document.getElementById('sync-button').addEventListener('click',event=>event.target.value='Fixture queued');
+document.getElementById('async-button').addEventListener('click',event=>{setTimeout(()=>event.target.value='Fixture finished',35);});
+const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+const el=id=>document.getElementById(id);
+const caption=id=>el(id).parentElement.querySelector('.oct-input-label')?.textContent;
+const results=[];
+function check(name,condition,actual,expected){results.push({name,passed:!!condition,actual,expected});}
+async function runRegression(){
+await wait(100);
+const lang=OCT_I18N.locale;
+check('default locale and document lang',lang==='zh-CN'&&document.documentElement.lang==='zh-CN',[lang,document.documentElement.lang],'zh-CN');
+check('static text and title',el('static').textContent==='保存测试设置'&&document.title==='测试标题',[el('static').textContent,document.title],['保存测试设置','测试标题']);
+check('surrounding whitespace preserved',el('whitespace').textContent==='   保存测试设置   ',el('whitespace').textContent,'   保存测试设置   ');
+for(const id of ['text-value','password-value','hidden-value','textarea-value']) check(id+' user value preserved',el(id).value==='Fixture save',el(id).value,'Fixture save');
+const fd=new FormData(el('test-form'),el('submit'));
+check('submit caption translated without value mutation',el('submit').value==='Fixture save'&&caption('submit')==='保存测试设置',[el('submit').value,caption('submit')],['Fixture save','保存测试设置']);
+check('form submission payload preserved',fd.get('action')==='Fixture save'&&fd.get('portfolio')==='Fixture save'&&fd.get('token')==='Fixture save',Object.fromEntries(fd),{action:'Fixture save',portfolio:'Fixture save',token:'Fixture save'});
+check('explicit option preserves submitted value',el('explicit-option').value==='asset-code'&&el('explicit-option').selectedOptions[0].text==='保存测试设置',[el('explicit-option').value,el('explicit-option').selectedOptions[0].text],['asset-code','保存测试设置']);
+check('implicit option preserves submitted value',el('implicit-option').value==='Fixture save'&&el('implicit-option').selectedOptions[0].text==='保存测试设置',[el('implicit-option').value,el('implicit-option').selectedOptions[0].text],['Fixture save','保存测试设置']);
+for(const id of ['no-translate','skip-marker','pre-code','inline-code','editable-true','editable-empty','editable-plain'])check(id+' protected text remains unchanged',el(id).textContent==='Fixture save',el(id).textContent,'Fixture save');
+check('attribute localization',el('text-value').placeholder==='请输入测试内容'&&el('asset-link').title==='测试提示',[el('text-value').placeholder,el('asset-link').title],['请输入测试内容','测试提示']);
+check('URL and data attributes preserved',el('asset-link').getAttribute('href')==='https://example.invalid/Fixture%20save?token=Fixture%20save'&&el('asset-link').dataset.id==='Fixture save',[el('asset-link').getAttribute('href'),el('asset-link').dataset.id],'unchanged URL and ID');
+check('displayed asset ticker preserved',el('asset-ticker').textContent==='ON',el('asset-ticker').textContent,'ON');
+check('displayed stock ticker preserved',el('stock-ticker').firstChild.nodeValue==='ON',el('stock-ticker').firstChild.nodeValue,'ON');
+check('SVG chart ticker preserved',el('chart-ticker').textContent==='ALL',el('chart-ticker').textContent,'ALL');
+el('dynamic').innerHTML='<span id="inserted" title="Fixture tooltip">Fixture queued</span>';
+el('asset-link').title='Fixture second tooltip';
+el('text-value').placeholder='Fixture tooltip';
+await wait(60);
+check('inserted text and tooltip translated',el('inserted').textContent==='正在排队'&&el('inserted').title==='测试提示',[el('inserted').textContent,el('inserted').title],['正在排队','测试提示']);
+check('updated title and placeholder translated',el('asset-link').title==='更新后的提示'&&el('text-value').placeholder==='测试提示',[el('asset-link').title,el('text-value').placeholder],['更新后的提示','测试提示']);
+el('sync-button').click(); await wait(60);
+check('synchronous input value update relabelled',caption('sync-button')==='正在排队'&&el('sync-button').value==='Fixture queued',[caption('sync-button'),el('sync-button').value],['正在排队','Fixture queued']);
+el('async-button').click(); await wait(650);
+check('asynchronous input value update relabelled',caption('async-button')==='已完成'&&el('async-button').value==='Fixture finished',[caption('async-button'),el('async-button').value],['已完成','Fixture finished']);
+check('periodic relabel respects translate=no',!el('protected-button').classList.contains('oct-translated-input')&&el('protected-button').value==='Fixture save',[el('protected-button').className,el('protected-button').value],['','Fixture save']);
+check('sourceText preserves original-state checks',OCT_I18N.sourceText(el('static'))==='Fixture save'&&OCT_I18N.isMessage(el('static'),'Fixture save'),OCT_I18N.sourceText(el('static')),'Fixture save');
+const exact=OCT_I18N.html('<b>Fixture complete</b> sentence');
+check('complete HTML message',exact==='<b>完整测试</b>语句',exact,'<b>完整测试</b>语句');
+const dynamic=OCT_I18N.html('<b>Fixture dynamic</b> USD amount');
+check('dynamic HTML pattern',dynamic==='<b>动态测试</b> USD 金额',dynamic,'<b>动态测试</b> USD 金额');
+const fallback=OCT_I18N.html('<a href="https://example.invalid/Fixture%20save"><b>Fixture save</b></a>');
+const tmp=document.createElement('template');tmp.innerHTML=fallback;
+check('HTML fallback translates labels and preserves link',tmp.content.querySelector('a').getAttribute('href')==='https://example.invalid/Fixture%20save'&&tmp.content.querySelector('b').textContent==='保存测试设置',fallback,'translated label, unchanged URL');
+const nullProto=Object.assign(Object.create(null),{value:12});
+const dates=new Date(1720000000000);
+const onClick=()=>42;
+const rawData={type:'line',title:{text:'Fixture heading'},series:[{text:'Fixture series',values:[1,0,-2.5,null,[123,4.567],'Fixture save'],url:'https://example.invalid/Fixture%20save'}],scaleX:{values:['Fixture save','user-key']},callbacks:{onClick},metadata:nullProto,date:dates};
+const snapshot=JSON.stringify(rawData);
+const chartReturn=zingchart.render({id:'my-chart',data:rawData,width:'100%'});
+const actual=chartCalls.at(-1);
+check('chart labels translated',actual.data.title.text==='测试图表'&&actual.data.series[0].text==='测试系列',[actual.data.title.text,actual.data.series[0].text],['测试图表','测试系列']);
+check('chart numerical/string data arrays and data URL preserved',JSON.stringify(actual.data.series[0].values)===JSON.stringify(rawData.series[0].values)&&JSON.stringify(actual.data.scaleX.values)===JSON.stringify(rawData.scaleX.values)&&actual.data.series[0].url===rawData.series[0].url,actual.data.series[0].values,rawData.series[0].values);
+check('chart source object and return value preserved',JSON.stringify(rawData)===snapshot&&chartReturn==='chart-render-result'&&actual.data.callbacks.onClick===onClick&&actual.data.date===dates,{originalUnchanged:JSON.stringify(rawData)===snapshot,chartReturn,callbackPreserved:actual.data.callbacks.onClick===onClick,datePreserved:actual.data.date===dates},'original data intact');
+zingchart.exec('my-chart','load',{data:{title:{text:'Fixture heading'},series:[{values:[0,100]}]}});
+check('chart reload API label translation',chartExecCalls.at(-1)[2].data.title.text==='测试图表',chartExecCalls.at(-1)[2].data.title.text,'测试图表');
+const reloadSource={data:{title:{text:'Fixture heading'},series:[{values:[-1,null,0,1.567],text:'ON'}]}};
+const reloadSnapshot=JSON.stringify(reloadSource);
+const reloadReturn=zingchart.exec('my-chart','setdata',reloadSource);
+const reloaded=chartExecCalls.at(-1)[2];
+check('chart setdata preserves source, ticker, values and return',reloaded.data.title.text==='测试图表'&&reloaded.data.series[0].text==='ON'&&JSON.stringify(reloaded.data.series[0].values)===JSON.stringify(reloadSource.data.series[0].values)&&JSON.stringify(reloadSource)===reloadSnapshot&&reloadReturn==='chart-exec-result',reloaded,'translated caption; source, ticker and data unchanged');
+const urlOptions={dataurl:'ajax.php?type=chart&asset_data=ON&days=30',cache:{data:true}};
+zingchart.exec('my-chart','load',urlOptions);
+check('chart dataurl loading semantics preserved',chartExecCalls.at(-1)[2]===urlOptions,chartExecCalls.at(-1)[2],urlOptions);
+const resizeOptions={width:800,height:450};zingchart.exec('my-chart','resize',resizeOptions);
+check('other chart commands passed through intact',chartExecCalls.at(-1)[1]==='resize'&&chartExecCalls.at(-1)[2]===resizeOptions,chartExecCalls.at(-1),['my-chart','resize',resizeOptions]);
+alert('Fixture save'); const conf=confirm('Fixture save');const prompted=prompt('Fixture save','Fixture save');
+check('native dialogs translate message only',nativeCalls.every(call=>call.args[0]==='保存测试设置')&&nativeCalls[2].args[1]==='Fixture save'&&conf===true&&prompted==='fixture response',nativeCalls,'localized message and unchanged prompt default');
+check('datepicker default labels Chinese',datepickerDefaults?.monthNames?.[0]==='一月'&&datepickerDefaults?.dayNamesMin?.[0]==='日',datepickerDefaults?.monthNames?.[0],'一月');
+const perfStart=performance.now();
+el('performance').innerHTML=Array.from({length:3000},(_,i)=>'<p>Unmatched benchmark row '+i+'</p>').join('');
+await wait(10);
+const elapsed=performance.now()-perfStart;
+check('3000 inserted unknown labels process without long stall',elapsed<2000,Math.round(elapsed)+'ms','<2000ms');
+check('no runtime errors',fixtureErrors.length===0,fixtureErrors,[]);
+window.REGRESSION_RESULT={engineVersion:OCT_I18N.version,completed:new Date().toISOString(),passed:results.filter(x=>x.passed).length,failed:results.filter(x=>!x.passed).length,results};
+el('result').textContent=JSON.stringify(REGRESSION_RESULT,null,2);
+}
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',runRegression,{once:true});else runRegression();
+</script></body></html>

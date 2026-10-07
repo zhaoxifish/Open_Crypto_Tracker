@@ -1,0 +1,757 @@
+[
+  {
+    "pattern": "^Updating of \"([^\"]+)\" (?:admin |plugin )?settings SUCCEEDED\\.$",
+    "flags": "i",
+    "replacement": "“$1”设置已保存。",
+    "translateGroups": [
+      1
+    ]
+  },
+  {
+    "pattern": "^Updating of \"([^\"]+)\" (?:admin |plugin )?settings FAILED\\.\\s*(.*)$",
+    "flags": "i",
+    "replacement": "“$1”设置保存失败。$2",
+    "translateGroups": [
+      1,
+      2
+    ]
+  },
+  {
+    "pattern": "^IN HIGH SECURITY ADMIN MODE, by updating the file config\\.php \\(in this app\\x27s main directory: (.+)\\) with a text editor\\. You can change the security level in the \"Security\" section\\.$",
+    "flags": "i",
+    "replacement": "：使用文本编辑器修改应用主目录（$1）中的 config.php。你可以在“安全设置”中调整安全级别。"
+  },
+  {
+    "pattern": "^IN HIGH SECURITY ADMIN MODE, by updating the file plug-conf\\.php \\(in this plugin\\x27s directory: (.+)\\) with a text editor\\. You can change the security level in the \"Security\" section\\.$",
+    "flags": "i",
+    "replacement": "：使用文本编辑器修改插件目录（$1）中的 plug-conf.php。你可以在“安全设置”中调整安全级别。"
+  },
+  {
+    "pattern": "^Admin area for plugin \\'([^\\']+)\\' \\(requested from ([^)]+)\\) does not exist \\(no config file found\\)\\.$",
+    "flags": "i",
+    "replacement": "插件“$1”的管理页面不存在：未找到配置文件。请求来源：$2。"
+  },
+  {
+    "pattern": "^Admin area for plugin \\'([^\\']+)\\' \\(requested from ([^)]+)\\) is not enabled \\(plugin not activated yet\\)\\.$",
+    "flags": "i",
+    "replacement": "插件“$1”尚未启用，无法访问其管理页面。请求来源：$2。"
+  },
+  {
+    "pattern": "^Reset \"([^\"]+)\" Plugin Webhook Key$",
+    "flags": "i",
+    "replacement": "重置“$1”插件的 Webhook 密钥"
+  },
+  {
+    "pattern": "^Webhook endpoint for \"([^\"]+)\" plugin:$",
+    "flags": "i",
+    "replacement": "“$1”插件的 Webhook 端点："
+  },
+  {
+    "pattern": "^The \"([^\"]+)\" webhook key was reset successfully\\.$",
+    "flags": "i",
+    "replacement": "“$1”的 Webhook 密钥已成功重置。"
+  },
+  {
+    "pattern": "^Resetting the \"([^\"]+)\" plugin webhook secret key will stop ALL external apps from accessing its plugin webhook with their current webhook app key\\. Press OK to reset this webhook secret key, or CANCEL to keep the current one\\.$",
+    "flags": "i",
+    "replacement": "重置“$1”插件的 Webhook 密钥后，所有外部应用当前使用的该插件密钥都会失效。点击“确定”重置，或点击“取消”保留现有密钥。"
+  },
+  {
+    "pattern": "^This will PERMANENTLY DELETE any ([A-Z0-9]+) \\*CONVERSION\\* price charts \\(([A-Z0-9]+) \\*BASE-PAIRED \\[MARKET\\]\\* price charts WILL \\*NOT\\* BE DELETED\\)\\. Do you still wish to select a new primary currency pair\\?$",
+    "flags": "i",
+    "replacement": "此操作将永久删除换算为 $1 的价格图表；以 $2 原生计价的市场价格图表不会删除。确定更换主要计价货币吗？"
+  },
+  {
+    "pattern": "^\\(([\\d,]+) Day Report\\)$",
+    "flags": "i",
+    "replacement": "（近 $1 天统计）"
+  },
+  {
+    "pattern": "^([\\d,]+) threads / cores$",
+    "flags": "i",
+    "replacement": "$1 个线程 / 核心"
+  },
+  {
+    "pattern": "^\\(([\\d,]+) threads / cores\\)$",
+    "flags": "i",
+    "replacement": "（$1 个线程 / 核心）"
+  },
+  {
+    "pattern": "^([\\d.,]+) Kilobytes$",
+    "flags": "i",
+    "replacement": "$1 KB"
+  },
+  {
+    "pattern": "^([\\d.,]+) Megabytes$",
+    "flags": "i",
+    "replacement": "$1 MB"
+  },
+  {
+    "pattern": "^([\\d.,]+) Gigabytes$",
+    "flags": "i",
+    "replacement": "$1 GB"
+  },
+  {
+    "pattern": "^([\\d.,]+) Terabytes$",
+    "flags": "i",
+    "replacement": "$1 TB"
+  },
+  {
+    "pattern": "^\\(([\\d.,]+) Megabytes / ([\\d.,]+)%\\)$",
+    "flags": "i",
+    "replacement": "（$1 MB / $2%）"
+  },
+  {
+    "pattern": "^\\(([\\d.,]+) (?:Gigabytes|Gigabytes\\))\\)?$",
+    "flags": "i",
+    "replacement": "（$1 GB）"
+  },
+  {
+    "pattern": "^\\(([\\d.,]+) Megabytes\\)$",
+    "flags": "i",
+    "replacement": "（$1 MB）"
+  },
+  {
+    "pattern": "^\\(([\\d.,]+)° Fahrenheit\\)$",
+    "flags": "i",
+    "replacement": "（$1°F）"
+  },
+  {
+    "pattern": "^No light chart build / re-build found for: System Chart #(\\d+)$",
+    "flags": "i",
+    "replacement": "系统图表 $1 尚未生成轻量图表。"
+  },
+  {
+    "pattern": "^Loading (.+) chart for System Chart #(\\d+)\\.\\.\\.$",
+    "flags": "i",
+    "replacement": "正在加载系统图表 $2（$1）…",
+    "translateGroups": [
+      1
+    ]
+  },
+  {
+    "pattern": "^\\(your have ([\\d,]+) CPU Cores, so your TOTAL results maximum for Jupiter is:$",
+    "flags": "i",
+    "replacement": "（当前共有 $1 个 CPU 核心，Jupiter 搜索结果总上限为："
+  },
+  {
+    "pattern": "^Every ([\\d.,]+) Days$",
+    "flags": "i",
+    "replacement": "每隔 $1 天"
+  },
+  {
+    "pattern": "^Every ([\\d.,]+) Hours$",
+    "flags": "i",
+    "replacement": "每隔 $1 小时"
+  },
+  {
+    "pattern": "^Every ([\\d.,]+) Minutes$",
+    "flags": "i",
+    "replacement": "每隔 $1 分钟"
+  },
+  {
+    "pattern": "^Every ([\\d.,]+) Seconds$",
+    "flags": "i",
+    "replacement": "每隔 $1 秒"
+  },
+  {
+    "pattern": "^After ([\\d.,]+) Days$",
+    "flags": "i",
+    "replacement": "持续 $1 天后"
+  },
+  {
+    "pattern": "^After ([\\d.,]+) Hours$",
+    "flags": "i",
+    "replacement": "$1 小时后"
+  },
+  {
+    "pattern": "^Delete After ([\\d.,]+) Days$",
+    "flags": "i",
+    "replacement": "$1 天后删除"
+  },
+  {
+    "pattern": "^Less Than ([\\d.,]+) Days Old$",
+    "flags": "i",
+    "replacement": "发布时间在 $1 天内"
+  },
+  {
+    "pattern": "^Include ([\\d.,]+) Entries MAXIMUM Per-News-Feed$",
+    "flags": "i",
+    "replacement": "每个订阅源最多包含 $1 条"
+  },
+  {
+    "pattern": "^Refresh Font List Every ([\\d.,]+) Hours$",
+    "flags": "i",
+    "replacement": "每隔 $1 小时刷新字体列表"
+  },
+  {
+    "pattern": "^MAXIMUM of ([\\d.,]+) LIVE updates PER MINUTE$",
+    "flags": "i",
+    "replacement": "每分钟最多实时更新 $1 次"
+  },
+  {
+    "pattern": "^MAXIMUM of ([\\d.,]+) LIVE updates DAILY$",
+    "flags": "i",
+    "replacement": "每天最多实时更新 $1 次"
+  },
+  {
+    "pattern": "^MAXIMUM of ([\\d.,]+) LIVE updates PER MONTH$",
+    "flags": "i",
+    "replacement": "每月最多实时更新 $1 次"
+  },
+  {
+    "pattern": "^MAXIMUM of ([\\d.,]+) search results PER CPU CORE$",
+    "flags": "i",
+    "replacement": "每个 CPU 核心最多处理 $1 条搜索结果"
+  },
+  {
+    "pattern": "^Batch-Request ([\\d.,]+) Data Sets MAXIMUM$",
+    "flags": "i",
+    "replacement": "每批最多请求 $1 个数据集"
+  },
+  {
+    "pattern": "^([\\d.,]+) Days$",
+    "flags": "i",
+    "replacement": "$1 天"
+  },
+  {
+    "pattern": "^([\\d.,]+) Hours$",
+    "flags": "i",
+    "replacement": "$1 小时"
+  },
+  {
+    "pattern": "^([\\d.,]+) Minutes$",
+    "flags": "i",
+    "replacement": "$1 分钟"
+  },
+  {
+    "pattern": "^([\\d.,]+) Seconds$",
+    "flags": "i",
+    "replacement": "$1 秒"
+  },
+  {
+    "pattern": "^([\\d.,]+) Rankings$",
+    "flags": "i",
+    "replacement": "$1 项排名"
+  },
+  {
+    "pattern": "^([\\d.,]+) Markets$",
+    "flags": "i",
+    "replacement": "$1 个交易市场"
+  },
+  {
+    "pattern": "^([\\d.,]+) MINUTE\\ cache$",
+    "flags": "i",
+    "replacement": "$1 分钟缓存"
+  },
+  {
+    "pattern": "^([\\d.,]+) Entries\\ Per\\-Feed$",
+    "flags": "i",
+    "replacement": "$1 条 / 订阅源"
+  },
+  {
+    "pattern": "^([\\d.,]+) Batched\\ Feeds$",
+    "flags": "i",
+    "replacement": "$1 个订阅源 / 批"
+  },
+  {
+    "pattern": "^([\\d.,]+) Pre\\-Caches\\ Per\\-Run$",
+    "flags": "i",
+    "replacement": "$1 个订阅源 / 次预缓存"
+  },
+  {
+    "pattern": "^([+-]?[\\d.,]+) Hours UTC Time$",
+    "flags": "i",
+    "replacement": "UTC 偏移 $1 小时"
+  },
+  {
+    "pattern": "^([\\d.,]+) degrees Maximum$",
+    "flags": "i",
+    "replacement": "最大 $1 度"
+  },
+  {
+    "pattern": "^([\\d.,]+)x Leverage$",
+    "flags": "i",
+    "replacement": "$1 倍杠杆"
+  },
+  {
+    "pattern": "^([\\d.,]+)% Price Change$",
+    "flags": "i",
+    "replacement": "价格变动 $1%"
+  },
+  {
+    "pattern": "^Interface Login USERNAME requirements NOT met \\((.*)\\)$",
+    "flags": "i",
+    "replacement": "网站登录用户名不符合要求（$1）"
+  },
+  {
+    "pattern": "^Interface Login PASSWORD requirements NOT met \\((.*)\\)$",
+    "flags": "i",
+    "replacement": "网站登录密码不符合要求（$1）"
+  },
+  {
+    "pattern": "^FROM Email is NOT valid: (.*)$",
+    "flags": "i",
+    "replacement": "发件邮箱无效：$1"
+  },
+  {
+    "pattern": "^TO Email is NOT valid: (.*)$",
+    "flags": "i",
+    "replacement": "收件邮箱无效：$1"
+  },
+  {
+    "pattern": "^Proxy LIST formatting is NOT valid \\(MUST be: ip_address:port_number \\[in submission: \"([^\"]*)\"\\]\\)$",
+    "flags": "i",
+    "replacement": "代理地址格式不正确，应为 IP 地址:端口号。提交值：“$1”。"
+  },
+  {
+    "pattern": "^Proxy TEST failed for submission: \"([^\"]*)\" \\((.*)\\)$",
+    "flags": "i",
+    "replacement": "代理“$1”连接测试失败（$2）。"
+  },
+  {
+    "pattern": "^\"anti_proxy_servers\" seems INVALID \\(NOT a domain\\): (.*)$",
+    "flags": "i",
+    "replacement": "不使用代理的服务器必须填写域名，当前值无效：$1"
+  },
+  {
+    "pattern": "^\"strict_news_feed_servers\" seems INVALID \\(NOT a domain\\): (.*)$",
+    "flags": "i",
+    "replacement": "要求资讯专用请求标识的服务器必须填写域名，当前值无效：$1"
+  },
+  {
+    "pattern": "^Mobile text gateway KEY was USED TWICE \\(DUPLICATE\\): \"([^\"]*)\" \\(in \"([^\"]*)\", no duplicate keys allowed\\)$",
+    "flags": "i",
+    "replacement": "短信网关标识“$1”重复（位于“$2”）。网关标识不能重复。"
+  },
+  {
+    "pattern": "^Mobile text gateway seems INVALID: \"([^\"]*)\" \\((.*)\\)$",
+    "flags": "i",
+    "replacement": "短信网关“$1”无效（$2）。"
+  },
+  {
+    "pattern": "^Bitcoin RPC Server \"([^\"]*)\" query test FAILED \\(make sure you entered the RPC endpoint address correctly\\)$",
+    "flags": "i",
+    "replacement": "Bitcoin RPC 服务器“$1”查询测试失败，请检查端点地址。"
+  },
+  {
+    "pattern": "^Solana RPC Server \"([^\"]*)\" query test FAILED \\(make sure you entered the RPC endpoint address correctly\\)$",
+    "flags": "i",
+    "replacement": "Solana RPC 服务器“$1”查询测试失败，请检查端点地址。"
+  },
+  {
+    "pattern": "^Twilio Number formatting is NOT valid: (.*) \\(MUST be ONLY NUMBERS\\)$",
+    "flags": "i",
+    "replacement": "Twilio 号码只能包含数字，当前值无效：$1"
+  },
+  {
+    "pattern": "^\"system_uptime_warning\" seems INVALID \\(NOT numeric values\\): (.*)$",
+    "flags": "i",
+    "replacement": "系统运行时长预警必须填写数值，当前值无效：$1"
+  },
+  {
+    "pattern": "^\"system_load_warning\" seems INVALID \\(NOT numeric values\\): (.*)$",
+    "flags": "i",
+    "replacement": "系统负载预警必须填写数值，当前值无效：$1"
+  },
+  {
+    "pattern": "^\"system_temperature_warning\" seems INVALID \\(NOT numeric values\\): (.*)$",
+    "flags": "i",
+    "replacement": "系统温度预警必须填写数值，当前值无效：$1"
+  },
+  {
+    "pattern": "^\"memory_used_percent_warning\" seems INVALID \\(NOT numeric values\\): (.*)$",
+    "flags": "i",
+    "replacement": "内存占用率预警必须填写数值，当前值无效：$1"
+  },
+  {
+    "pattern": "^\"free_partition_space_warning\" seems INVALID \\(NOT numeric values\\): (.*)$",
+    "flags": "i",
+    "replacement": "磁盘剩余空间预警必须填写数值，当前值无效：$1"
+  },
+  {
+    "pattern": "^\"portfolio_cache_warning\" seems INVALID \\(NOT numeric values\\): (.*)$",
+    "flags": "i",
+    "replacement": "资产组合缓存大小预警必须填写数值，当前值无效：$1"
+  },
+  {
+    "pattern": "^\"cookies_size_warning\" seems INVALID \\(NOT numeric values\\): (.*)$",
+    "flags": "i",
+    "replacement": "Cookie 总大小预警必须填写数值，当前值无效：$1"
+  },
+  {
+    "pattern": "^\"Jupiter Aggregator Pairings Search\" MUST be alphabetic letters only \\(\"([^\"]*)\" is invalid\\)$",
+    "flags": "i",
+    "replacement": "Jupiter Aggregator 搜索计价币种只能包含英文字母，“$1”无效。"
+  },
+  {
+    "pattern": "^\"UpBit Pairings Search\" MUST be alphabetic letters only \\(\"([^\"]*)\" is invalid\\)$",
+    "flags": "i",
+    "replacement": "Upbit 搜索计价币种只能包含英文字母，“$1”无效。"
+  },
+  {
+    "pattern": "^\"Additional Pairings Search\" MUST be alphabetic letters only \\(\"([^\"]*)\" is invalid\\)$",
+    "flags": "i",
+    "replacement": "其他搜索计价币种只能包含英文字母，“$1”无效。"
+  },
+  {
+    "pattern": "^\"Light Chart Day Intervals\" MUST be whole numbers greater than zero \\(\"([^\"]*)\" is invalid\\)$",
+    "flags": "i",
+    "replacement": "轻量图表时间跨度必须为大于零的整数，“$1”无效。"
+  },
+  {
+    "pattern": "^Unknown mode \\(in submission: \"([^\"]*)\"\\)$",
+    "flags": "i",
+    "replacement": "模式无法识别（提交值：“$1”）。"
+  },
+  {
+    "pattern": "^Corrupt data \\(\"([^\"]*)\" pair data missing\\)$",
+    "flags": "i",
+    "replacement": "数据不完整：缺少“$1”计价币种的数据。"
+  },
+  {
+    "pattern": "^Corrupt data \\(\"([^\"]*)\" exchange data missing\\)$",
+    "flags": "i",
+    "replacement": "数据不完整：缺少“$1”交易所的数据。"
+  },
+  {
+    "pattern": "^ASSET \"([^\"]*)\" does NOT EXIST in the current assets config$",
+    "flags": "i",
+    "replacement": "当前资产配置中不存在资产“$1”。"
+  },
+  {
+    "pattern": "^PAIRING \"([^\"]*)\" does NOT EXIST for ASSET \"([^\"]*)\", in the current assets config$",
+    "flags": "i",
+    "replacement": "当前资产配置中，资产“$2”不存在“$1”计价的市场。"
+  },
+  {
+    "pattern": "^MARKET \"([^\"]*)\" does NOT EXIST for ASSET / PAIRING \"([^\"]*)\", in the current assets config$",
+    "flags": "i",
+    "replacement": "当前资产配置中，资产 / 计价币种“$2”不存在“$1”市场。"
+  },
+  {
+    "pattern": "^MARKET ID for \"([^\"]*)\" does NOT MATCH for ASSET / PAIRING \"([^\"]*)\", in the current assets config$",
+    "flags": "i",
+    "replacement": "当前资产配置中，资产 / 计价币种“$2”的“$1”市场 ID 不匹配。"
+  },
+  {
+    "pattern": "^STEP #3: Select Asset Markets Found For \\(Exact Match\\) Search \"(.*)\"$",
+    "flags": "i",
+    "replacement": "第 3 步：选择“$1”的完全匹配市场"
+  },
+  {
+    "pattern": "^STEP #3: Select Asset Markets Found For \\(Similar Match\\) Search \"(.*)\"$",
+    "flags": "i",
+    "replacement": "第 3 步：选择“$1”的相似匹配市场"
+  },
+  {
+    "pattern": "^STEP #3: Select Asset Markets Found For \\(EXACT (.+) Market ID Match\\) Search \"(.*)\"$",
+    "flags": "i",
+    "replacement": "第 3 步：选择 $1 中市场 ID 与“$2”完全匹配的市场"
+  },
+  {
+    "pattern": "^([\\d,]+) total results$",
+    "flags": "i",
+    "replacement": "共 $1 条结果"
+  },
+  {
+    "pattern": "^([\\d,]+) through ([\\d,]+) \\(of ([\\d,]+) total data rows\\)$",
+    "flags": "i",
+    "replacement": "第 $1～$2 条，共 $3 条"
+  },
+  {
+    "pattern": "^Filter \"([^\"]+)\" column by\\.\\.\\.$",
+    "flags": "i",
+    "replacement": "筛选“$1”列…",
+    "translateGroups": [
+      1
+    ]
+  },
+  {
+    "pattern": "^(.+): No sort applied, activate to apply an ascending sort$",
+    "flags": "i",
+    "replacement": "$1：当前未排序，点击升序排列",
+    "translateGroups": [
+      1
+    ]
+  },
+  {
+    "pattern": "^(.+): Ascending sort applied, activate to apply a descending sort$",
+    "flags": "i",
+    "replacement": "$1：当前为升序，点击降序排列",
+    "translateGroups": [
+      1
+    ]
+  },
+  {
+    "pattern": "^(.+): Descending sort applied, activate to remove the sort$",
+    "flags": "i",
+    "replacement": "$1：当前为降序，点击取消排序",
+    "translateGroups": [
+      1
+    ]
+  },
+  {
+    "pattern": "^(.+): Descending sort applied, activate to apply an ascending sort$",
+    "flags": "i",
+    "replacement": "$1：当前为降序，点击升序排列",
+    "translateGroups": [
+      1
+    ]
+  },
+  {
+    "pattern": "^\\(([\\d,]+) skipped\\)$",
+    "flags": "i",
+    "replacement": "（已跳过 $1 条）"
+  },
+  {
+    "pattern": "^in ([\\d.,]+) seconds\\.$",
+    "flags": "i",
+    "replacement": "用时 $1 秒。"
+  },
+  {
+    "pattern": "^([\\d,]+) search-compatible exchanges \\(of ([\\d,]+) total\\)\\.$",
+    "flags": "i",
+    "replacement": "正在搜索 $1 个支持搜索的交易所（共 $2 个）。"
+  },
+  {
+    "pattern": "^WE LIMIT JUPITER AGGREGATOR SEARCH RESULTS TO ([\\d,]+)$",
+    "flags": "i",
+    "replacement": "Jupiter Aggregator 搜索结果上限为 $1 条"
+  },
+  {
+    "pattern": "^, ([\\d,]+) results below \\[including any marked as skipped\\] are from Jupiter Aggregator\\)$",
+    "flags": "i",
+    "replacement": "；下方 $1 条结果〔含已跳过项〕来自 Jupiter Aggregator）"
+  },
+  {
+    "pattern": "^would replace market ID: (.*)$",
+    "flags": "i",
+    "replacement": "将替换市场 ID：$1"
+  },
+  {
+    "pattern": "^Flagged Market: (.*)$",
+    "flags": "i",
+    "replacement": "市场标记：$1"
+  },
+  {
+    "pattern": "^Missing Required: (.+) \\(Consider ADDING PAIRINGS in: \"Asset Tracking => Currency Support => Additional Pairings Search\" \\[that are in the market id\\]\\)$",
+    "flags": "i",
+    "replacement": "缺少必要信息：$1。请考虑在“资产跟踪 → 货币支持 → 其他搜索计价币种”中添加市场 ID 使用的计价币种。"
+  },
+  {
+    "pattern": "^Pairing Not Supported: \\(ADD BTC / (.+) MARKET, TO ENABLE SUPPORT \\[DETERMINED BY MARKET ID\\]\\)$",
+    "flags": "i",
+    "replacement": "暂不支持此计价币种：请添加 BTC / $1 市场以启用支持〔根据市场 ID 判断〕。"
+  },
+  {
+    "pattern": "^FOR QUICKER / MORE SPECIFIC SEARCH RESULTS, TRY INCLUDING A PAIRING IN YOUR SEARCH PARAMETERS \\(example: (.+)\\)\\.$",
+    "flags": "i",
+    "replacement": "在搜索条件中加入计价币种，可更快获得更准确的结果（示例：$1）。"
+  },
+  {
+    "pattern": "^ALL \\(([\\d,]+) visits\\)$",
+    "flags": "i",
+    "replacement": "全部（$1 次访问）"
+  },
+  {
+    "pattern": "^\\(([\\d,]+) visits\\)$",
+    "flags": "i",
+    "replacement": "（$1 次访问）"
+  },
+  {
+    "pattern": "^\\(([\\d,]+) visits$",
+    "flags": "i",
+    "replacement": "（$1 次访问"
+  },
+  {
+    "pattern": "^([\\d,]+) visit\\(s\\) from$",
+    "flags": "i",
+    "replacement": "$1 次访问，来自"
+  },
+  {
+    "pattern": "^\\((Android|iPhone|Linux|Macintosh|Windows|Unknown) OS\\)$",
+    "flags": "i",
+    "replacement": "（$1 系统）"
+  },
+  {
+    "pattern": "^System Chart #(\\d+)$",
+    "flags": "i",
+    "replacement": "系统图表 $1"
+  },
+  {
+    "pattern": "^Low uptime \\((.+)\\)$",
+    "flags": "i",
+    "replacement": "系统连续运行时间较短（$1）"
+  },
+  {
+    "pattern": "^High 15 minute CPU load \\[(.+)\\]$",
+    "flags": "i",
+    "replacement": "CPU 最近 15 分钟平均负载过高〔$1〕"
+  },
+  {
+    "pattern": "^High temperature \\(([\\d.,]+) degrees celcius\\)$",
+    "flags": "i",
+    "replacement": "系统温度过高（$1°C）"
+  },
+  {
+    "pattern": "^High memory usage \\(([\\d.,]+) percent used\\)$",
+    "flags": "i",
+    "replacement": "内存占用过高（已用 $1%）"
+  },
+  {
+    "pattern": "^High disk storage usage \\(only ([\\d.,]+) megabytes free space left\\)$",
+    "flags": "i",
+    "replacement": "磁盘空间不足（仅剩 $1 MB）"
+  },
+  {
+    "pattern": "^High app cache disk storage usage \\(([\\d.,]+) megabytes in app cache\\)$",
+    "flags": "i",
+    "replacement": "应用缓存占用较大（$1 MB）"
+  },
+  {
+    "pattern": "^High app cookie storage usage \\(([\\d.,]+) kilobytes in app cookies\\), try UNSELECTING a few coins / news feeds / price charts, OR delete ALL browser cookies if the app crashes with a \"header too large\" error$",
+    "flags": "i",
+    "replacement": "应用 Cookie 占用较大（$1 KB）。可减少已选择的币种、资讯订阅源或价格图表；若出现“header too large”错误而无法使用，可尝试清除浏览器 Cookie。"
+  },
+  {
+    "pattern": "^\\[conversion_currency_symbols\\] formatting is NOT valid \\(MUST be: (.*?)\\): \"(.*)$",
+    "flags": "i",
+    "replacement": "换算货币符号格式不正确，必须为 $1；提交值：$2"
+  },
+  {
+    "pattern": "^\\[conversion_currency_symbols\\] Ticker seems INVALID: \"([^\"]*)\" \\((.*)\\)$",
+    "flags": "i",
+    "replacement": "换算货币符号的代码“$1”无效（$2）。"
+  },
+  {
+    "pattern": "^\\[conversion_currency_symbols\\] No ticker SYMBOL detected: \"([^\"]*)\" \\((.*)\\)$",
+    "flags": "i",
+    "replacement": "换算货币符号未检测到货币符号“$1”（$2）。"
+  },
+  {
+    "pattern": "^\\[conversion_currency_symbols\\] No ticker EXCHANGE detected: \"([^\"]*)\" \\((.*)\\)$",
+    "flags": "i",
+    "replacement": "换算货币符号未检测到交易所“$1”（$2）。"
+  },
+  {
+    "pattern": "^\\[bitcoin_preferred_currency_markets\\] formatting is NOT valid \\(MUST be: (.*?)\\): \"(.*)$",
+    "flags": "i",
+    "replacement": "比特币首选市场格式不正确，必须为 $1；提交值：$2"
+  },
+  {
+    "pattern": "^\\[bitcoin_preferred_currency_markets\\] Ticker seems INVALID: \"([^\"]*)\" \\((.*)\\)$",
+    "flags": "i",
+    "replacement": "比特币首选市场的代码“$1”无效（$2）。"
+  },
+  {
+    "pattern": "^\\[bitcoin_preferred_currency_markets\\] No ticker SYMBOL detected: \"([^\"]*)\" \\((.*)\\)$",
+    "flags": "i",
+    "replacement": "比特币首选市场未检测到货币符号“$1”（$2）。"
+  },
+  {
+    "pattern": "^\\[bitcoin_preferred_currency_markets\\] No ticker EXCHANGE detected: \"([^\"]*)\" \\((.*)\\)$",
+    "flags": "i",
+    "replacement": "比特币首选市场未检测到交易所“$1”（$2）。"
+  },
+  {
+    "pattern": "^\\[crypto_pair\\] formatting is NOT valid \\(MUST be: (.*?)\\): \"(.*)$",
+    "flags": "i",
+    "replacement": "加密货币计价币种格式不正确，必须为 $1；提交值：$2"
+  },
+  {
+    "pattern": "^\\[crypto_pair\\] Ticker seems INVALID: \"([^\"]*)\" \\((.*)\\)$",
+    "flags": "i",
+    "replacement": "加密货币计价币种的代码“$1”无效（$2）。"
+  },
+  {
+    "pattern": "^\\[crypto_pair\\] No ticker SYMBOL detected: \"([^\"]*)\" \\((.*)\\)$",
+    "flags": "i",
+    "replacement": "加密货币计价币种未检测到货币符号“$1”（$2）。"
+  },
+  {
+    "pattern": "^\\[crypto_pair\\] No ticker EXCHANGE detected: \"([^\"]*)\" \\((.*)\\)$",
+    "flags": "i",
+    "replacement": "加密货币计价币种未检测到交易所“$1”（$2）。"
+  },
+  {
+    "pattern": "^\\[crypto_pair_preferred_markets\\] formatting is NOT valid \\(MUST be: (.*?)\\): \"(.*)$",
+    "flags": "i",
+    "replacement": "加密货币首选市场格式不正确，必须为 $1；提交值：$2"
+  },
+  {
+    "pattern": "^\\[crypto_pair_preferred_markets\\] Ticker seems INVALID: \"([^\"]*)\" \\((.*)\\)$",
+    "flags": "i",
+    "replacement": "加密货币首选市场的代码“$1”无效（$2）。"
+  },
+  {
+    "pattern": "^\\[crypto_pair_preferred_markets\\] No ticker SYMBOL detected: \"([^\"]*)\" \\((.*)\\)$",
+    "flags": "i",
+    "replacement": "加密货币首选市场未检测到货币符号“$1”（$2）。"
+  },
+  {
+    "pattern": "^\\[crypto_pair_preferred_markets\\] No ticker EXCHANGE detected: \"([^\"]*)\" \\((.*)\\)$",
+    "flags": "i",
+    "replacement": "加密货币首选市场未检测到交易所“$1”（$2）。"
+  },
+  {
+    "pattern": "^\\[conversion_currency_symbols\\] No BITCOIN MARKET detected for conversion currency asset: \"([^\"]*)\" \\((.*)\\)$",
+    "flags": "i",
+    "replacement": "换算币种“$1”没有对应的比特币交易市场（$2）。"
+  },
+  {
+    "pattern": "^\\[bitcoin_preferred_currency_markets\\] PAIRING \"([^\"]*)\" does NOT exist in the current Bitcoin markets: (.*)$",
+    "flags": "i",
+    "replacement": "当前比特币市场中不存在计价币种“$1”：$2"
+  },
+  {
+    "pattern": "^\\[bitcoin_preferred_currency_markets\\] EXCHANGE \"([^\"]*)\" does NOT exist in the current \"([^\"]*)\" Bitcoin markets: (.*)$",
+    "flags": "i",
+    "replacement": "当前以“$2”计价的比特币市场中不存在交易所“$1”：$3"
+  },
+  {
+    "pattern": "^\\[(?:crypto_pair|crypto_pair_preferred_markets)\\] \"([^\"]*)\" does NOT have a Bitcoin PAIRING market anywhere: (.*)$",
+    "flags": "i",
+    "replacement": "“$1”没有任何 BTC 计价市场：$2"
+  },
+  {
+    "pattern": "^\"\\[crypto_pair_preferred_markets\\] EXCHANGE \"([^\"]*)\" does NOT have a Bitcoin \"([^\"]*)\" PAIRING market anywhere: (.*)$",
+    "flags": "i",
+    "replacement": "交易所“$1”没有“$2”的 BTC 计价市场：$3"
+  },
+  {
+    "pattern": "^\"token_presales_usd\" formatting is NOT valid \\(MUST be: TOKEN_NAME = PRESALE_PRICE\\): \"(.*)$",
+    "flags": "i",
+    "replacement": "预售代币美元价格格式不正确，必须为 TOKEN_NAME = PRESALE_PRICE；提交值：$1"
+  },
+  {
+    "pattern": "^\"token_presales_usd\" Coin NAME seems INVALID: \"([^\"]*)\" \\((.*)\\)$",
+    "flags": "i",
+    "replacement": "预售代币名称“$1”无效（$2）。"
+  },
+  {
+    "pattern": "^\"token_presales_usd\" Coin VALUE seems INVALID: \"([^\"]*)\" \\((.*)\\)$",
+    "flags": "i",
+    "replacement": "预售代币价格“$1”无效（$2）。"
+  },
+  {
+    "pattern": "^Bitcoin Primary Exchange \"([^\"]*)\" does NOT have a \"([^\"]*)\" market$",
+    "flags": "i",
+    "replacement": "比特币主要交易所“$1”没有以“$2”计价的市场。"
+  },
+  {
+    "pattern": "^The Bitcoin Primary Exchange \"([^\"]*)\" did NOT return a valid market value, for the \"([^\"]*)\" market \\(market value: \"([^\"]*)\"\\)\\. It is POSSIBLE this MAY be from a network error, OR exchange MAINTENANCE temporarily taking the market offline\\. IF either of these are the reason for the market error, trying again in a few minutes / hours may fix the issue\\.$",
+    "flags": "i",
+    "replacement": "比特币主要交易所“$1”未返回“$2”市场的有效价格（返回值：“$3”）。可能是网络故障或交易所临时维护，可稍后重试。"
+  },
+  {
+    "pattern": "^Charts / Alerts KEY was USED TWICE \\(DUPLICATE\\): \"([^\"]*)\" \\(no duplicate keys allowed \\[try \"([^\"]*)\", or higher number\\]\\)$",
+    "flags": "i",
+    "replacement": "图表 / 提醒标识“$1”重复。标识不能重复，可使用“$2”或更大的编号。"
+  },
+  {
+    "pattern": "^No market data found for (.+) \\(in submission: \"(.*)\"\\); Market MAY be down \\*temporarily\\* for maintenance, OR permanently removed \\(please verify on the exchange website\\)$",
+    "flags": "i",
+    "replacement": "未找到 $1 的行情数据（提交值：“$2”）。市场可能正在临时维护或已永久下线，请到交易所网站核实。"
+  }
+]

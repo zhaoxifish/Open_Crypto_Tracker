@@ -1,0 +1,15 @@
+/* Chinese reading rhythm, without changing the upstream layout or data format. */
+html[lang="zh-CN"] body, html[lang="zh-CN"] body *:not(i):not([class*="icon"]):not([class*="fa-"]) {
+    font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", system-ui, sans-serif !important;
+}
+html[lang="zh-CN"] p, html[lang="zh-CN"] li, html[lang="zh-CN"] .settings_notes {
+    line-height: 1.65;
+}
+.oct-input-wrap { display: inline-grid; position: relative; vertical-align: middle; }
+.oct-input-wrap > input, .oct-input-wrap > .oct-input-label { grid-area: 1 / 1; }
+.oct-input-wrap > .oct-input-label {
+    align-self: center; justify-self: center; pointer-events: none; white-space: nowrap;
+    padding: 0 0.5em; font: inherit; z-index: 1;
+}
+html[lang="zh-CN"] input.oct-translated-input { color: transparent !important; text-shadow: none !important; }
+.oct-translated-input:disabled + .oct-input-label { opacity: .6; }

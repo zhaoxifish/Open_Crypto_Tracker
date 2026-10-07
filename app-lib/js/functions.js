@@ -1292,10 +1292,10 @@ function show_more(id, change_text=0) {
 	$("#"+id).show(250, 'linear'); // 0.25 seconds
 	}
 	
-	if ( $("#" + change_text).text() == 'Show More' ) {
+	if ( OCT_I18N.isMessage(document.getElementById(change_text), 'Show More') ) {
 	$("#" + change_text).text('Show Less');
 	}
-	else if (  $("#" + change_text).text() == 'Show Less' ) {
+	else if (  OCT_I18N.isMessage(document.getElementById(change_text), 'Show Less') ) {
 	$("#" + change_text).text('Show More');
 	}
 	
@@ -1591,8 +1591,8 @@ function random_tips() {
 randomNumber= Math.floor(Math.random() * quoteSource.length);
 			
 //set a new quote
-newQuoteText = quoteSource[randomNumber].quote;
-newQuoteGenius = quoteSource[randomNumber].name;
+newQuoteText = OCT_I18N.html(quoteSource[randomNumber].quote);
+newQuoteGenius = OCT_I18N.t(quoteSource[randomNumber].name);
 			
 quoteContainer = $('#quoteContainer');
       
@@ -2545,7 +2545,7 @@ background_tasks_check('emulated_cron');
                      // If flagged to display error in GUI
                      if ( typeof response.display_error != 'undefined' ) {
                      
-                         if ( $('#alert_bell_area').html() == 'No new runtime alerts.' ) {
+                         if ( OCT_I18N.isMessage(document.getElementById('alert_bell_area'), 'No new runtime alerts.') ) {
                          $('#alert_bell_area').html( response.result );
                          }
                          else {
@@ -3239,7 +3239,7 @@ function ui_log_alerts() {
         }
         
         
-        if ( $('#app_error_alert', window.parent.document).html() == 'No new runtime alerts.' && error_logs_elm.html() != '' ) {
+        if ( OCT_I18N.isMessage(window.parent.document.getElementById('app_error_alert'), 'No new runtime alerts.') && error_logs_elm.html() != '' ) {
         $('#app_error_alert', window.parent.document).html( error_logs_elm.html() );
         $(".toggle_alerts", window.parent.document).attr("src","templates/interface/media/images/auto-preloaded/notification-" + theme_selected + "-fill.png");
         }

@@ -355,14 +355,14 @@ If the 'add asset market' search result does NOT return a PAIRING VALUE, WE LOG 
           foreach ( $included_results as $asset_key => $asset_data ) {
           ?>
      
-     <a style='font-weight: bold;' class='blue clear_both result_margins' href='javascript: show_more("results_<?=md5($asset_key)?>");' title='Click to show / hide additional details.'><?=strtoupper($asset_key)?></a>
+     <a style='font-weight: bold;' class='blue clear_both result_margins' href='javascript: show_more("results_<?=md5($asset_key)?>");' title='Click to show / hide additional details.'><span translate="no"><?=strtoupper($asset_key)?></span></a>
      
      <div id='results_<?=md5($asset_key)?>' style='display: none;' class='align_left clear_both result_margins'>
      
                <?php
                foreach ( $asset_data as $pair_key => $pair_data ) {
                ?>
-               <a style='font-weight: bold;' class='green clear_both result_margins' href='javascript: show_more("results_<?=md5($asset_key . $pair_key)?>");' title='Click to show / hide additional details.'><?=strtoupper($pair_key)?></a>
+               <a style='font-weight: bold;' class='green clear_both result_margins' href='javascript: show_more("results_<?=md5($asset_key . $pair_key)?>");' title='Click to show / hide additional details.'><span translate="no"><?=strtoupper($pair_key)?></span></a>
                
                <div id='results_<?=md5($asset_key . $pair_key)?>' style='display: none;' class='align_left clear_both result_margins'>
                
@@ -381,21 +381,21 @@ If the 'add asset market' search result does NOT return a PAIRING VALUE, WE LOG 
                          
                          <input type='checkbox' dataset-id='<?=$unique_market_id?>' name='assets[<?=strtoupper($asset_key)?>][pair][<?=strtolower($pair_key)?>][<?=strtolower($market_data['exchange'])?>]' value='<?=$market_data['id']?>' <?=( isset($_POST['assets'][strtoupper($asset_key)]['pair'][strtolower($pair_key)][strtolower($market_data['exchange'])]) && $_POST['assets'][strtoupper($asset_key)]['pair'][strtolower($pair_key)][strtolower($market_data['exchange'])] == $market_data['id'] ? 'checked' : '' )?> /> 
                          
-                         <a class='<?=( is_bool($market_data['flagged_market']) !== true && stristr($market_data['flagged_market'], 'replacement_for_') ? 'red' : 'bitcoin' )?> clear_both' href='javascript: show_more("results_<?=$unique_market_id?>");' title='Click to show / hide additional details.'><?=$ct['gen']->key_to_name($market_data['exchange'])?></a>
+                         <a class='<?=( is_bool($market_data['flagged_market']) !== true && stristr($market_data['flagged_market'], 'replacement_for_') ? 'red' : 'bitcoin' )?> clear_both' href='javascript: show_more("results_<?=$unique_market_id?>");' title='Click to show / hide additional details.'><span translate='no'><?=$ct['gen']->key_to_name($market_data['exchange'])?></span></a>
                          
                          <div id='results_<?=$unique_market_id?>' style='display: none;' class='align_left clear_both'>
                          
                          <p>
                          
-                         <span class='light_sea_green'>Name:</span> <?=$market_data['name']?><br />
-                         <span class='light_sea_green'>Asset:</span> <?=$market_data['asset']?><br />
-                         <span class='light_sea_green'>Pairing:</span> <?=$market_data['pairing']?><br />
+                         <span class='light_sea_green'>Name:</span> <span translate="no"><?=$market_data['name']?></span><br />
+                         <span class='light_sea_green'>Asset:</span> <span translate="no"><?=$market_data['asset']?></span><br />
+                         <span class='light_sea_green'>Pairing:</span> <span translate="no"><?=$market_data['pairing']?></span><br />
                          
                          <?php
                          // IF we changed the ticker of the base pairing for app UX (wbtc,weth,etc)
                          if ( $market_data['orig_pairing'] != '' ) {
                          ?>
-                         <span class='light_sea_green'>ORIGINAL Pairing Ticker:</span> <?=$market_data['orig_pairing']?><br />
+                         <span class='light_sea_green'>ORIGINAL Pairing Ticker:</span> <span translate="no"><?=$market_data['orig_pairing']?></span><br />
                          <?php
                          }
                          ?>
@@ -409,17 +409,17 @@ If the 'add asset market' search result does NOT return a PAIRING VALUE, WE LOG 
                          
                          if ( isset($market_data['mcap_slug']) ) {
                          ?>
-                         <span class='light_sea_green'>Marketcap Slug:</span> <?=$market_data['mcap_slug']?><br />
+                         <span class='light_sea_green'>Marketcap Slug:</span> <span translate="no"><?=$market_data['mcap_slug']?></span><br />
                          <?php
                          }
                          ?>
                          
-                         <span class='light_sea_green'>Market ID:</span> <?=$market_data['id']?><br />
+                         <span class='light_sea_green'>Market ID:</span> <span translate="no"><?=$market_data['id']?></span><br />
                          
                          <?php
                          if ( isset($market_data['contract_address']) ) {
                          ?>
-                         <span class='light_sea_green'>Contract Address:</span> <?=$market_data['contract_address']?><br />
+                         <span class='light_sea_green'>Contract Address:</span> <span translate="no"><?=$market_data['contract_address']?></span><br />
                          <?php
                          }
                          ?>

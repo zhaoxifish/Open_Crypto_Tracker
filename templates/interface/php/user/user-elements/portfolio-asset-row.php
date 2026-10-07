@@ -121,7 +121,7 @@ echo '?';
  	
  		?>
  		
- <a href='https://<?=$asset_pagebase?><?=$mkcap_render_data?>' target='_blank' class='blue app_sort_filter' title='View Information Page For <?=$asset_symb?>'><?=$asset_name?></a> <img class='tooltip_style_control' id='<?=preg_replace("/\:/", "", $mkcap_render_data)?>' src='templates/interface/media/images/<?=$info_icon?>' alt='' style='position: relative; vertical-align:middle; height: 30px; width: 30px;' /> 
+ <a href='https://<?=$asset_pagebase?><?=$mkcap_render_data?>' target='_blank' class='blue app_sort_filter' title='View Information Page For <?=$asset_symb?>'><span translate='no'><?=$asset_name?></span></a> <img class='tooltip_style_control' id='<?=preg_replace("/\:/", "", $mkcap_render_data)?>' src='templates/interface/media/images/<?=$info_icon?>' alt='' style='position: relative; vertical-align:middle; height: 30px; width: 30px;' />
  <script>
 
 		<?php
@@ -350,7 +350,7 @@ echo '?';
 		
   ?>
   
-  <span class='blue app_sort_filter'><?=$asset_name?></span> <img id='<?=$rand_id?>' class='tooltip_style_control' src='templates/interface/media/images/<?=$info_icon?>' alt='' style='position: relative; vertical-align:middle; height: 30px; width: 30px;' /> 
+  <span translate='no' class='blue app_sort_filter'><?=$asset_name?></span> <img id='<?=$rand_id?>' class='tooltip_style_control' src='templates/interface/media/images/<?=$info_icon?>' alt='' style='position: relative; vertical-align:middle; height: 30px; width: 30px;' />
   
  <script>
  
@@ -358,7 +358,7 @@ echo '?';
 			if ( $asset_symb == 'MISCASSETS' ) {
 			?>
 
-			var cmc_content = '<h5 class="yellow align_center tooltip_title"><?=$asset_name?> (<?=$asset_symb?>)</h5>'
+			var cmc_content = '<h5 translate="no" class="yellow align_center tooltip_title"><?=$asset_name?> (<?=$asset_symb?>)</h5>'
     
         +'<p class="coin_info" style="white-space: normal; "><span class="bitcoin">Miscellaneous <?=strtoupper($ct['conf']['currency']['bitcoin_primary_currency_pair'])?> value can be included in you portfolio stats, by entering it under the "MISCASSETS" asset on the "Update" page.</span></p>'
         
@@ -371,7 +371,7 @@ echo '?';
 			elseif ( $asset_symb == 'BTCNFTS' ) {
 			?>
 
-			var cmc_content = '<h5 class="yellow align_center tooltip_title"><?=$asset_name?> (<?=$asset_symb?>)</h5>'
+			var cmc_content = '<h5 translate="no" class="yellow align_center tooltip_title"><?=$asset_name?> (<?=$asset_symb?>)</h5>'
     
         +'<p class="coin_info" style="white-space: normal; "><span class="bitcoin">BTC value of NFTS can be included in you portfolio stats, by entering it under the "BTCNFTS" asset on the "Update" page.</span></p>'
     
@@ -384,7 +384,7 @@ echo '?';
 			elseif ( $asset_symb == 'ETHNFTS' ) {
 			?>
 
-			var cmc_content = '<h5 class="yellow align_center tooltip_title"><?=$asset_name?> (<?=$asset_symb?>)</h5>'
+			var cmc_content = '<h5 translate="no" class="yellow align_center tooltip_title"><?=$asset_name?> (<?=$asset_symb?>)</h5>'
     
         +'<p class="coin_info" style="white-space: normal; "><span class="bitcoin">ETH value of NFTS can be included in you portfolio stats, by entering it under the "ETHNFTS" asset on the "Update" page.</span></p>'
     
@@ -397,7 +397,7 @@ echo '?';
 			elseif ( $asset_symb == 'SOLNFTS' ) {
 			?>
 
-			var cmc_content = '<h5 class="yellow align_center tooltip_title"><?=$asset_name?> (<?=$asset_symb?>)</h5>'
+			var cmc_content = '<h5 translate="no" class="yellow align_center tooltip_title"><?=$asset_name?> (<?=$asset_symb?>)</h5>'
     
         +'<p class="coin_info" style="white-space: normal; "><span class="bitcoin">SOL value of NFTS can be included in you portfolio stats, by entering it under the "SOLNFTS" asset on the "Update" page.</span></p>'
     
@@ -410,7 +410,7 @@ echo '?';
 			elseif ( $asset_symb == 'ALTNFTS' ) {
 			?>
 
-			var cmc_content = '<h5 class="yellow align_center tooltip_title"><?=$asset_name?> (<?=$asset_symb?>)</h5>'
+			var cmc_content = '<h5 translate="no" class="yellow align_center tooltip_title"><?=$asset_name?> (<?=$asset_symb?>)</h5>'
     
         +'<p class="coin_info" style="white-space: normal; "><span class="bitcoin"><?=strtoupper($ct['conf']['currency']['bitcoin_primary_currency_pair'])?> value of NFTS can be included in you portfolio stats, by entering it under the "ALTNFTS" asset on the "Update" page.</span></p>'
     
@@ -573,7 +573,7 @@ echo $ct['var']->num_pretty($asset_val_raw, $thres_dec['max_dec'], false, $thres
 	         	$ui_selected_pair = $pair_key;
 	         	}
 	        ?>
-	        <option value='<?=$pair_key?>' <?=( $sel_pair == $pair_key ? ' selected ' : '' )?>> <?=strtoupper($pair_key)?> </option>
+	        <option translate='no' value='<?=$pair_key?>' <?=( $sel_pair == $pair_key ? ' selected ' : '' )?>> <?=strtoupper($pair_key)?> </option>
 	        <?php
 	        }
         
@@ -584,7 +584,7 @@ echo $ct['var']->num_pretty($asset_val_raw, $thres_dec['max_dec'], false, $thres
         
     </select>
     
-    <div class='app_sort_filter' style='display: none;'><?=$ui_selected_pair?></div>
+    <div translate='no' class='app_sort_filter' style='display: none;'><?=$ui_selected_pair?></div>
 
 </td>
 
@@ -616,13 +616,13 @@ echo $ct['var']->num_pretty($asset_val_raw, $thres_dec['max_dec'], false, $thres
          	$ui_selected_mrkt = $ct['gen']->key_to_name($mrkt_key);
          	}
         ?>
-        <option value='<?=($loop)?>' <?=( $original_mrkt == ($loop - 1) ? ' selected ' : '' )?>> <?=$ct['gen']->key_to_name($mrkt_key)?> </option>
+        <option translate='no' value='<?=($loop)?>' <?=( $original_mrkt == ($loop - 1) ? ' selected ' : '' )?>> <?=$ct['gen']->key_to_name($mrkt_key)?> </option>
         <?php
         }
         ?>
     </select>
     
-    <div class='app_sort_filter' style='display: none;'><?=$ui_selected_mrkt?></div>
+    <div translate='no' class='app_sort_filter' style='display: none;'><?=$ui_selected_mrkt?></div>
 
 </td>
 
@@ -701,7 +701,8 @@ $ui_ticker = preg_replace("/miscassets/i", "N/A<span style='display: block;' cla
 
 $ui_ticker = preg_replace("/stock/i", "<span style='display: block;' class='extra_data bitcoin'>(stock)</span>", $ui_ticker);
 
-echo $ui_ticker; 
+// Protect only the ticker text; explanatory asset-type spans remain translatable.
+echo preg_replace('/^([^<]+)/', '<span translate="no">$1</span>', $ui_ticker);
 
 ?>
 

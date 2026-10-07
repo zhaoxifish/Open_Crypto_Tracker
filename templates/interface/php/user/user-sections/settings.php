@@ -256,13 +256,13 @@
 					
 					foreach (  $ct['conf']['assets']['BTC']['pair'] as $pair_key => $pair_id ) {
 					?>
-					<option value='<?=$pair_key?>' <?=( $ct['conf']['currency']['bitcoin_primary_currency_pair'] == $pair_key ? ' selected ' : '' )?>> <?=strtoupper(preg_replace("/_/i", " ", $pair_key))?> </option>
+					<option translate='no' value='<?=$pair_key?>' <?=( $ct['conf']['currency']['bitcoin_primary_currency_pair'] == $pair_key ? ' selected ' : '' )?>> <?=strtoupper(preg_replace("/_/i", " ", $pair_key))?> </option>
 					<?php
 					
 									
 									foreach ( $ct['conf']['assets']['BTC']['pair'][$pair_key] as $mrkt_key => $mrkt_id ) {
 									$loop2 = $loop2 + 1;
-									$btc_mrkt_list[$pair_key] .= "\n<option value='".$loop2."'" . ( $exchange_field_id == $loop2 ? ' selected ' : '' ) . ">" . $ct['gen']->key_to_name($mrkt_key) . "</option>\n";
+									$btc_mrkt_list[$pair_key] .= "\n<option translate='no' value='".$loop2."'" . ( $exchange_field_id == $loop2 ? ' selected ' : '' ) . ">" . $ct['gen']->key_to_name($mrkt_key) . "</option>\n";
 									}
 									$loop2 = NULL;
 							
@@ -539,7 +539,7 @@
 			foreach ( $ct['opt_conf']['crypto_pair'] as $key => $unused ) {
 			?>
 			<?=( $loop > 0 ? ' &nbsp;/&nbsp; ' : '' )?> 
-			<input type='checkbox' value='<?=$key?>' onchange='crypto_val_toggle(this);' <?=( in_array("[".$key."]", $ct['sel_opt']['show_crypto_val']) ? 'checked' : '' )?> /> <?=strtoupper($key)?> 
+			<input type='checkbox' value='<?=$key?>' onchange='crypto_val_toggle(this);' <?=( in_array("[".$key."]", $ct['sel_opt']['show_crypto_val']) ? 'checked' : '' )?> /> <span translate='no'><?=strtoupper($key)?></span>
 			<?php
 			$loop = $loop + 1;
 			}
@@ -592,7 +592,7 @@
 			<?php
 			foreach ( $ct['opt_conf']['crypto_pair'] as $key => $unused ) {
 			?>
-			<option value='<?=$key?>' <?=( $ct['sel_opt']['show_secondary_trade_val'] == $key ? 'selected' : '' )?>> <?=strtoupper($key)?> </option>
+			<option translate='no' value='<?=$key?>' <?=( $ct['sel_opt']['show_secondary_trade_val'] == $key ? 'selected' : '' )?>> <?=strtoupper($key)?> </option>
 			<?php
 			}
 			?> 

@@ -86,12 +86,12 @@ if ( isset($stock_overview['data']['request_error']) ) {
 
      if ( preg_match("/\./i", $market_id) ) {
      ?>
-     <p class="coin_info"><span class="bitcoin">No Stock Overview data found for:</span> <?=$parse_ticker?> <span class="yellow">(NON-USA exchange ID: <?=$market_id?>)</span></p>
+     <p class="coin_info"><span class="bitcoin">No Stock Overview data found for:</span> <span translate="no"><?=$parse_ticker?></span> <span class="yellow">(NON-USA exchange ID: <?=$market_id?>)</span></p>
      <?php
      }
      else {
      ?>
-     <p class="coin_info"><span class="bitcoin">No Stock Overview data found for:</span> <?=$parse_ticker?></p>
+     <p class="coin_info"><span class="bitcoin">No Stock Overview data found for:</span> <span translate="no"><?=$parse_ticker?></span></p>
      <?php
      }
      
@@ -104,11 +104,11 @@ else {
      if ( $_GET['exchange'] == 'alphavantage_stock' ) {
      ?>
      
-     <p class="coin_info"><span class="bitcoin">Name:</span> <?=$stock_overview['data']['Name']?></p>
+     <p class="coin_info"><span class="bitcoin">Name:</span> <span translate="no"><?=$stock_overview['data']['Name']?></span></p>
      
      <p class="coin_info"><span class="bitcoin">Asset Type:</span> <?=$stock_overview['data']['AssetType']?></p>
      
-     <p class="coin_info"><span class="bitcoin">Exchange:</span> <?=$stock_overview['data']['Exchange']?></p>
+     <p class="coin_info"><span class="bitcoin">Exchange:</span> <span translate="no"><?=$stock_overview['data']['Exchange']?></span></p>
      
      <p class="coin_info"><span class="bitcoin">Sector:</span> <?=$stock_overview['data']['Sector']?></p>
      
@@ -127,9 +127,9 @@ else {
      elseif ( stristr($_GET['exchange'], 'siftingio') ) {
      ?>
      
-     <p class="coin_info"><span class="bitcoin">Name:</span> <?=$stock_overview['data']['name']?></p>
+     <p class="coin_info"><span class="bitcoin">Name:</span> <span translate="no"><?=$stock_overview['data']['name']?></span></p>
      
-     <p class="coin_info"><span class="bitcoin">Exchange:</span> <?=$stock_overview['data']['exchanges'][0]?></p>
+     <p class="coin_info"><span class="bitcoin">Exchange:</span> <span translate="no"><?=$stock_overview['data']['exchanges'][0]?></span></p>
      
      <p class="coin_info"><span class="bitcoin">Description:</span> <br /><?=$stock_overview['data']['sic_description']?></p>
 

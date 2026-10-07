@@ -165,7 +165,7 @@ If the 'add asset market' search result does NOT return a PAIRING VALUE, WE LOG 
      foreach ( $updated_assets_structure['assets'] as $asset_key => $asset_data ) {
      ?>
      
-     <div style='font-weight: bold;' class='blue clear_both result_margins'><?=strtoupper($asset_key)?></div>
+     <div translate='no' style='font-weight: bold;' class='blue clear_both result_margins'><?=strtoupper($asset_key)?></div>
      
      
      <?php
@@ -178,7 +178,7 @@ If the 'add asset market' search result does NOT return a PAIRING VALUE, WE LOG 
           <?php
           foreach ( $asset_data['pair'] as $pair_key => $pair_data ) {
           ?>
-          <div style='font-weight: bold;' class='green clear_both result_margins'><?=strtoupper($pair_key)?></div>
+          <div translate='no' style='font-weight: bold;' class='green clear_both result_margins'><?=strtoupper($pair_key)?></div>
           
           <div class='align_left clear_both result_margins'>
           
@@ -188,13 +188,13 @@ If the 'add asset market' search result does NOT return a PAIRING VALUE, WE LOG 
                
                <div style='margin-left: 1em;'>
                     
-                    <a class='bitcoin clear_both' href='javascript:' title='CONFIRM all market details, before removing them from the app.'><?=$ct['gen']->key_to_name($market_key)?></a>
+                    <a class='bitcoin clear_both' href='javascript:' title='CONFIRM all market details, before removing them from the app.'><span translate='no'><?=$ct['gen']->key_to_name($market_key)?></span></a>
                     
                     <div class='align_left clear_both'>
                     
                     <p>
                     
-                    <span class='light_sea_green'>Market ID:</span> <?=$market_data?>
+                    <span class='light_sea_green'>Market ID:</span> <span translate='no'><?=$market_data?></span>
                     
                     </p>
                     

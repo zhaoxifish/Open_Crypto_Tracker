@@ -35,6 +35,11 @@
 	<script src="app-lib/js/jquery/jquery-ui/jquery-ui.js"></script>
 
 	<script src="app-lib/js/root-javascript-combined.php"></script>
+
+    <!-- Local display translations: preserve original configuration / form values. -->
+    <link rel="stylesheet" href="app-lib/i18n/zh-CN.css?v=<?=filemtime('app-lib/i18n/zh-CN.css')?>" />
+    <script src="app-lib/i18n/zh-CN.js?v=<?=filemtime('app-lib/i18n/zh-CN.js')?>"></script>
+    <script src="app-lib/i18n/i18n.js?v=<?=filemtime('app-lib/i18n/i18n.js')?>"></script>
 	
 	
 	<script>

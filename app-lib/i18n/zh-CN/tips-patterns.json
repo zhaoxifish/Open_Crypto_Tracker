@@ -1,0 +1,12 @@
+[
+  {
+    "pattern": "^ONLY\\ HIGHLY\\ EXPERIENCED\\ DAY\\ TRADERS\\ should\\ attempt\\ timing\\ short\\ term\\ trade\\ entry\\ points\\ \\(buying,\\ to\\ sell\\ in\\ a\\ few\\ days\\ /\\ weeks\\ at\\ a\\ higher\\ price\\)\\.\\ The\\ average\\ investor\\ IS\\ MUCH\\ BETTER\\ OFF\\ HOLDING\\ LONG\\ TERM,\\ and\\ ([A-Za-z0-9]+)\\-cost\\ averaging\\ your\\ cryptocurrency\\ purchases\\ /\\ buys\\ on\\ a\\ weekly\\ or\\ monthly\\ basis\\ \\(buying\\ the\\ same\\ amount\\ at\\ regular\\ intervals\\)\\.\\ Remember,\\ \\1\\-cost\\ averaging\\ DOES\\ \\#NOT\\#\\ WORK\\ for\\ <a\\ href='https://x\\.com/hashtag/shitcoin\\?src=hash'\\ target='_blank'>\\#shxtcoin</a>\\ trading\\.$",
+    "flags": "i",
+    "replacement": "只有经验非常丰富的短线交易者，才适合尝试判断短期买点，再于几天或几周后高价卖出。普通投资者更适合长期持有，并按周或按月，以固定的 $1 金额定期买入加密资产。请记住，以 $1 定额投入并不能让<a href='https://x.com/hashtag/shitcoin?src=hash' target='_blank'>垃圾币</a>交易变得有效。"
+  },
+  {
+    "pattern": "^ONLY\\ HIGHLY\\ EXPERIENCED\\ DAY\\ TRADERS\\ should\\ attempt\\ timing\\ short\\ term\\ trade\\ entry\\ points\\ \\(buying,\\ to\\ sell\\ in\\ a\\ few\\ days\\ /\\ weeks\\ at\\ a\\ higher\\ price\\)\\.\\ The\\ average\\ investor\\ IS\\ MUCH\\ BETTER\\ OFF\\ HOLDING\\ LONG\\ TERM,\\ and\\ ([A-Za-z0-9]+)\\-cost\\ averaging\\ your\\ cryptocurrency\\ purchases\\ /\\ buys\\ on\\ a\\ weekly\\ or\\ monthly\\ basis\\ \\(buying\\ the\\ same\\ amount\\ at\\ regular\\ intervals\\)\\.\\ Remember,\\ \\1\\-cost\\ averaging\\ DOES\\ \\#NOT\\#\\ WORK\\ for\\ \\#shxtcoin\\ trading\\.$",
+    "flags": "i",
+    "replacement": "只有经验非常丰富的短线交易者，才适合尝试判断短期买点，再于几天或几周后高价卖出。普通投资者更适合长期持有，并按周或按月，以固定的 $1 金额定期买入加密资产。请记住，以 $1 定额投入并不能让垃圾币交易变得有效。"
+  }
+]

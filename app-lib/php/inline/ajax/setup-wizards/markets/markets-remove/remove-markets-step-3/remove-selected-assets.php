@@ -41,7 +41,7 @@
 <div id="assets_alerts" class='red red_dotted input_margins' style='font-weight: bold;'>BTC / ETH / SOL assets are required (for currency conversions / other app features), SO THEY CANNOT BE REMOVED.</div>
 
 
-<div class='ct_jstree' id="assets"></div>
+<div translate="no" class='ct_jstree' id="assets"></div>
 
 
 <script>

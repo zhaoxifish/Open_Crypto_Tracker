@@ -47,7 +47,7 @@
      	     
      	     if ( !in_array($asset_key, $skip_assets) ) {
      	     ?>
-     	     <option value='<?=$asset_key?>'> <?=$asset_key?> </option>
+             <option translate='no' value='<?=$asset_key?>'> <?=$asset_key?> </option>
      	     <?php
      	     }
      	}
@@ -91,7 +91,7 @@
 <div id="asset_markets_alerts" class='red red_dotted input_margins' style='display: none; font-weight: bold;'>BTC / ETH / SOL pairings are required (for currency conversions / other app features), SO THEY CANNOT BE REMOVED, AND THE FIRST EXCHANGE INSIDE THESE PAIRINGS ALSO CANNOT BE REMOVED.</div>
 
 
-<div class='ct_jstree' id="asset_markets"></div>
+<div translate="no" class='ct_jstree' id="asset_markets"></div>
 
 
 

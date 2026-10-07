@@ -1,0 +1,52 @@
+[
+  {
+    "pattern": "^Running Server Edition(.*)$",
+    "flags": "i",
+    "replacement": "服务器版$1"
+  },
+  {
+    "pattern": "^Running Desktop Edition(.*)$",
+    "flags": "i",
+    "replacement": "桌面版$1"
+  },
+  {
+    "pattern": "^Runtime: ([\\d.]+) seconds$",
+    "flags": "i",
+    "replacement": "运行耗时：$1 秒"
+  },
+  {
+    "pattern": "^Plugin interface for: (.+)$",
+    "flags": "i",
+    "replacement": "插件界面：$1"
+  },
+  {
+    "pattern": "^If your app server DOES automatically clear session data often, you will also be logged out AUTOMATICALLY at that time\\. ADDITIONALLY, the 256-bit random key that is saved inside a cookie in your web browser EXPIRES \\(automatically deletes itself\\) AFTER (\\d+) HOURS \\(adjustable in the Admin Config SECURITY section\\)\\.$",
+    "flags": "i",
+    "replacement": "服务器自动清理会话数据时，您也会自动退出登录。此外，浏览器 Cookie 中保存的 256 位随机密钥将在 $1 小时后过期并删除；可在管理后台的“安全设置”中调整时长。"
+  },
+  {
+    "pattern": "^(Use this to Refresh / Reload the app data\\. )?The current real-time exchange data re-cache \\(refresh from live data instead of cached data\\) setting in the Admin Config POWER USER section is set to (\\d+) minute\\(s\\)\\.$",
+    "flags": "i",
+    "replacement": "刷新应用数据。管理后台“高级设置”中的实时行情缓存更新间隔目前为 $2 分钟。"
+  },
+  {
+    "pattern": "^(Use this to Refresh / Reload the app data\\. )?Use this to Refresh / Reload the app data\\. Refreshing data too frequently may cause API request refusals, especially if request caching settings are too low\\. It is recommended to use this refresh feature sparingly with lower or disabled cache settings\\. The current real-time exchange data re-cache \\(refresh from live data instead of cached data\\) setting in the Admin Config POWER USER section is set to (\\d+) minute\\(s\\)\\. A setting of 4 or higher assists in avoiding temporary IP blocking / throttling by exchanges\\.$",
+    "flags": "i",
+    "replacement": "刷新应用数据。过于频繁地刷新，尤其是在缓存时间较短或关闭缓存时，可能导致 API 拒绝请求。当前实时行情缓存更新间隔为 $2 分钟；建议设为至少 4 分钟，以减少交易平台临时封锁 IP 或限流的可能。"
+  },
+  {
+    "pattern": "^Initial data caching is being setup\\. This may take awhile during the first few (?:emulated )?(?:scheduled task|cron job) instances\\. This notice will disappear, when the data caching setup has been completed\\.$",
+    "flags": "i",
+    "replacement": "正在建立初始数据缓存。首次运行的几轮后台定时任务可能耗时较长；缓存准备完毕后，此提示会自动消失。"
+  },
+  {
+    "pattern": "^Open Crypto Tracker OR some of it's plugins were recently upgraded / downgraded\\. (.+), so any UPGRADED Javascript / CSS files can properly reload and run this app's interface\\. Otherwise, you MAY encounter visual styling / app functionality errors \\(until your browser cache refreshes on it's own\\)\\.$",
+    "flags": "i",
+    "replacement": "Open Crypto Tracker 或部分插件最近已升级或降级。请重新启动桌面应用，或刷新网页；必要时清除浏览器缓存，以加载更新后的脚本和样式文件。旧缓存可能导致页面显示或功能异常。"
+  },
+  {
+    "pattern": "^(v[\\d.]+) and earlier$",
+    "flags": "i",
+    "replacement": "$1 及更早版本"
+  }
+]

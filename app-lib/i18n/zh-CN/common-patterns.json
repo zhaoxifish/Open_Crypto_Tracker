@@ -1,0 +1,85 @@
+[
+  {
+    "pattern": "^(.+) must be populated\\.$",
+    "replacement": "$1不能为空。",
+    "translateGroups": [
+      1
+    ]
+  },
+  {
+    "pattern": "^(Username|Asset ID|Asset Name|Plugin ID|ID) MUST contain ONLY LOWERCASE alphanumeric characters\\.$",
+    "replacement": "$1只能包含小写英文字母和数字。",
+    "translateGroups": [
+      1
+    ]
+  },
+  {
+    "pattern": "^(Username|Asset ID|Asset Name|Plugin ID|ID) MUST START with a letter\\.$",
+    "replacement": "$1必须以英文字母开头。",
+    "translateGroups": [
+      1
+    ]
+  },
+  {
+    "pattern": "^(Username|Asset ID|Asset Name|Plugin ID|ID) MUST be between 4 and 30 characters long\\.$",
+    "replacement": "$1长度须为 4～30 个字符。",
+    "translateGroups": [
+      1
+    ]
+  },
+  {
+    "pattern": "^(Username|Asset ID|Asset Name|Plugin ID|ID) OK\\.$",
+    "replacement": "$1符合要求。",
+    "translateGroups": [
+      1
+    ]
+  },
+  {
+    "pattern": "^Enter (Username|Asset ID|Asset Name|Plugin ID|ID)\\.$",
+    "replacement": "请输入$1。",
+    "translateGroups": [
+      1
+    ]
+  },
+  {
+    "pattern": "^Running EMULATED (Cron Job|Scheduled Task) Manager \\(please stay in the (Admin|User) Area, until completed\\)\\.\\.\\.$",
+    "replacement": "正在运行模拟$1，请留在$2区域，直到任务完成……",
+    "translateGroups": [
+      1,
+      2
+    ]
+  },
+  {
+    "pattern": "^EMULATED (Cron Job|Scheduled Task) Manager is taking awhile \\(([0-9.]+) minutes\\)\\. It's RECOMMENDED to stay in the (ADMIN|USER) AREA, until it finishes \\(to avoid corrupt cache data\\)\\.$",
+    "replacement": "模拟$1已运行 $2 分钟。建议留在$3区域直至完成，以免缓存数据损坏。",
+    "translateGroups": [
+      1,
+      3
+    ]
+  },
+  {
+    "pattern": "^Price Charts are taking awhile \\(([0-9.]+) minutes\\)\\.$",
+    "replacement": "价格图表已加载 $1 分钟。"
+  },
+  {
+    "pattern": "^News Feeds are taking awhile \\(([0-9.]+) minutes\\)\\.$",
+    "replacement": "资讯已加载 $1 分钟。"
+  },
+  {
+    "pattern": "^Background tasks are POSSIBLY stuck \\(([0-9.]+) minutes\\)\\.$",
+    "replacement": "后台任务已运行 $1 分钟，可能出现停滞。"
+  },
+  {
+    "pattern": "^INCOMPLETE admin INTERFACING config detected for the \"(.+)\"(.*?)\\. The missing config\\(s\\) are HIGHLIGHTED IN RED below in this section\\. Please have your web developer add these required INTERFACING config parameters for this (.+)$",
+    "replacement": "“$1”$2 的管理界面配置不完整。本节已用红色标出缺失的配置，请开发者为此 $3 补齐所需的界面配置参数。"
+  },
+  {
+    "pattern": "^Runtime: ([0-9.]+) seconds$",
+    "replacement": "运行耗时：$1 秒"
+  },
+  {
+    "pattern": "^Page ([0-9]+) of ([0-9]+)$",
+    "flags": "i",
+    "replacement": "第 $1 页，共 $2 页"
+  }
+]

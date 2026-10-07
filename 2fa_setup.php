@@ -14,7 +14,8 @@ require("app-lib/php/init.php");
 if ( $ct['admin_area_2fa'] != 'off' || $ct['sec']->admin_logged_in() == false || !is_array($stored_admin_login) || !$ct['app_host'] || !$ct['sec']->pass_sec_check($_GET['2fa_setup_nonce'], '2fa_setup') ) {
 $security_error = '2FA Setup access invalid / expired (' . $ct['remote_ip'] . '), try reloading the app';
 $ct['gen']->log('security_error', $security_error);
-echo $security_error . '.';
+header('Content-type: text/plain; charset=UTF-8');
+echo '双重验证设置请求无效或已过期，请重新加载应用后再试。';
 // Log errors before exiting
 $ct['cache']->app_log();
 exit;
