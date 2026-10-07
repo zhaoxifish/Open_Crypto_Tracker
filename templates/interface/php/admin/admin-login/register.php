@@ -217,7 +217,7 @@ if ( $ct['admin_area_2fa'] != 'off' ) {
 if ( !$_POST['submit_registration'] || is_array($register_result['error']) ) {
 ?>
 
-<form name='set_admin' id='set_admin' action='' method='post'>
+<form name='set_admin' class="numeric_format_safe" id='set_admin' action='' method='post'>
 
 
     <div style="display: inline-block; padding-top: 1em; text-align: center; width: auto;">

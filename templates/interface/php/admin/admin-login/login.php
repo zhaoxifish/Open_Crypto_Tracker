@@ -139,7 +139,7 @@ if ( !$_POST['submit_login'] || is_array($login_result['error']) && sizeof($logi
 ?>
 
 
-<form id='admin_login' action='admin.php' method='post'>
+<form id='admin_login' class="numeric_format_safe" action='admin.php' method='post'>
 
     <div style="display: inline-block; padding-top: 1em; text-align: center; width: auto;">
 

@@ -47,7 +47,7 @@
 						<i>LITERALLY nearly 99.9% of all tokens (including NFTs)</i> listed on Coinmarketcap.com (OR any other site) are either scams, garbage, or dead ends. Tread VERY carefully when investing, and RESEARCH AT LENGTH BEFOREHAND (that does NOT include *BLINDLY* believing some CEO / founder / influencer sweet talking their own token, telling you how competing systems suck and their system is better, or explaining how them owning over 50% of the total coin supply is not out of greed). 😮
 	
 
-						<br /><br /><a href="https://x.com/taoteh1221/status/1191548821752438784" target="_blank"><img src='templates/interface/media/images/twitter-1191548821752438784.jpg' width='425' class='image_border' alt='' /></a>
+
 						
 						</p>
 		
@@ -426,11 +426,11 @@
 	        
 	        <li class='links_list'><a href='https://www.reddit.com/r/nearprotocol/' target='_blank'>NEAR Protocol Subreddit</a></li>
 	        
-	        <li class='links_list'><a href='http://OpenCryptoTracker.org/' target='_blank'>OpenCryptoTracker.org</a> <span class='yellow'>(Open Crypto Tracker website shortcut)</span></li>
+
 	        
 	        <li class='links_list'><a href='https://nodewatch.io' target='_blank'>NodeWatch.io</a> <span class='yellow'>(ETH v2 Node Stats)</span></li>
 	        
-	        <li class='links_list'><a href='https://sourceforge.net/projects/dfd-crypto-ticker/' target='_blank'>Raspberry PI Real-Time / Multi-Crypto Slideshow Price Ticker</a> <span class='yellow'>(a side project of mine)</span></li>
+
 	        
 	        <li class='links_list'><a href='https://sec3.dev/' target='_blank'>Sec3 Auditing</a> <span class='yellow'>(for web3 dapps)</span></li>
 	        

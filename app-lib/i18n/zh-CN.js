@@ -4,7 +4,7 @@ window.OCT_ZH_CN = {
     "An admin login already exists, and you HAVE properly added a VALID 'To' email in the communications configuration. Try": "管理员账号已存在，且通知设置中已配置有效的收件邮箱。请尝试",
     "resetting your password": "重设密码",
     "instead.": "。",
-    "Open Crypto Tracker - Admin Config": "Open Crypto Tracker - 管理后台",
+    "Open Crypto Tracker - Admin Config": "BTC监测器 - 管理后台",
     "WILL ALWAYS REMAIN 100% FREE / OPEN SOURCE SOFTWARE": "将始终保持完全免费与开源",
     "Click to show / hide address copying details.": "点击展开或收起地址复制信息。",
     "Admin area for adding / removing currencies.": "添加或移除计价货币。",
@@ -21,7 +21,7 @@ window.OCT_ZH_CN = {
     "ADDITIONALLY, if you wish to trigger a RESET on any particular plugin settings during config upgrades (for ACTIVATED plugins), include an array named": "如果希望已启用插件在配置升级时重置特定设置，可在插件配置中加入以下数组：",
     "WITH YOUR PLUGIN CONFIG SETTINGS. You MUST include the PLUGIN VERSION NUMBER for when the reset began being needed during upgrades, for reliable upgrading of EXISTING plugin installations.": "并填写首次需要此重置的插件版本号，以便已有安装可靠迁移。",
     "(mentioned further up in steps 9, 10, and 11) are DEVELOPER settings, THEY ARE *AUTOMATICALLY* HIDDEN IN THIS ADMIN INTERFACE YOU CREATE (they are rendered as HIDDEN fields in the admin page's form data). See the bundled plugins for examples on choosing different HTML form field types to render your specific settings. All form field types are available to AUTOMATICALLY RENDER your settings for end-user updating, via this automated admin interface template system.": "（前文第 9、10、11 步提及）属于开发者配置，因此会自动隐藏，并作为后台表单的隐藏字段提交。有关如何选择适合设置项的表单控件，请参阅内置插件示例。自动化后台模板支持各种表单字段，方便用户修改设置。",
-    "About Open Crypto Tracker": "关于 Open Crypto Tracker",
+    "About Open Crypto Tracker": "关于 BTC监测器",
     "Additional documentation can be found in": "更多说明请参阅",
     "If your issue is NOT listed in the above README.txt file, or below in the Development Status or Help / FAQ sub-sections, please REPORT IT HERE:": "如果 README.txt、下方“开发进展”或“帮助与常见问题”中没有提到您遇到的问题，请在此反馈：",
     "Development Status": "开发进展",
@@ -227,7 +227,7 @@ window.OCT_ZH_CN = {
     "(running Nginx or Apache headless with PHP v7.2+)": "（以无图形界面方式运行 Nginx 或 Apache，搭配 PHP 7.2 及以上版本）",
     "Compatible With Raspberry Pi Zero W": "兼容 Raspberry Pi Zero W",
     "To install / upgrade everything automatically on Debian / RedHat based systems, copy => paste => run the command below in a terminal program (using the 'Terminal' app in the system menu, or over remote SSH), while logged in AS THE USER THAT WILL RUN THE APP (user must have sudo privileges):": "在 Debian／RedHat 系统上自动安装或升级时，请以将要运行应用的用户登录（该用户须具备 sudo 权限），然后在终端或远程 SSH 会话中复制、粘贴并运行以下命令：",
-    "Follow the prompts. This automated script gives you the options to: install / uninstall a PHP app server automatically, download / install / configure / uninstall the latest version of the Open Crypto Tracker app automatically, setup a cron job automatically (for price alerts / price charts), and setup SSH (to update / install web site files remotely to the app server via SFTP) automatically.": "按提示操作即可。此脚本可自动安装或卸载 PHP 应用服务器，下载、安装、配置或卸载最新版 Open Crypto Tracker，设置用于价格提醒和图表的 cron 定时任务，并配置 SSH，以便通过 SFTP 远程更新或安装网站文件。",
+    "Follow the prompts. This automated script gives you the options to: install / uninstall a PHP app server automatically, download / install / configure / uninstall the latest version of the Open Crypto Tracker app automatically, setup a cron job automatically (for price alerts / price charts), and setup SSH (to update / install web site files remotely to the app server via SFTP) automatically.": "按提示操作即可。此脚本可自动安装或卸载 PHP 应用服务器，下载、安装、配置或卸载最新版 BTC监测器，设置用于价格提醒和图表的 cron 定时任务，并配置 SSH，以便通过 SFTP 远程更新或安装网站文件。",
     "When the auto-install is completed, it will display addresses / logins to access the app (write these down / save them for future use).": "自动安装完成后，脚本会显示应用访问地址和登录信息，请妥善记录，以备后用。",
     "SEE": "请参阅",
     "for additional information on securing and setting up Raspberry Pi OS (disabling bluetooth, firewall setup, remote login, hostname, etc).": "，了解 Raspberry Pi OS 的进一步设置与安全加固方法，包括关闭蓝牙、防火墙、远程登录及主机名等。",
@@ -364,7 +364,7 @@ window.OCT_ZH_CN = {
     "CRON-DESIGNATED PLUGINS (PLUGINS FLAGGED TO RUN DURING CRON JOBS) DO RUN #LAST# WITHIN THE CRON RUNTIME (AND THEREFORE ARE #NOT# INCLUDED IN RUNTIME STATS DATA LIKE HOW MANY SECONDS IT RAN / SYSTEM LOAD), SO EVEN IF YOUR CUSTOM PLUGIN CRASHES, #EVERYTHING ELSE# IMPORTANT RAN BEFOREHAND ANYWAY.": "标记为在定时任务中运行的插件，会在该次任务的最后执行，因此不会计入前面记录的运行时长或系统负载等统计。这样，即使自定义插件崩溃，其他重要工作也已完成。",
     "ALWAYS TEST YOUR CODE, TO MAKE SURE IT DOESN'T CRASH THE APP.": "请充分测试代码，确保不会导致应用崩溃。",
     "Privately track ANY Crypto on your home network or internet website, for FREE. 100% FREE / open source / PRIVATE cryptocurrency portfolio tracker. Email / text / Alexa / Telegram price alerts, price charts, mining calculators, leverage / gain / loss / balance stats, news feeds + more. Privately track Bitcoin / Ethereum / unlimited cryptocurrencies. Customize as many assets / markets / alerts / charts as you want.": "在家庭网络或网站中私密地跟踪各类加密资产，完全免费、开源，保护您的隐私。支持邮件、短信、Alexa、Telegram 价格提醒、价格图表、挖矿计算、杠杆与盈亏及余额统计、资讯订阅等功能。可跟踪 Bitcoin、Ethereum 及其他任意数量的加密资产，自定义资产、市场、提醒和图表。",
-    "The primary goal of the Open Crypto Tracker project is to provide a 100% FREE / PRIVATE / Open Source cryptocurrency tracker to the crypto community, that 'just works', is easy to use, AND maintains a high level of user privacy / security. Previously known as 'DFD Cryptocoin Values', Open Crypto Tracker has been in active development since August of 2014. The source code was": "Open Crypto Tracker 希望为加密资产社区提供完全免费、开源、注重隐私的跟踪工具，让应用易于使用、稳定可靠，并保障用户安全。本项目原名 DFD Cryptocoin Values，自 2014 年 8 月持续开发，源码于",
+    "The primary goal of the Open Crypto Tracker project is to provide a 100% FREE / PRIVATE / Open Source cryptocurrency tracker to the crypto community, that 'just works', is easy to use, AND maintains a high level of user privacy / security. Previously known as 'DFD Cryptocoin Values', Open Crypto Tracker has been in active development since August of 2014. The source code was": "BTC监测器 希望为加密资产社区提供完全免费、开源、注重隐私的跟踪工具，让应用易于使用、稳定可靠，并保障用户安全。本项目原名 DFD Cryptocoin Values，自 2014 年 8 月持续开发，源码于",
     "released on github.com": "GitHub 公开发布",
     "later in September of 2015, under the \"Open Source\" GPL (version 3) license.": "，发布时间为 2015 年 9 月，采用 GPL 第 3 版开源许可证。",
     "Anybody can FULLY audit the security of this app's codebase (or hire someone to do so for them), and report or fix any issues found, or contribute new features. You can even 'fork' your own version of the codebase, as long as you leave licensing / attribution in place within your fork. More information on project ethos and contributing to this project can be found in": "任何人都可以自行或委托他人完整审计代码安全性、报告或修复问题，也可以贡献新功能。您还可以 Fork 创建自己的版本，但须保留原有许可与署名。项目理念和参与贡献的更多说明见",
@@ -374,7 +374,7 @@ window.OCT_ZH_CN = {
     "An issue in the OpenStreetMaps integration (used in the On-Chain Stats bundled plugin) has been fixed in the v6.01.10 release today, that blocked map tile image loading (we are now using their approved \"ProxySimplePHP\" caching proxy from thier Wiki, to STILL FULLY maintain user privacy). ADDITIONALLY, we have added a SECOND stock prices provider Sifting.io, for US-based markets (besides our AlphaVantage.co support for GLOBAL stock markets), and improved Server Edition compatibility (see changelog.txt, for more details).": "今日发布的 v6.01.10 修复了内置“链上统计”插件的 OpenStreetMap 集成问题：地图瓦片图片此前无法加载。现在采用其 Wiki 推荐的 ProxySimplePHP 缓存代理，继续保护用户隐私。此外，除支持全球股市的 AlphaVantage.co 外，新增了面向美国市场的第二个股票报价源 Sifting.io，并改进服务器版兼容性。详情见 changelog.txt。",
     "IF you see the error \"No...data received...file /cache/secured/a*********s/ip_XX*********X.dat (aborting...)\", be aware this is only an issue with the prune_access_stats() function, when called during scheduled maintenance. This occurs when no stats remain, AFTER PRUNING any outdated access stats (the stats file is properly deleted in the UPCOMING [NOT yet] v6.01.06 release). You can safely ignore error logging that looks like this. Sorry! Another development status alert will be sent out, when the fix is released in v6.01.06 publicly.": "如果看到“No...data received...file /cache/secured/a*********s/ip_XX*********X.dat (aborting...)”错误，这是定期维护调用 prune_access_stats() 时的已知问题：清理旧访问统计后，没有剩余记录，却未正确删除统计文件。即将发布的 v6.01.06 会修复此问题。目前可以忽略这类日志；修复正式发布后，会再发送开发进展通知。对此给您带来的困扰，深表歉意。",
     "MANY bugs (issues / errors) have been fixed in the v6.01.07 release today, along with MANY user experience improvements (see changelog.txt for more details, in the documentation folder). Additionally, the \"On-Chain Stats\" plugin now has Bitcoin / Solana telemetry available (UPGRADED installs require you to enable this plugin in the admin area [NEW installs have it enabled by default]).": "今日发布的 v6.01.07 修复了多项问题，并改进多处使用体验，详情见文档目录的 changelog.txt。“链上统计”插件现已提供 Bitcoin 和 Solana 网络统计；升级用户需在管理后台手动启用该插件，新安装默认启用。",
-    "MODERATE security vulnerabilities have been fixed in /classes/core/security.php. IF a social attacker gets a target to click on a specially-crafted malicious phishing email / text link (pointing to a KNOWN installation of Open Crypto Tracker v6.01.08 or lower, which the target has interacted with), any browser data the target saved in this specific page / section is at high risk of being manipulated via code injection. PLEASE UPGRADE NOW to v6.01.09 or higher, to stay safe! (MANK THANKS to red-teamer archnexus707 for reporting this!)": "已修复 /classes/core/security.php 中的中等严重程度安全漏洞。如果攻击者诱使用户点击特制的钓鱼邮件或短信链接，指向该用户曾访问过、且版本为 v6.01.08 或更早的 Open Crypto Tracker 安装，用户保存在对应页面中的浏览器数据可能遭代码注入篡改。请升级至 v6.01.09 或更新版本。感谢安全研究者 archnexus707 报告此问题！",
+    "MODERATE security vulnerabilities have been fixed in /classes/core/security.php. IF a social attacker gets a target to click on a specially-crafted malicious phishing email / text link (pointing to a KNOWN installation of Open Crypto Tracker v6.01.08 or lower, which the target has interacted with), any browser data the target saved in this specific page / section is at high risk of being manipulated via code injection. PLEASE UPGRADE NOW to v6.01.09 or higher, to stay safe! (MANK THANKS to red-teamer archnexus707 for reporting this!)": "已修复 /classes/core/security.php 中的中等严重程度安全漏洞。如果攻击者诱使用户点击特制的钓鱼邮件或短信链接，指向该用户曾访问过、且版本为 v6.01.08 或更早的 BTC监测器 安装，用户保存在对应页面中的浏览器数据可能遭代码注入篡改。请升级至 v6.01.09 或更新版本。感谢安全研究者 archnexus707 报告此问题！",
     "Show more / less Development Status entries.": "展开或收起更多开发进展条目。",
     "The @JupiterExchange PRICE API has been upgraded to v2, in the v6.01.0 release that was made public today. This brings Jupiter market support BACK ONLINE (as they disabled the v1 PRICE API awhile ago).": "今日发布的 v6.01.0 已将 @JupiterExchange 价格 API 升级至 v2，恢复 Jupiter 行情支持。此前 v1 价格 API 已被停用。",
     "The error \"No...data received...file /cache/secured/a*********s/ip_XX*********X.dat (aborting...)\", has been fixed in the v6.01.06 release today. This was a bug in prune_access_stats(), related to NOT deleting outdated access stats properly. You can SAFELY IGNORE any old error logs like this. This release also fixes MANY issues with importing price chart backups, and includes an overhaul to the upgrade system, that now supports importing config backups SAFELY. Config / price chart backup importing must still be done MANUALLY for now, but the NEXT release will allow anybody to import backups from the \"Reset / Backup & Restore\" ADMIN page.": "今日发布的 v6.01.06 修复了“No...data received...file /cache/secured/a*********s/ip_XX*********X.dat (aborting...)”错误，原因是 prune_access_stats() 未正确删除过期访问统计。旧日志中的此类记录可以忽略。本版还修复了多项价格图表备份导入问题，并重构升级系统，以支持安全导入配置备份。当前仍需手动导入配置和图表备份；下一版本将支持直接在管理后台“重置、备份与恢复”页面导入。",
@@ -2035,7 +2035,7 @@ window.OCT_ZH_CN = {
     "DeFi Education Fund": "DeFi 教育基金",
     "Ethereum Subreddit": "Reddit 以太坊社区",
     "NEAR Protocol Subreddit": "Reddit NEAR Protocol 社区",
-    "(Open Crypto Tracker website shortcut)": "（Open Crypto Tracker 官网入口）",
+    "(Open Crypto Tracker website shortcut)": "（BTC监测器 官网入口）",
     "(ETH v2 Node Stats)": "（以太坊节点统计）",
     "(for web3 dapps)": "（面向 Web3 去中心化应用）",
     "Solana Subreddit": "Reddit Solana 社区",
@@ -2591,7 +2591,7 @@ window.OCT_ZH_CN = {
     "System Temperature:": "系统温度：",
     "USED Memory (*not* including buffers / cache):": "已用内存（不含缓冲区与缓存）：",
     "FREE Disk Space:": "剩余磁盘空间：",
-    "Open Crypto Tracker Cache Size:": "Open Crypto Tracker 缓存大小：",
+    "Open Crypto Tracker Cache Size:": "BTC监测器 缓存大小：",
     "Average Server Header Size Limits": "常见服务器的请求头大小限制",
     "Web servers have a pre-set header size limit (which can be adjusted within it's own server configuration), which varies depending on the server software you are using.": "Web 服务器会限制请求头的大小，各种服务器软件的默认上限有所不同，可在相应的服务器配置中调整。",
     "IF THIS APP GOES OVER THOSE HEADER SIZE LIMITS, IT WILL CRASH!": "本应用的请求头一旦超出服务器限制，就会无法正常访问！",
@@ -2790,7 +2790,7 @@ window.OCT_ZH_CN = {
     {
       "pattern": "^Open Crypto Tracker OR some of it's plugins were recently upgraded / downgraded\\. (.+), so any UPGRADED Javascript / CSS files can properly reload and run this app's interface\\. Otherwise, you MAY encounter visual styling / app functionality errors \\(until your browser cache refreshes on it's own\\)\\.$",
       "flags": "i",
-      "replacement": "Open Crypto Tracker 或部分插件最近已升级或降级。请重新启动桌面应用，或刷新网页；必要时清除浏览器缓存，以加载更新后的脚本和样式文件。旧缓存可能导致页面显示或功能异常。"
+      "replacement": "BTC监测器 或部分插件最近已升级或降级。请重新启动桌面应用，或刷新网页；必要时清除浏览器缓存，以加载更新后的脚本和样式文件。旧缓存可能导致页面显示或功能异常。"
     },
     {
       "pattern": "^(v[\\d.]+) and earlier$",
@@ -4357,5 +4357,5 @@ window.OCT_ZH_CN = {
       "replacement": "第 $1 页，共 $2 页"
     }
   ],
-  "version": "49df517acae9"
+  "version": "9d52d4ce20ac"
 };

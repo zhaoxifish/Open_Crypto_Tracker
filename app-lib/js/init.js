@@ -602,8 +602,8 @@ nav_menu('.user-nav');
                   unsaved_admin_config = false;
 
                   $('#collapsed_sidebar .admin_settings_save img').attr("src","templates/interface/media/images/auto-preloaded/icons8-save-100-" + theme_selected + ".png");
-                  $('#sidebar .admin_settings_save').addClass('blue');
-                  $('#sidebar .admin_settings_save').removeClass('red_bright');
+                  $('.admin_settings_save').addClass('blue');
+                  $('.admin_settings_save').removeClass('red_bright');
 
                   }
 
@@ -627,8 +627,8 @@ nav_menu('.user-nav');
                   unsaved_user_config = false;
 
                   $('#collapsed_sidebar .user_settings_save img').attr("src","templates/interface/media/images/auto-preloaded/icons8-save-100-" + theme_selected + ".png");
-                  $('#sidebar .user_settings_save').addClass('blue');
-                  $('#sidebar .user_settings_save').removeClass('red_bright');
+                  $('.user_settings_save').addClass('blue');
+                  $('.user_settings_save').removeClass('red_bright');
 
                   }
 
@@ -675,8 +675,8 @@ nav_menu('.user-nav');
           unsaved_admin_config = false;
 
           $('#collapsed_sidebar .admin_settings_save img').attr("src","templates/interface/media/images/auto-preloaded/icons8-save-100-" + theme_selected + ".png");
-          $('#sidebar .admin_settings_save').addClass('blue');
-          $('#sidebar .admin_settings_save').removeClass('red_bright');
+          $('.admin_settings_save').addClass('blue');
+          $('.admin_settings_save').removeClass('red_bright');
           
           // Always scroll to top left on load / reload for UX
           iframe.contentWindow.scrollTo(0,0);
@@ -1049,7 +1049,9 @@ nav_menu('.user-nav');
     // https://manos.malihu.gr/jquery-custom-content-scroller/
     // https://github.com/malihu/malihu-custom-scrollbar-plugin/issues/329
     // (SCROLLING FOR COLLAPSED SIDEBAR [WHEN IT IS LONGER THAN THE SCREEN HEIGHT])
-    $("#sidebar").mCustomScrollbar({
+     // BTC Monitor uses the sidebar's native scrolling and flex layout.
+     if ( !document.documentElement.classList.contains('btc-monitor') && $("#sidebar").length ) {
+     $("#sidebar").mCustomScrollbar({
               
               theme: scrollbar_theme,
               scrollInertia: 200,
@@ -1059,6 +1061,7 @@ nav_menu('.user-nav');
                           },
                           
     });
+     }
           
           
     // UNstyle sidebar on-click (REGULAR sidebar 3-deep (last) sub-menu)
@@ -1112,12 +1115,13 @@ nav_menu('.user-nav');
           });
           
           
-          // UNUSED, BUT KEEP FOR NOW
+          // The compact sidebar is optional; BTC Monitor uses one responsive menu.
           const coll_sb = document.querySelector('#collapsed_sidebar');
-          coll_sb.addEventListener('scroll', () => {
-          collapsed_sidebar_scroll_position = coll_sb.scrollTop; // reuse `coll_sb` innstead of querying the DOM again
-          //console.log('#collapsed_sidebar scroll position = ' + collapsed_sidebar_scroll_position);
-          }, {passive: true});
+          if ( coll_sb ) {
+              coll_sb.addEventListener('scroll', () => {
+                  collapsed_sidebar_scroll_position = coll_sb.scrollTop;
+              }, {passive: true});
+          }
          
          
          // KEEP OPEN ON CLICK REGULAR sidebar 3-deep (last) sub-menu

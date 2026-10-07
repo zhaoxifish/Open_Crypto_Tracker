@@ -48,17 +48,7 @@ if ( $_POST['submit_check'] == 1 || $post_csv_import || $ui_cookies ) {
          <th class='border_lt border_rt align_left' colspan="11">
     
 			
-			 &nbsp; <span class='blue' style='font-weight: bold;'>Layout:</span> <select title='Select which portfolio view format you prefer.' class='browser-default custom-select' name='select_portfolio_view' id='select_portfolio_view' onchange='
-			 
-			 if ( this.value = "mobile" ) {
-			 alert("Coming Soon&trade;");
-			 $(this).val("desktop");   
-			 }
-			 
-			 '>
-				<option value='desktop'> Laptop / Desktop </option>
-				<option value='mobile'> Mobile </option>
-			</select> 
+			 &nbsp; <span class="btc-table-heading">持仓明细</span>
 			
          
          &nbsp; &nbsp; <span class='blue' style='font-weight: bold;'>Number Format:</span> <select class='browser-default custom-select narrow_dropdown' id='pref_number_format' name='pref_number_format' onchange="
@@ -499,7 +489,7 @@ $altcoin_dominance = $ct['var']->max_100($altcoin_dominance);
 
 
 <!-- Summary START -->
-<div class="align_left show_asset_vals bold_1 blue">
+<div class="align_left show_asset_vals bold_1 blue <?=( $assets_added || $assets_watched ? 'btc-populated' : '' )?>">
 
 
 <?php
@@ -1527,11 +1517,12 @@ zingchart.bind('marketcap_chart', 'label_click', function(e){
 	else {
 	?>
 	
-	<div class='align_center' style='min-height: 100px;'>
-	
-		<p><img src='templates/interface/media/images/favicon.png' alt='' class='image_border' /></p>
-		<p class='red' style='font-weight: bold; position: relative; margin: 15px;'>No portfolio assets added yet (add them on the "Update" page).</p>
-	</div>
+    <section class="btc-empty-state"><div><h2>从第一项资产开始</h2><p>添加持仓，记录买入成本；也可以先加入观察列表，持续关注感兴趣的币种。</p><a class="btc-button btc-primary" href="index.php#update" data-btc-go="update">添加资产</a></div><svg class="btc-empty-art" viewBox="0 0 200 140" fill="none" aria-hidden="true"><rect x="12" y="10" width="176" height="120" rx="12" fill="#f4f8ff" stroke="#dce8f8"/><path d="M28 42h144M28 70h144M28 98h144M56 26v88M100 26v88M144 26v88" stroke="#e1eafa"/><path d="m28 96 30-24 26 9 31-35 28 11 28-30" stroke="#1665d8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="171" cy="27" r="5" fill="#0e9ba4"/></svg></section>
+    <div class="btc-quick-links">
+      <a class="btc-quick-link" href="index.php#charts" data-btc-go="charts"><svg class="btc-icon" aria-hidden="true"><use href="app-lib/ui/icons.svg#charts" /></svg><span><strong>观察行情</strong><small>查看价格走势与成交量</small></span></a>
+      <a class="btc-quick-link" href="index.php#settings" data-btc-go="settings"><svg class="btc-icon" aria-hidden="true"><use href="app-lib/ui/icons.svg#settings" /></svg><span><strong>设置偏好</strong><small>选择数据保存与显示方式</small></span></a>
+      <a class="btc-quick-link" href="admin.php#admin_security"><svg class="btc-icon" aria-hidden="true"><use href="app-lib/ui/icons.svg#shield" /></svg><span><strong>管理安全</strong><small>配置登录与访问保护</small></span></a>
+    </div>
 	
 	<?php
 	}
@@ -1692,7 +1683,7 @@ zingchart.bind('marketcap_chart', 'label_click', function(e){
     		}
     		
     		if ( isset($ct['system_info']['portfolio_cache']) ) {
-    		echo '<div class="sys_stats"><span class="bitcoin"><b>Open Crypto Tracker Cache Size:</b></span> <span class="'.( isset($ct['system_warnings']['portfolio_cache_size']) ? 'red' : 'green' ).'"> '.round($portfolio_cache_size_mb / 1000, 4).' Gigabytes <span class="black">('.number_format($portfolio_cache_size_mb, 2, '.', ',').' Megabytes)</span></span> </div>';
+		echo '<div class="sys_stats"><span class="bitcoin"><b>BTC监测器缓存大小：</b></span> <span class="'.( isset($ct['system_warnings']['portfolio_cache_size']) ? 'red' : 'green' ).'"> '.round($portfolio_cache_size_mb / 1000, 4).' Gigabytes <span class="black">('.number_format($portfolio_cache_size_mb, 2, '.', ',').' Megabytes)</span></span> </div>';
     		}
     		
     		

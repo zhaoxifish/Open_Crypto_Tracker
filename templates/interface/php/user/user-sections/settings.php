@@ -116,15 +116,7 @@
 			
 			<p class='settings_sections'>
 			    
-			    <b>Theme:</b> 
-			    
-			    <select class='browser-default custom-select' onchange='
-			    $("#theme_selected").val(this.value);
-                   red_save_button();
-			    '>
-				<option value='dark' <?=( $ct['sel_opt']['theme_selected'] == 'dark' ? ' selected ' : '' )?>> Dark </option>
-				<option value='light' <?=( $ct['sel_opt']['theme_selected'] == 'light' ? ' selected ' : '' )?>> Light </option>
-			    </select>
+			    <b>界面主题：</b> <span class="btc-theme-label">浅色工作台</span>
 			    
 			</p>
 			

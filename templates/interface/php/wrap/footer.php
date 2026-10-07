@@ -106,26 +106,12 @@ else {
     
            <div class='footer_content'>
     
-              <p class='align_center' style='margin: 15px;'>
-              
-              <a class='bitcoin' href='javascript:scroll(0,0);' title='Return to the top of the page.'>Back To Top</a>
-              
-              &nbsp;&nbsp; || &nbsp;&nbsp; 
-              
-              <a title='Let me know (anonymously OR otherwise) you enjoy my apps.' href='javascript: show_more("donate");'>Show Appreciation</a>
-              
-              &nbsp;&nbsp; || &nbsp;&nbsp; 
-              
-              <a href='https://taoteh1221.github.io' target='_blank' title='Check for upgrades to the latest version here.'>Running <?=ucfirst($ct['app_edition'])?> Edition<?=( $ct['sec']->admin_logged_in() ? ' v' . $ct['app_version'] : '' )?></a>
-              
-              </p>
-                      	
+              <div class="btc-footer"><span>BTC监测器</span><div class="btc-footer-links"><span id="app_runtime"></span><button type="button" data-btc-about>关于与开源许可</button><a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">返回顶部</a></div></div>
               <div id="app_error_alert" style='display: none;'><?php echo $ct['alerts_gui_logs']; ?></div>
 
 <?php
 
-require("templates/interface/php/wrap/wrap-elements/donation-links.php");
-require("templates/interface/php/wrap/wrap-elements/report-issues-modal.php");
+require('templates/interface/php/wrap/wrap-elements/btc-about.php');
 
           
         // IF WE HAVE A LOG WRITE ERROR FOR ANY LOGS, PRINT IT IN THE FOOTER HERE
@@ -138,7 +124,7 @@ require("templates/interface/php/wrap/wrap-elements/report-issues-modal.php");
     	
 ?>
 
-        <div id="app_runtime" class='align_center'></div>
+
         
         
    		 </div> <!-- .footer_content -->
@@ -205,60 +191,9 @@ else if ( is_safari ) {
 }
 
 
-// Creates Cookie notice footer banner
-footer_banner(
-
-              cookies_notice_storage,
-
-              'This web app requires cookies for admin logins (browser cookie / server session). The option to ENABLE ADDITIONAL FEATURES requiring cookies is also available on the SETTINGS page.<br /><br />'
-              
-              + 'ACCESS STATS are saved INSIDE THE APP ONLY, for the admin account to see what / where the app is being accessed from (page, IP address).<br /><br />'
-              + 'The above-mentioned cookies and access stats are for internal program functionality and security ONLY. The MAIN GOAL of this app is to MINIMIZE 3RD PARTY EXTERNAL TRACKING of user portfolios, to protect your privacy. There is NO MIDDLE MAN SERVER WHATSOEVER used by this app.'
-
-              );
-
-
-// General reminders (dev status / bug report / donations, etc)
-footer_banner(
-
-              general_notice_storage,
-
-              '<h3 class="red">Small-Screen (mobile) support is coming soon&trade;</h3>'
-              
-              + '<h4>You can <a style="font-weight: bold; color: red !important;" href="https://github.com/taoteh1221/Open_Crypto_Tracker/issues" target="_BLANK">report issues</a>.<br />(PLEASE submit a DETAILED report)</h4>'
-              
-              + 'Please show your appreciation for my crypto apps, and <a href="https://sourceforge.net/u/taoteh1221/profile/" target="_BLANK">write a SourceForge project review</a>, or <a href="https://taoteh1221.github.io/#donations" target="_BLANK">buy me a coffee / beer</a>!<br />'
-              
-              + 'It\'s about <a href="https://taoteh1221.github.io/#donations" target="_BLANK">letting me know</a> you find them useful, NOT about making money. Think of it as a PRIVATE app usage survey anon! :)<br /><br />'
-              
-              + '<a href="https://taoteh1221.github.io/#donations" target="_BLANK"><img width="360" src="templates/interface/media/images/donate-banner.png" alt="" class="image_border" style="margin: 0.3em;" /></a>'
-
-              );
-
-
-// Security reminders
-footer_banner(
-
-              security_notice_storage,
-
-              '<h3 class="red">Pro Tips, For Best Crypto Security Practices:</h3><h5 class="red">(🚨🚨🚨 IF you do NOT practice these, you EASILY could lose EVERYTHING! 🚨🚨🚨)</h5>'
-              
-              + '<ul style="display: inline-block; max-width: 950px;">'
-              
-              + '<li style="margin: 1.7em;">Exchanges / wallets / etc WILL NEVER CALL / TEXT / EMAIL YOU, asking you to give them information OR access related to your crypto! </li>'
-              
-              + '<li style="margin: 1.7em;">ONLY SCAMMERS send you notices MEANT TO SCARE YOU INTO ACTING QUICKLY, OR OFFERING YOU FREE CRYPTO, and ONLY SCAMMERS ask for your wallet recovery phrase!</li>'
-              
-              + '<li style="margin: 1.7em;">Ladies (OR men pretending to be ladies) contacting you online, CAN EASILY BE trafficking victims enslaved by Southeast Asian gangs, to make you invest in crypto SCAMS, TO STEAL YOUR MONEY! IF they want you to DEPOSIT to a "special exchange they know", OR send crypto to them  directly, DON\'T DO IT!</li>'
-              
-              + '<li style="margin: 1.7em;">North Korean hackers make TONS of money trying to get you CLICKING malicious web links (posing as VCs, IT workers / employers), to STEAL your crypto wallet on your computer, OR if you are a DEVELOPER, steal access to your crypto-related projects on your computer! </li>'
-              
-              + '<li style="margin: 1.7em;">ALWAYS use a HARDWARE WALLET, AND have a DEDICATED computer for CRYPTO-ONLY transactions (NEVER do anything but crypto transactions on this machine!), related to your COLD STORAGE wallets (where you should be keeping larger amounts of crypto), OR your chances of a VIRUS ON YOUR COMPUTER stealing your crypto ARE VERY HIGH (ESPECIALLY on Windows OS [use <a href="https://www.fedoraproject.org/workstation/" target="_BLANK">Fedora WorkStation</a>, for better OS security])!</li>'
-
-              + '</ul>'
-
-              );
-
+// Concise onboarding; detailed privacy information remains in the local About dialog.
+footer_banner(cookies_notice_storage, '<strong>数据由你掌握</strong><p>登录需要 Cookie；资产数据的保存方式可在「偏好设置」中选择。访问记录仅存放在本应用中。</p>');
+footer_banner(security_notice_storage, '<strong>保护你的资产</strong><p>请妥善保管助记词和私钥，警惕陌生链接；建议启用双重验证。</p>');
 
 </script>
 

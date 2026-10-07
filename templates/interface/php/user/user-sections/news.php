@@ -292,7 +292,7 @@
 	
 	document.write("<div class='align_center' style='min-height: 100px;'>");
 	
-		document.write("<p><img src='templates/interface/media/images/favicon.png' alt='' class='image_border' /></p>");
+		document.write("<p><img src='app-lib/ui/mark.svg' alt='' width='64' height='64' /></p>");
 		document.write("<p class='red' style='font-weight: bold; position: relative; margin: 15px;'>Click the \"Select News Feeds\" button (top left) to add news feeds.</p>");
 		
 	document.write("</div>");

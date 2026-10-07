@@ -64,6 +64,22 @@ exit;
 }
 
 
+// BTC Monitor uses a consistent light presentation for browser and AJAX output.
+// Apply after theme validation and after configuration persistence has finished;
+// this affects only this request, not the user's saved configuration or cookies.
+if ( $ct['runtime_mode'] == 'ui' || $ct['runtime_mode'] == 'ajax' ) {
+    $ct['sel_opt']['theme_selected'] = 'light';
+    $ct['conf']['charts_alerts']['charts_background'] = '#ffffff';
+    $ct['conf']['charts_alerts']['charts_border'] = '#e2e8f0';
+    $ct['conf']['charts_alerts']['charts_text'] = '#334155';
+    $ct['conf']['charts_alerts']['charts_link'] = '#2563eb';
+    $ct['conf']['charts_alerts']['charts_line'] = '#e2e8f0';
+    $ct['conf']['charts_alerts']['charts_base_gradient'] = '#dbeafe';
+    $ct['conf']['charts_alerts']['charts_tooltip_background'] = '#ffffff';
+    $ct['conf']['charts_alerts']['charts_tooltip_text'] = '#0f172a';
+}
+
+
 // *ALL* RUNTIMES *NOT* DESIGNATED AS A "FAST RUNTIME"
 if ( !$ct['fast_runtime'] ) {
 

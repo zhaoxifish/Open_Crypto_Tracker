@@ -107,18 +107,6 @@
 
 	
 	
-			var random_tip_disclaimer = '<h5 class="align_center bitcoin tooltip_title">Random Tips Disclaimer</h5>'
-			
-			
-			+'<p class="coin_info extra_margins bitcoin" style="white-space: normal; ">This "Random Tips" section SHOULD NEVER TAKE THE PLACE OF ADVICE FROM A PROFESSIONAL FINANCIAL ADVISER!</p>'
-			
-			+'<p class="coin_info extra_margins bitcoin" style="white-space: normal; ">"Random Tips" are only designed to provide VERY BASIC INSIGHT for people new to cryptocurrency, AND DOES NOT / CANNOT TAKE INTO ACCOUNT UNIQUE SITUATIONS INVESTORS MAY BE IN. ALWAYS CONSULT A FINANCIAL ADVISER IF YOU ARE UNAWARE OF ALL RISKS FOR YOUR PARTICULAR SITUATION!</p>'
-			
-			
-			+'<p> </p>';
-
-	
-	
 			var spreadsheet_import_export = '<h5 class="align_center yellow tooltip_title">Spreadsheet Import / Export</h5>'
 			
 			
@@ -142,7 +130,7 @@
 				
 				
 				
-	<p style='margin-top: 10px;'><a style='font-weight: bold; font-size: 25px;' class='red clear_both' href='javascript: show_more("disclaimer");' title='Click to show disclaimer.'>Disclaimer!</a> &nbsp; 👈 </p>
+	<p class='btc-update-meta'><a href='javascript: show_more("disclaimer");' title='查看风险与使用说明'>风险与使用说明</a></p>
 	    
 	    
 	    
@@ -252,7 +240,7 @@
 						</ul>
 						
 						
-						<br /><a href="https://x.com/taoteh1221/status/1538567185232273408" target="_blank"><img src='templates/interface/media/images/twitter-1192997965952094208.jpg' width='425' class='image_border' alt='' style='margin-left: 25px;' /></a>
+
 						
 						</div>
 	
@@ -261,7 +249,7 @@
 		</div>
 		
 		
-	<p style='margin-top: 20px;'><span style='font-weight: bold;' class='bitcoin'>How is my data stored by this app?</span> 
+	<p class='btc-update-meta'><span>数据保存方式</span>
 	     
 		<img class='tooltip_style_control' id='portfolio_data_privacy' src='templates/interface/media/images/info-orange.png' alt='' width='30' style='position: relative; left: -5px;' /> </p>
 		
@@ -279,35 +267,16 @@
 		 
 	    
 	
-	<div style='margin-top: 20px; max-width: 1200px;' class='bitcoin random_tip'>
-	
-		<p>
-	
-			<b>Random Tip:</b><img class='tooltip_style_control' id='random_tip_disclaimer' src='templates/interface/media/images/info-orange.png' alt='' width='30' style='position: relative; padding: 0px; margin: 0px; vertical-align: middle;' />  <a href='javascript: random_tips();'>Show Another Tip</a>
-	
-		</p>
-	
-		<p id='quoteContainer'></p>
-	
-	</div>
-	
-	
-	<script>
-		
-			$('#random_tip_disclaimer').balloon({
-			html: true,
-			position: "right",
-  			classname: 'balloon-tooltips',
-			contents: random_tip_disclaimer,
-			css: balloon_css()
-			});
-		
-		 </script>
+	<details class='btc-form-guidance'>
+        <summary>录入与 CSV 说明</summary>
+        <p>选择资产、交易对和交易所后，填写持仓数量与单位成本，再点击顶部的“保存更改”。数量和价格请使用半角数字及小数点。</p>
+        <p>需要备份或批量编辑时，可导出 CSV 文件；再次导入时请保留原有列名与字段格式。</p>
+    </details>
 			
 	
-	<div> &nbsp; </div>
 	
-	<p><a style='font-weight: bold;' href='README.txt' target='_blank'>Editing The Portfolio Assets List, and Enabling Email / Text / Telegram / Alexa Price Alerts (installation on Debian / RedHat / Windows 10, or website)</a></p>
+
+	<p class='btc-update-meta'><a href='README.txt' target='_blank' rel='noopener'>配置资产与价格提醒</a></p>
 	
 				
 			
@@ -354,7 +323,7 @@
 	
 		
 	
-	<div> &nbsp; </div>
+
 		
 	<div id='watch_only'>
 	
@@ -522,13 +491,19 @@
 	    
 	    ?>
 	    
-	    <div class='<?=$zebra_stripe?> long_list_taller' style='white-space: nowrap;'> 
+	    <div class='<?=$zebra_stripe?> long_list_taller btc-asset-editor'>
+        <div class='btc-asset-heading'>
 	       
 	       
 	       <input type='checkbox' value='<?=strtolower($asset_array_key)?>' id='<?=$field_var_watchonly?>' onchange='watch_toggle(this);' <?=( $ct['var']->rem_num_format($asset_amnt_val) > 0 && $ct['var']->rem_num_format($asset_amnt_val) <= $watch_only_flag_val ? 'checked' : '' )?> /> &nbsp;
 				    
 				    
-			<b translate='no' class='blue'><?=$asset_array_val['name']?> (<?=strtoupper($asset_array_key)?>)</b> /
+			<b translate='no' class='blue'><?=$asset_array_val['name']?> (<?=strtoupper($asset_array_key)?>)</b>
+        </div>
+        <div class='btc-asset-fields'>
+        <div class='btc-asset-field btc-market-field'>
+            <b>交易市场</b>
+            <div class='btc-market-controls'>
 	       
 	       
 				    <select class='browser-default custom-select' onchange='
@@ -634,11 +609,15 @@
 				    $html_mrkt_list = NULL;
 				    ?>
 				    
-				    </span> &nbsp;  &nbsp; 
+				    </span>
+            </div>
+        </div>
 				    
 				    
 			
-	     			 <b>Holdings:</b> <input class='private_data' type='text' size='11' id='<?=$field_var_amnt?>' name='<?=$field_var_amnt?>' value='<?=$asset_amnt_val?>' onkeyup='
+        <div class='btc-asset-field'>
+            <b>Holdings:</b>
+            <div class='btc-inline-field'><input class='private_data' type='text' size='11' id='<?=$field_var_amnt?>' name='<?=$field_var_amnt?>' value='<?=$asset_amnt_val?>' onkeyup='
 	     
 	     $("#<?=strtolower($asset_array_key)?>_restore").val( $("#<?=strtolower($asset_array_key)?>_amnt").val() );
 	     
@@ -646,10 +625,14 @@
 	     
 	     $("#<?=strtolower($asset_array_key)?>_restore").val( $("#<?=strtolower($asset_array_key)?>_amnt").val() );
 	     
-	     ' <?=( $ct['var']->rem_num_format($asset_amnt_val) > 0 && $ct['var']->rem_num_format($asset_amnt_val) <= $watch_only_flag_val ? 'readonly' : '' )?> /> <span translate='no' class='blue'><?=strtoupper($asset_array_key)?></span>  &nbsp;  &nbsp;
+	     ' <?=( $ct['var']->rem_num_format($asset_amnt_val) > 0 && $ct['var']->rem_num_format($asset_amnt_val) <= $watch_only_flag_val ? 'readonly' : '' )?> /> <span translate='no' class='blue'><?=strtoupper($asset_array_key)?></span>
+            </div>
+        </div>
 			    
 			
-	     <b>Average Paid (per-unit):</b> <?=$ct['opt_conf']['conversion_currency_symbols'][ $ct['conf']['currency']['bitcoin_primary_currency_pair'] ]?><input class='private_data' type='text' size='10' id='<?=$field_var_paid?>' name='<?=$field_var_paid?>' value='<?=$asset_paid_val?>' <?=$disable_fields?> /> 
+	     <div class='btc-asset-field'>
+            <b>Average Paid (per-unit):</b>
+            <div class='btc-inline-field'> <?=$ct['opt_conf']['conversion_currency_symbols'][ $ct['conf']['currency']['bitcoin_primary_currency_pair'] ]?><input class='private_data' type='text' size='10' id='<?=$field_var_paid?>' name='<?=$field_var_paid?>' value='<?=$asset_paid_val?>' <?=$disable_fields?> />
 	     
 	     
 		<img class='tooltip_style_control' id='average_paid_notes_<?=$rand_id?>' src='templates/interface/media/images/info.png' alt='' width='30' style='position: relative; left: -5px;' /> 
@@ -667,7 +650,11 @@
 		   &nbsp;  &nbsp; 
 	     
 	     
-	     <b>Margin Leverage:</b> 
+	     </div>
+        </div>
+        <div class='btc-asset-field'>
+            <b>Margin Leverage:</b>
+            <div class='btc-inline-field'>
 	     
 	     <select class='browser-default custom-select' name='<?=$field_var_lvrg?>' id='<?=$field_var_lvrg?>' onchange='
 	     if ( this.value <= 5 ) {
@@ -727,7 +714,10 @@
 		 
 	     
 	     
-	     <input type='hidden' id='<?=$field_var_restore?>' name='<?=$field_var_restore?>' value='<?=( $ct['var']->rem_num_format($asset_amnt_val) > 0 && $ct['var']->rem_num_format($asset_amnt_val) <= $watch_only_flag_val ? '' : $asset_amnt_val )?>' />
+	     </div>
+        </div>
+        </div>
+        <input type='hidden' id='<?=$field_var_restore?>' name='<?=$field_var_restore?>' value='<?=( $ct['var']->rem_num_format($asset_amnt_val) > 0 && $ct['var']->rem_num_format($asset_amnt_val) <= $watch_only_flag_val ? '' : $asset_amnt_val )?>' />
 				
 				
 	    </div>

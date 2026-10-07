@@ -42,7 +42,7 @@
   {
     "pattern": "^Open Crypto Tracker OR some of it's plugins were recently upgraded / downgraded\\. (.+), so any UPGRADED Javascript / CSS files can properly reload and run this app's interface\\. Otherwise, you MAY encounter visual styling / app functionality errors \\(until your browser cache refreshes on it's own\\)\\.$",
     "flags": "i",
-    "replacement": "Open Crypto Tracker 或部分插件最近已升级或降级。请重新启动桌面应用，或刷新网页；必要时清除浏览器缓存，以加载更新后的脚本和样式文件。旧缓存可能导致页面显示或功能异常。"
+    "replacement": "BTC监测器 或部分插件最近已升级或降级。请重新启动桌面应用，或刷新网页；必要时清除浏览器缓存，以加载更新后的脚本和样式文件。旧缓存可能导致页面显示或功能异常。"
   },
   {
     "pattern": "^(v[\\d.]+) and earlier$",

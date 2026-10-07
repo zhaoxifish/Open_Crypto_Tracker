@@ -1,0 +1,784 @@
+/* BTC monitor: forms, data tables and contextual UI.
+ * Kept separate from the upstream theme for straightforward updates and rollback.
+ * Only presentation is changed; form names, values and submission handlers remain intact.
+ */
+
+html.btc-monitor :is(input[type="text"], input[type="password"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="date"], input[type="datetime-local"], select, textarea) {
+  box-sizing: border-box;
+  min-height: 40px;
+  max-width: 100%;
+  padding: 9px 12px !important;
+  border: 1px solid #cfdae8 !important;
+  border-radius: 9px !important;
+  background-color: var(--btc-surface);
+  color: var(--btc-text) !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  vertical-align: middle;
+  box-shadow: 0 1px 2px rgb(23 43 77 / 3%);
+  transition: border-color 140ms ease, box-shadow 140ms ease;
+}
+
+html.btc-monitor :is(input, textarea)::placeholder {
+  color: #7b8a9d !important;
+  opacity: 1;
+}
+
+html.btc-monitor :is(input, select, textarea):focus-visible {
+  outline: 3px solid rgb(22 101 216 / 14%) !important;
+  outline-offset: 2px;
+  border-color: var(--btc-primary) !important;
+  box-shadow: none;
+}
+
+html.btc-monitor :is(input, textarea)[readonly],
+html.btc-monitor :is(input, textarea, select):disabled {
+  background-color: #eef2f7 !important;
+  color: var(--btc-muted) !important;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+html.btc-monitor :is(input[type="number"], input.num_conv, .range-value) {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+html.btc-monitor :is(select, .custom-select) {
+  min-height: 40px;
+  padding-right: 33px !important;
+  background-color: var(--btc-surface) !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2361718a' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 10px center !important;
+  background-size: 16px !important;
+}
+
+html.btc-monitor select[multiple] {
+  min-height: 120px;
+  background-image: none !important;
+}
+
+html.btc-monitor :is(textarea, textarea[data-autoresize]) {
+  min-height: 96px;
+  resize: vertical;
+  background-image: none !important;
+  line-height: 1.65 !important;
+  box-shadow: none;
+}
+
+html.btc-monitor :is(input[type="checkbox"], input[type="radio"]) {
+  width: 17px !important;
+  height: 17px !important;
+  min-height: 0;
+  margin: 0 6px 0 0;
+  top: 0;
+  accent-color: var(--btc-primary);
+  vertical-align: -3px;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+html.btc-monitor input[type="color"] {
+  width: 56px;
+  height: 38px;
+  padding: 4px;
+  border: 1px solid var(--btc-border) !important;
+  border-radius: 8px !important;
+  background: var(--btc-surface);
+}
+
+html.btc-monitor input[type="file"] {
+  max-width: 100%;
+  padding: 8px;
+  border: 1px dashed #bdcce0 !important;
+  border-radius: 10px !important;
+  background: #f8fafd;
+  font-size: 13px !important;
+}
+
+html.btc-monitor input[type="file"]::file-selector-button {
+  margin-right: 12px;
+  padding: 7px 12px;
+  border: 0;
+  border-radius: 6px;
+  color: var(--btc-primary);
+  background: #eaf2ff;
+  cursor: pointer;
+}
+
+/* Action buttons only. Menu toggles, chart controls and modal close buttons use
+ * their own dimensions so a generic button rule cannot enlarge them. */
+html.btc-monitor :is(input[type="submit"], input[type="button"], input[type="reset"], .force_button_style, .portfolio_footer > button, .pw_prompt > button, :where(button[onclick^="jstree_remove("]).input_margins):not(.btn-number):not(.footer_banner_button) {
+  box-sizing: border-box;
+  min-height: 40px;
+  padding: 9px 18px !important;
+  border: 1px solid var(--btc-control-border, var(--btc-primary)) !important;
+  border-radius: 9px !important;
+  background: var(--btc-control-bg, var(--btc-primary)) !important;
+  color: var(--btc-control-text, #fff) !important;
+  font-size: 14px !important;
+  font-weight: 600;
+  line-height: 1.5 !important;
+  text-decoration: none !important;
+  white-space: normal;
+  box-shadow: 0 3px 8px rgb(22 101 216 / 10%);
+  transition: background-color 140ms ease, box-shadow 140ms ease;
+}
+
+html.btc-monitor :is(input[type="submit"], input[type="button"], input[type="reset"], .force_button_style, .portfolio_footer > button, .pw_prompt > button, :where(button[onclick^="jstree_remove("]).input_margins):not(.btn-number):hover {
+  opacity: 1;
+  background: var(--btc-control-hover, #0f55bd) !important;
+  box-shadow: 0 4px 12px rgb(22 101 216 / 17%);
+}
+
+html.btc-monitor :is(input[type="submit"], input[type="button"], .force_button_style, .portfolio_footer > button, .pw_prompt > button, :where(button[onclick^="jstree_remove("]).input_margins):disabled {
+  opacity: .55;
+  cursor: not-allowed !important;
+  box-shadow: none;
+}
+
+html.btc-monitor :is(input.btn-danger, input.delete, button.btn-danger, .force_button_style.btn-danger, :where(button[onclick^="jstree_remove("]).red) {
+  --btc-control-border: #f1c7cb;
+  --btc-control-bg: #fff4f5;
+  --btc-control-hover: #ffe8eb;
+  --btc-control-text: var(--btc-danger);
+  box-shadow: none;
+}
+
+/* The upstream theme marks broad button backgrounds and borders !important.
+ * Explicit component scope wins that cascade without resizing shell controls. */
+html.btc-monitor body :is(button, a).btc-button:not(.btn-number):not(.footer_banner_button) {
+  border: 1px solid var(--btc-border) !important;
+  border-radius: 8px !important;
+  background: #fff !important;
+  color: #455671 !important;
+  box-shadow: none;
+}
+html.btc-monitor body :is(button, a).btc-button:not(.btn-number):not(.footer_banner_button):hover {
+  border-color: #c8d8ee !important;
+  background: #f2f6fc !important;
+}
+html.btc-monitor body :is(button, a).btc-button.btc-primary:not(.btn-number):not(.footer_banner_button) {
+  border-color: var(--btc-primary) !important;
+  background: var(--btc-primary) !important;
+  color: #fff !important;
+}
+html.btc-monitor body :is(button, a).btc-button.btc-primary:not(.btn-number):not(.footer_banner_button):hover {
+  border-color: #0f55bd !important;
+  background: #0f55bd !important;
+}
+html.btc-monitor :is(.btc-sidebar-footer, .btc-footer) button:not(.btn-number):not(.footer_banner_button) {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--btc-muted) !important;
+  box-shadow: none;
+}
+
+/* Translated input labels overlay the original, unchanged submit value. */
+html.btc-monitor .oct-input-wrap input.oct-translated-input[type] {
+  color: transparent !important;
+  text-shadow: none !important;
+}
+html.btc-monitor .oct-input-label {
+  color: #fff !important;
+  font-size: 14px !important;
+  font-weight: 600;
+  line-height: 1.5 !important;
+}
+html.btc-monitor .oct-input-wrap:has(> :is(.btn-danger, .delete)) > .oct-input-label {
+  color: var(--btc-danger) !important;
+}
+
+/* Admin settings are readable, consistent sections instead of dense rows. */
+html.btc-monitor .pretty_text_fields {
+  min-width: 0;
+  max-width: 100%;
+  text-align: left;
+}
+
+html.btc-monitor :is(.pretty_text_fields form > p, .pretty_text_fields .password-container, .subarray_item, .subarray_repeatable_add) {
+  margin: 0 0 18px !important;
+  white-space: normal;
+  line-height: 1.7;
+}
+
+html.btc-monitor .pretty_text_fields form > :is(p:not(.save_notice), .password-container, .admin_range_fields) {
+  padding: 20px 22px;
+  border: 1px solid var(--btc-border);
+  border-radius: 12px;
+  background: var(--btc-surface);
+}
+
+html.btc-monitor .pretty_text_fields :is(b.blue, .setting_title, .subarray_item > b) {
+  color: var(--btc-text) !important;
+  font-size: 14px !important;
+  font-weight: 600;
+}
+
+html.btc-monitor .pretty_text_fields :is(input[type="text"], input[type="password"]) {
+  width: 360px;
+  max-width: 100%;
+}
+
+html.btc-monitor .pretty_text_fields :is(.password-container, .measure-password-field) {
+  max-width: 100%;
+}
+
+html.btc-monitor .pretty_text_fields :is(.password-container, .measure-password-field) input {
+  padding-right: 38px !important;
+}
+
+html.btc-monitor .settings_notes {
+  position: static;
+  max-width: min(100%, 880px) !important;
+  margin-top: 12px;
+  padding: 12px 15px;
+  border: 1px solid #e4ebf5 !important;
+  border-radius: 8px;
+  background: #f6f9fd !important;
+  color: var(--btc-muted) !important;
+  font-size: 13px !important;
+  font-weight: 400;
+  line-height: 1.8 !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+}
+
+html.btc-monitor .notes_arrow { display: none; }
+html.btc-monitor .notes_arrow + br { display: none; }
+
+html.btc-monitor .subsection_fieldset {
+  min-width: 0 !important;
+  max-width: 100%;
+  margin: 0 0 24px !important;
+  padding: 24px !important;
+  border: 1px solid var(--btc-border) !important;
+  border-radius: 14px;
+  background: var(--btc-surface);
+  box-shadow: 0 2px 5px rgb(20 43 74 / 2%);
+  text-align: left;
+}
+
+html.btc-monitor .subsection_legend {
+  float: left;
+  width: 100%;
+  margin: 0 0 18px;
+  padding: 0 0 14px;
+  border-bottom: 1px solid #edf1f7;
+  color: var(--btc-text) !important;
+  font-size: 16px !important;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+html.btc-monitor .subsection_fieldset > .subsection_legend ~ * { clear: both; }
+
+html.btc-monitor .subsection_legend :is(strong, b, .bitcoin) {
+  color: inherit !important;
+  font-size: inherit !important;
+}
+
+html.btc-monitor .subsection_fieldset > ul { margin: 0; padding: 0; list-style: none; }
+html.btc-monitor .subsection_fieldset > ul > li { margin: 0 !important; }
+html.btc-monitor .subsection_fieldset > ul > li + li { border-top: 1px solid #edf1f7; }
+html.btc-monitor .subsection_fieldset > ul > li > a {
+  display: block;
+  padding: 17px 12px;
+  border-radius: 8px;
+  color: var(--btc-text) !important;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 140ms ease, color 140ms ease;
+}
+html.btc-monitor .subsection_fieldset > ul > li > a:hover {
+  background: #f0f6ff;
+  color: var(--btc-primary) !important;
+}
+html.btc-monitor .subsection_fieldset > ul > li > a::after {
+  content: "›";
+  float: right;
+  color: #8ba0ba;
+  font-size: 19px;
+  line-height: 21px;
+}
+
+html.btc-monitor .subarray_item {
+  padding: 16px 0;
+  border-bottom: 1px solid #edf1f7;
+}
+html.btc-monitor .subarray_plugins_plugin_status {
+  max-width: 560px;
+  text-align: left;
+}
+html.btc-monitor div.repeatable > div {
+  border-top: 1px solid var(--btc-border);
+  padding-top: 20px;
+}
+html.btc-monitor div.repeatable .repeatable_seperator { margin: 18px 0; }
+html.btc-monitor .settings_sections {
+  margin: 0 0 18px;
+  padding: 22px;
+  border: 1px solid var(--btc-border);
+  border-radius: 12px;
+  background: var(--btc-surface);
+  line-height: 1.8;
+}
+
+/* Editable assets are field groups, not a horizontally overflowing table. */
+html.btc-monitor #user_area_settings .btc-asset-editor {
+  width: 100%;
+  min-width: 0;
+  margin: 0 0 14px;
+  padding: 20px !important;
+  border: 1px solid var(--btc-border);
+  border-radius: 12px;
+  background: #fff !important;
+  white-space: normal !important;
+}
+html.btc-monitor .btc-asset-heading {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #edf1f7;
+}
+html.btc-monitor .btc-asset-heading > b {
+  color: var(--btc-text) !important;
+  font-size: 14px !important;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+html.btc-monitor .btc-asset-heading input[type="checkbox"] { flex: 0 0 17px; }
+html.btc-monitor .btc-asset-fields {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.5fr) minmax(130px, 1fr) minmax(130px, 1fr) minmax(180px, 1fr);
+  gap: 18px;
+  min-width: 0;
+}
+html.btc-monitor .btc-asset-field { min-width: 0; }
+html.btc-monitor .btc-asset-field > b {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--btc-muted) !important;
+  font-size: 12px !important;
+  font-weight: 500;
+  line-height: 1.6;
+}
+html.btc-monitor :is(.btc-inline-field, .btc-market-controls) {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: 100%;
+  min-width: 0;
+  color: var(--btc-muted);
+  white-space: normal;
+}
+html.btc-monitor .btc-asset-field :is(input[type="text"], select) {
+  width: 100%;
+  min-width: 0 !important;
+  max-width: 100%;
+  font-size: 13px !important;
+}
+html.btc-monitor .btc-asset-field input[type="text"] {
+  flex: 1 1 0;
+  padding-right: 10px !important;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+html.btc-monitor .btc-market-controls > select { flex: 0 1 85px; }
+html.btc-monitor .btc-market-controls > span[id$="_mrkt_lists"] { flex: 1 1 0; min-width: 0; }
+html.btc-monitor .btc-inline-field > select { flex: 1 1 0; }
+html.btc-monitor .btc-inline-field > span[translate="no"] {
+  max-width: 70px;
+  overflow-wrap: anywhere;
+  color: var(--btc-muted) !important;
+  font-size: 11px !important;
+}
+html.btc-monitor .btc-inline-field > .tooltip_style_control {
+  flex: 0 0 18px;
+  left: 0 !important;
+  margin: 0;
+}
+html.btc-monitor #user_area_settings :is(.long_list_start, .long_list_end) { display: none; }
+html.btc-monitor #update .full_width_wrapper > .clear_both[style*="nowrap"] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 12px 0 !important;
+  white-space: normal !important;
+}
+html.btc-monitor #update .full_width_wrapper > .clear_both[style*="nowrap"] > :is(button, a) { margin-left: 0 !important; }
+html.btc-monitor #update #csv_import { display: inline-flex !important; flex-wrap: wrap; align-items: center; gap: 10px; max-width: 100%; }
+html.btc-monitor #update #file_upload input { margin-left: 0 !important; }
+html.btc-monitor #update .full_width_wrapper > p:first-child { margin: 0 0 12px !important; }
+html.btc-monitor #update .btc-update-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0 18px 8px 0 !important;
+  font-size: 13px !important;
+  line-height: 1.6;
+}
+html.btc-monitor #update .btc-update-meta a { color: var(--btc-muted) !important; font-weight: 400; }
+html.btc-monitor #update .btc-update-meta a:hover { color: var(--btc-primary) !important; }
+html.btc-monitor #update .btc-form-guidance {
+  display: block;
+  width: 100%;
+  margin: 0 0 8px;
+  padding: 10px 14px;
+  border: 1px solid var(--btc-border);
+  border-radius: 9px;
+  background: #fff;
+  color: var(--btc-muted);
+  font-size: 13px;
+}
+html.btc-monitor #update .btc-form-guidance summary { cursor: pointer; color: var(--btc-primary); font-weight: 500; }
+html.btc-monitor #update .btc-form-guidance p { margin: 10px 0 0; font-size: 13px; line-height: 1.7; }
+html.btc-monitor #update #watch_only {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 18px;
+  margin: 0 0 14px;
+  padding: 12px 16px;
+  border: 1px solid #dbe7f6 !important;
+  border-radius: 9px;
+  background: #f3f7fe !important;
+  color: var(--btc-text);
+  font-size: 13px;
+  line-height: 1.6;
+}
+html.btc-monitor #update #watch_only > div { margin: 0 !important; }
+html.btc-monitor #update #watch_only b { font-weight: 400; }
+html.btc-monitor #update #watch_only i { font-style: normal; }
+html.btc-monitor #update #watch_only u { text-decoration: none; }
+html.btc-monitor #update .full_width_wrapper > br.clear_both { display: none; }
+
+@media (max-width: 1180px) {
+  html.btc-monitor .btc-asset-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  html.btc-monitor #user_area_settings .btc-asset-editor { padding: 16px !important; }
+  html.btc-monitor .btc-asset-fields { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  html.btc-monitor .btc-market-controls > select { flex-basis: 90px; }
+}
+
+/* Sliders retain the upstream interactive labels and their positioning hooks. */
+html.btc-monitor .admin_range_fields {
+  width: min(100%, 760px);
+  max-width: 100%;
+  margin: 24px 0 32px !important;
+  white-space: normal;
+}
+html.btc-monitor .admin_range_fields .setting_title {
+  position: static;
+  margin-bottom: 36px;
+  font-size: 14px !important;
+}
+html.btc-monitor input[type="range"] {
+  height: 6px;
+  min-height: 0;
+  border: none !important;
+  border-radius: 6px !important;
+  background: #e4ebf5 !important;
+  accent-color: var(--btc-primary);
+}
+html.btc-monitor input[type="range"]::-webkit-slider-runnable-track {
+  height: 6px;
+  background: #e4ebf5;
+  border-radius: 6px;
+}
+html.btc-monitor input[type="range"]::-webkit-slider-thumb {
+  width: 18px;
+  height: 18px;
+  margin-top: -6px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: var(--btc-primary) !important;
+  box-shadow: 0 0 0 1px #b5cae8, 0 2px 5px rgb(22 101 216 / 18%);
+}
+html.btc-monitor input[type="range"]::-moz-range-track {
+  height: 6px;
+  background: #e4ebf5;
+  border-radius: 6px;
+}
+html.btc-monitor input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: var(--btc-primary) !important;
+  box-shadow: 0 0 0 1px #b5cae8;
+}
+html.btc-monitor .range-tooltip { top: -35px; }
+html.btc-monitor .range-tooltip span {
+  min-width: 36px;
+  height: 26px;
+  padding: 0 8px;
+  border-radius: 6px;
+  background: #eaf2ff;
+  color: var(--btc-primary);
+  font-size: 12px !important;
+  line-height: 26px;
+  font-variant-numeric: tabular-nums;
+}
+html.btc-monitor .range-tooltip span::before { border-top-color: #eaf2ff; border-top-width: 5px; }
+html.btc-monitor :is(.range-min, .range-max, .range-value) {
+  color: var(--btc-muted) !important;
+  font-size: 12px !important;
+  line-height: 1.6;
+}
+html.btc-monitor .range-value { text-align: center; }
+
+/* Financial data stays in a real table; scrolling is handled by the shell. */
+html.btc-monitor :is(table.data_table, table.tablesorter, #coins_table) {
+  width: 100%;
+  border: 1px solid var(--btc-border) !important;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  background: var(--btc-surface) !important;
+  color: var(--btc-text) !important;
+  font-size: 13px !important;
+  font-variant-numeric: tabular-nums;
+  box-shadow: 0 2px 5px rgb(20 43 74 / 2%);
+}
+html.btc-monitor :is(table.data_table, table.tablesorter, #coins_table) :is(th, td) {
+  padding: 14px 16px !important;
+  border: 0 !important;
+  border-bottom: 1px solid #edf1f7 !important;
+  vertical-align: middle !important;
+  font-size: 13px !important;
+  line-height: 1.6 !important;
+}
+html.btc-monitor :is(table.data_table, table.tablesorter, #coins_table) thead th {
+  background-color: #f7f9fc !important;
+  color: #53657c !important;
+  font-size: 12px !important;
+  font-weight: 600;
+  white-space: nowrap;
+}
+html.btc-monitor :is(table.data_table, table.tablesorter, #coins_table) tbody > tr:not([style*="background"]) {
+  background: var(--btc-surface) !important;
+}
+html.btc-monitor :is(table.data_table, table.tablesorter, #coins_table) tbody > tr:not([style*="background"]):nth-child(even) {
+  background: #fbfcfe !important;
+}
+html.btc-monitor :is(table.data_table, table.tablesorter, #coins_table) tbody > tr > td:not([style*="background"]) {
+  background: transparent !important;
+}
+html.btc-monitor :is(table.data_table, table.tablesorter, #coins_table) tbody > tr:not([style*="background"]):hover {
+  background: #f0f6ff !important;
+}
+html.btc-monitor :is(table.data_table, table.tablesorter, #coins_table) tbody > tr:last-child > td {
+  border-bottom: 0 !important;
+}
+html.btc-monitor #coins_table :is(td:nth-child(3), td:nth-child(4), td:nth-child(7), td:nth-child(8), td:nth-child(10), td:nth-child(11)) {
+  text-align: right;
+}
+html.btc-monitor #coins_table :is(td:nth-child(2), th:nth-child(2)) { text-align: left; }
+html.btc-monitor #coins_table :is(td.data span, .extra_data, .crypto_worth, .gain, .loss) {
+  font-size: 13px !important;
+  line-height: 1.6 !important;
+}
+html.btc-monitor :is(.data_table, .tablesorter) select {
+  min-width: 100px !important;
+  min-height: 34px;
+  padding: 6px 28px 6px 9px !important;
+  border: 1px solid var(--btc-border) !important;
+  font-size: 12px !important;
+}
+html.btc-monitor :is(.data_table, .tablesorter) .tablesorter-filter-row td {
+  background: #fff !important;
+  padding: 8px !important;
+}
+html.btc-monitor :is(.data_table, .tablesorter) .tablesorter-filter {
+  min-height: 32px;
+  font-size: 12px !important;
+}
+html.btc-monitor .tablesorter-filter-row td input::placeholder { color: #8a9ab0 !important; }
+
+/* Help, validation, modals, and plug-in detail panels use the same surface scale. */
+html.btc-monitor :is(.help_section, .debt_results, .result, .card) {
+  max-width: 100%;
+  padding: 22px;
+  border: 1px solid var(--btc-border) !important;
+  border-radius: 14px !important;
+  background: var(--btc-surface) !important;
+  color: var(--btc-text);
+  box-shadow: none;
+}
+html.btc-monitor .help_section { margin: 0 0 24px; }
+html.btc-monitor .debt_results_total { color: var(--btc-primary); font-size: 18px; }
+html.btc-monitor .modaal-overlay { background: #14243a !important; }
+html.btc-monitor .pw_prompt {
+  width: min(380px, calc(100vw - 32px)) !important;
+  margin: 0;
+  padding: 32px 28px 24px;
+  border: 1px solid var(--btc-border) !important;
+  border-radius: 16px;
+  background: #fff !important;
+  color: var(--btc-text);
+  font-size: 14px !important;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 20px 65px rgb(15 32 56 / 24%);
+}
+html.btc-monitor .pw_prompt .close_prompt {
+  top: 4px;
+  right: 6px;
+  width: 32px;
+  height: 32px;
+  color: var(--btc-muted);
+  font-size: 13px;
+  line-height: 32px;
+}
+html.btc-monitor .modaal-container {
+  overflow: hidden;
+  border: 1px solid var(--btc-border);
+  border-radius: 18px;
+  background: var(--btc-surface) !important;
+  color: var(--btc-text) !important;
+  box-shadow: 0 24px 90px rgb(15 32 56 / 22%);
+}
+html.btc-monitor .modaal-content-container {
+  padding: 32px;
+  color: var(--btc-text);
+  font-size: 14px;
+  line-height: 1.8;
+}
+html.btc-monitor div.modaal-wrapper.modaal-fullscreen div.modaal-content-container fieldset.subsection_fieldset {
+  min-width: 0 !important;
+}
+html.btc-monitor .modaal-close {
+  width: 38px;
+  height: 38px;
+  border: 1px solid #d8e1ee !important;
+  border-radius: 50% !important;
+  background: #fff !important;
+  color: var(--btc-text) !important;
+}
+html.btc-monitor .modaal-close::before,
+html.btc-monitor .modaal-close::after { background: #53657c !important; }
+html.btc-monitor .balloon-tooltips {
+  max-width: min(540px, calc(100vw - 32px)) !important;
+  padding: 20px !important;
+  border: 1px solid #d7e2f0 !important;
+  border-radius: 12px !important;
+  background: #fff !important;
+  color: var(--btc-text) !important;
+  font-size: 13px !important;
+  line-height: 1.75 !important;
+  box-shadow: 0 12px 38px rgb(22 43 73 / 16%) !important;
+  opacity: 1 !important;
+}
+html.btc-monitor .balloon-tooltips :is(a, .black, .blue) { color: var(--btc-primary) !important; }
+html.btc-monitor .balloon-tooltips :is(.bitcoin, .yellow) { color: var(--btc-text) !important; }
+html.btc-monitor .balloon-tooltips :is(p, .coin_info) { font-size: 13px !important; line-height: 1.75 !important; }
+html.btc-monitor .tooltip_title { margin: 0 0 12px; font-size: 15px !important; line-height: 1.5; }
+html.btc-monitor img.tooltip_style_control {
+  width: 18px !important;
+  height: 18px !important;
+  margin: 0 3px;
+  vertical-align: middle !important;
+  opacity: .78;
+}
+html.btc-monitor :is(.accordion-item, .accordion-body) {
+  border-color: var(--btc-border) !important;
+  background: #fff !important;
+  color: var(--btc-text) !important;
+}
+html.btc-monitor .accordion-button {
+  min-height: 50px;
+  padding: 16px 20px;
+  border: 0 !important;
+  background: #f7f9fc !important;
+  color: var(--btc-text) !important;
+  font-size: 14px !important;
+  text-align: left;
+  box-shadow: none !important;
+}
+html.btc-monitor .accordion-button:not(.collapsed) { background: #edf4ff !important; color: var(--btc-primary) !important; }
+html.btc-monitor .ui-datepicker {
+  padding: 12px;
+  border: 1px solid var(--btc-border);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--btc-text);
+  font-size: 13px;
+  box-shadow: 0 12px 30px rgb(22 43 73 / 14%);
+}
+html.btc-monitor .ui-datepicker .ui-datepicker-header { border: 0; background: #f2f6fc; color: var(--btc-text); }
+html.btc-monitor .ui-datepicker .ui-state-default { border: 0; background: #fff; color: var(--btc-text); }
+html.btc-monitor .ui-datepicker .ui-state-active { border-radius: 5px; background: var(--btc-primary); color: #fff; }
+
+/* Authentication is a contained, comfortable form rather than a full-width canvas. */
+html.btc-monitor body.btc-auth .full_width_wrapper > div:has(> :is(#set_admin, #admin_login, #reset_admin)) {
+  box-sizing: border-box;
+  width: min(100%, 540px);
+  margin: 28px auto !important;
+  padding: 32px 38px;
+  border: 1px solid var(--btc-border);
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 14px 44px rgb(39 63 98 / 7%);
+}
+html.btc-monitor body.btc-auth h3 { margin: 0 0 10px; color: var(--btc-text) !important; font-size: 24px !important; font-weight: 700; }
+html.btc-monitor body.btc-auth :is(#set_admin, #admin_login, #reset_admin) { margin-top: 24px; text-align: left; }
+html.btc-monitor body.btc-auth :is(#set_admin, #admin_login, #reset_admin) > div {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100%;
+  padding-top: 0 !important;
+  text-align: left !important;
+}
+html.btc-monitor body.btc-auth form :is(p, .password-container) { width: 100%; margin: 0 0 18px !important; white-space: normal; }
+html.btc-monitor body.btc-auth form p > b { display: block; margin-bottom: 8px; color: var(--btc-text) !important; font-size: 13px !important; font-weight: 600; }
+html.btc-monitor body.btc-auth form :is(input[type="text"], input[type="password"]) { width: 100% !important; height: 44px; padding-right: 38px !important; }
+html.btc-monitor body.btc-auth form p > img.tooltip_style_control { float: right; margin: 2px 0 0 8px; left: 0 !important; }
+html.btc-monitor body.btc-auth .password-container p { position: relative; }
+html.btc-monitor body.btc-auth .password-container .toggle-show-password { right: 13px !important; left: auto !important; top: auto !important; bottom: 14px !important; color: #6b7d96; }
+html.btc-monitor body.btc-auth form > br { display: none; }
+html.btc-monitor body.btc-auth #captcha_image { width: 100%; max-width: 100%; height: auto; margin-top: 6px; border: 1px solid #dce4ef !important; border-radius: 10px; }
+html.btc-monitor body.btc-auth a[href^="javascript: refresh_image"] { display: inline-block; margin-top: 8px; color: var(--btc-primary) !important; font-size: 12px; }
+html.btc-monitor body.btc-auth form > p:has(input[type="submit"]) { padding: 6px 0 0 !important; }
+html.btc-monitor body.btc-auth form :is(input[type="submit"], .oct-input-wrap:has(> input[type="submit"])) { width: 100%; }
+html.btc-monitor body.btc-auth a[href="password-reset.php"] { font-size: 13px !important; color: var(--btc-primary) !important; }
+html.btc-monitor body.btc-auth :is(#user_alert, #pass_alert, #captcha_alert) { max-width: 100% !important; font-size: 12px !important; line-height: 1.7; }
+html.btc-monitor .admin_login_alerts {
+  display: block;
+  margin: 12px 0;
+  padding: 12px 15px;
+  border: 1px solid #f0c9cd !important;
+  border-radius: 9px !important;
+  background: #fff5f6;
+  color: var(--btc-danger) !important;
+  font-size: 13px !important;
+  font-weight: 500;
+  line-height: 1.7;
+  text-align: left;
+}
+html.btc-monitor .admin_login_alerts.green_bright { border-color: #bde4d6 !important; background: #effaf5; color: var(--btc-success) !important; }
+
+@media (max-width: 760px) {
+  html.btc-monitor :is(.btc-sidebar-footer, .btc-footer) button[data-btc-about] { min-height: 44px; }
+  html.btc-monitor .subsection_fieldset { padding: 18px !important; }
+  html.btc-monitor .pretty_text_fields form > :is(p:not(.save_notice), .password-container, .admin_range_fields) { padding: 17px; }
+  html.btc-monitor .settings_sections { padding: 18px; }
+  html.btc-monitor .pretty_text_fields :is(input[type="text"], input[type="password"], select) { max-width: 100%; }
+  html.btc-monitor .pretty_text_fields :is(b.blue, .setting_title) { display: inline-block; margin-bottom: 7px; }
+  html.btc-monitor .settings_notes { padding: 11px 12px; }
+  html.btc-monitor .modaal-content-container { padding: 22px 18px; overflow-x: auto; }
+  html.btc-monitor :is(table.data_table, table.tablesorter, #coins_table) :is(th, td) { padding: 11px 12px !important; }
+  html.btc-monitor body.btc-auth .full_width_wrapper > div:has(> :is(#set_admin, #admin_login, #reset_admin)) { margin: 12px auto !important; padding: 25px 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.btc-monitor :is(input, select, textarea, .force_button_style, .subsection_fieldset > ul > li > a) { transition: none !important; }
+}

@@ -905,6 +905,41 @@ red_save_button();
 
 function iframe_size_adjust(elm) {
 
+    // BTC Monitor uses the iframe's content height, without legacy spacer rows.
+    if ( document.documentElement.classList.contains('btc-monitor') ) {
+        if ( !elm || !elm.getClientRects().length ) {
+            return;
+        }
+
+        var original_height = elm.style.height;
+        var original_min_height = elm.style.minHeight;
+        try {
+            var iframe_document = elm.contentWindow.document;
+            if ( !iframe_document.body ) {
+                return;
+            }
+
+            // Collapse the viewport while measuring so an existing iframe height
+            // cannot feed back into scrollHeight and grow on every adjustment.
+            elm.style.minHeight = '0px';
+            elm.style.height = '1px';
+            var content_height = Math.max(
+                iframe_document.body.scrollHeight,
+                iframe_document.body.offsetHeight,
+                iframe_document.documentElement.scrollHeight,
+                iframe_document.documentElement.offsetHeight
+            );
+            elm.style.height = Math.max(240, Math.ceil(content_height) + 24) + 'px';
+            elm.style.minWidth = '100%';
+        }
+        catch (error) {
+            // Navigation may briefly make the iframe document unavailable.
+            elm.style.height = original_height;
+            elm.style.minHeight = original_min_height;
+        }
+        return;
+    }
+
     var extra_width = 2;
 
 
@@ -2281,8 +2316,8 @@ function app_reloading_check(form_submission=0, new_location=false) {
                unsaved_user_config = false;
 
                $('#collapsed_sidebar .user_settings_save img').attr("src","templates/interface/media/images/auto-preloaded/icons8-save-100-" + theme_selected + ".png");
-               $('#sidebar .user_settings_save').addClass('blue');
-               $('#sidebar .user_settings_save').removeClass('red_bright');
+               $('.user_settings_save').addClass('blue');
+               $('.user_settings_save').removeClass('red_bright');
                
                app_reload(form_submission, new_location);
                
@@ -2292,8 +2327,8 @@ function app_reloading_check(form_submission=0, new_location=false) {
                parent.unsaved_admin_config = false;
 
                $('#collapsed_sidebar .admin_settings_save img', window.parent.document).attr("src","templates/interface/media/images/auto-preloaded/icons8-save-100-" + theme_selected + ".png");
-               $('#sidebar .admin_settings_save', window.parent.document).addClass('blue');
-               $('#sidebar .admin_settings_save', window.parent.document).removeClass('red_bright');
+               $('.admin_settings_save', window.parent.document).addClass('blue');
+               $('.admin_settings_save', window.parent.document).removeClass('red_bright');
                
                app_reload(form_submission, new_location);
                
@@ -2322,8 +2357,8 @@ function red_save_button(mode=false) {
           
      $('#collapsed_sidebar .admin_settings_save img', window.parent.document).attr("src","templates/interface/media/images/auto-preloaded/icons8-save-100-red.png");
           
-     $('#sidebar .admin_settings_save', window.parent.document).removeClass('blue');
-     $('#sidebar .admin_settings_save', window.parent.document).addClass('red_bright');
+     $('.admin_settings_save', window.parent.document).removeClass('blue');
+     $('.admin_settings_save', window.parent.document).addClass('red_bright');
      
      $(".save_notice").show(250, 'linear'); // 0.25 seconds // SHOW SAVE NOTICE AT TOP / BOTTOM OF THIS ADMIN IFRAME PAGE
      
@@ -2338,8 +2373,8 @@ function red_save_button(mode=false) {
           
      $('#collapsed_sidebar .admin_settings_save img').attr("src","templates/interface/media/images/auto-preloaded/icons8-save-100-red.png");
           
-     $('#sidebar .admin_settings_save').removeClass('blue');
-     $('#sidebar .admin_settings_save').addClass('red_bright');
+     $('.admin_settings_save').removeClass('blue');
+     $('.admin_settings_save').addClass('red_bright');
      
      }
      else if ( !is_admin && !mode ) {
@@ -2348,8 +2383,8 @@ function red_save_button(mode=false) {
           
      $('#collapsed_sidebar .user_settings_save img').attr("src","templates/interface/media/images/auto-preloaded/icons8-save-100-red.png");
           
-     $('#sidebar .user_settings_save').removeClass('blue');
-     $('#sidebar .user_settings_save').addClass('red_bright');
+     $('.user_settings_save').removeClass('blue');
+     $('.user_settings_save').addClass('red_bright');
      
      }
      
@@ -3032,6 +3067,11 @@ promptCount = 0;
 
 
 function dynamic_position(elm, mode=false, compact_sidebar=false) {
+
+    // The new page heading stays in normal document flow.
+    if ( document.documentElement.classList.contains('btc-monitor') && $(elm).is('.page_title') ) {
+        return;
+    }
      
      
      if ( typeof $(elm).offset() == 'undefined' ) {
@@ -4158,6 +4198,23 @@ range_inputs = document.querySelectorAll('.range-wrap');
 
 
 function interface_font_percent(font_val, iframe_elm=false, specific_elm=false, specific_size=false) {
+
+    // Typography belongs to the BTC Monitor stylesheet. Browser zoom remains
+    // available; do not compound em sizes or write legacy font-size cookies.
+    if ( document.documentElement.classList.contains('btc-monitor') ) {
+        set_font_size = 1;
+        var font_document = document;
+        try {
+            if ( iframe_elm && iframe_elm.contentWindow.document ) {
+                font_document = iframe_elm.contentWindow.document;
+            }
+            font_document.documentElement.style.setProperty('--btc-text-scale', '1');
+        }
+        catch (error) {
+            // An iframe that is navigating will receive its stylesheet on load.
+        }
+        return;
+    }
      
 update_heading_tag_sizes(font_val);
      
@@ -4532,8 +4589,8 @@ function nav_menu($chosen_menu) {
                       else {        
                       unsaved_admin_config = false;
                       $('#collapsed_sidebar .admin_settings_save img').attr("src","templates/interface/media/images/auto-preloaded/icons8-save-100-" + theme_selected + ".png");
-                      $('#sidebar .admin_settings_save').addClass('blue');
-                      $('#sidebar .admin_settings_save').removeClass('red_bright');
+                      $('.admin_settings_save').addClass('blue');
+                      $('.admin_settings_save').removeClass('red_bright');
                       }
 
                   }
@@ -4547,8 +4604,8 @@ function nav_menu($chosen_menu) {
                       else {        
                       unsaved_user_config = false;
                       $('#collapsed_sidebar .user_settings_save img').attr("src","templates/interface/media/images/auto-preloaded/icons8-save-100-" + theme_selected + ".png");
-                      $('#sidebar .user_settings_save').addClass('blue');
-                      $('#sidebar .user_settings_save').removeClass('red_bright');
+                      $('.user_settings_save').addClass('blue');
+                      $('.user_settings_save').removeClass('red_bright');
                       }
 
                   }
@@ -4750,7 +4807,7 @@ private_data = document.getElementsByClassName('private_data');
 
                         // Any stats are added to document title
                         if ( typeof doc_title_stats !== 'undefined' ) {
-                        document.title = doc_title_stats; 
+                        document.title = doc_title_stats + ( document.documentElement.classList.contains('btc-monitor') ? ' · BTC监测器' : '' );
                         }
             		
             		
@@ -4956,7 +5013,7 @@ private_data = document.getElementsByClassName('private_data');
         $("#content_wrapper").show(250, 'linear'); // 0.25 seconds
         $("#content_wrapper").css('display','inline'); // MUST display inline to center itself cross-browser
                   
-        document.title = ' ... '; // Blank out document title (with dots, so browser will NOT show domain / other default tab title)
+        document.title = document.documentElement.classList.contains('btc-monitor') ? 'BTC监测器 · 隐私模式' : ' ... '; // No portfolio values in the locked title.
             		
         safe_add_remove_class('bitcoin', 'pm_link', 'remove');
         safe_add_remove_class('green', 'pm_link', 'add');
@@ -5041,7 +5098,7 @@ private_data = document.getElementsByClassName('private_data');
         
             // Any stats are added to document title
             if ( typeof doc_title_stats !== 'undefined' ) {
-            document.title = doc_title_stats; 
+            document.title = doc_title_stats + ( document.documentElement.classList.contains('btc-monitor') ? ' · BTC监测器' : '' );
             }
         
         }

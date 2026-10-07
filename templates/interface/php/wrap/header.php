@@ -3,6 +3,9 @@
  * Copyright 2014-2026 GPLv3, Open Crypto Tracker by Mike Kilday: Mike@DragonFrugal.com (leave this copyright / attribution intact in ALL forks / copies!)
  */
  
+// Consistent presentation, including early login-error rendering.
+$ct['sel_opt']['theme_selected'] = 'light';
+
 header('Content-type: text/html; charset=' . $ct['dev']['charset_default']);
 
 header('Access-Control-Allow-Headers: *'); // Allow ALL headers
@@ -18,7 +21,7 @@ header('Access-Control-Allow-Origin: ' . $ct['app_host_address']);
 
 ?><!DOCTYPE html>
 
-<html lang="zh-CN">
+<html lang="zh-CN" class="btc-monitor">
 
 <!-- /*
  * Copyright 2014-2026 GPLv3, Open Crypto Tracker by Mike Kilday: Mike@DragonFrugal.com (leave this copyright / attribution intact in ALL forks / copies!)
@@ -42,7 +45,7 @@ if ( $is_iframe ) {
 }
 else {
 ?>
-<body>
+<body class="<?=( !empty($ct['is_login_form']) ? 'btc-auth' : '' )?>">
 
 
 <audio preload="metadata" id="audio_alert">
@@ -61,6 +64,7 @@ require("templates/interface/php/wrap/wrap-elements/navigation-bars.php");
     
     <!-- content body -->
     <div class='align_center' id='secondary_wrapper'>
+    <?php require('templates/interface/php/wrap/wrap-elements/btc-topbar.php'); ?>
 
     
     <span class='bitcoin local_storage_saved_notice'></span>
@@ -69,16 +73,7 @@ require("templates/interface/php/wrap/wrap-elements/navigation-bars.php");
     <span class='red countdown_notice'></span>
 				
 
-    <script>
-    
-    // If the user had the sidebar closed last app load
-    // MUST RUN IMMEDIATELY AFTER LOADING #secondary_wrapper START TAG,
-    // AND BEFORE INIT.JS (so there is no 'flickering' closing the sidebar)
-    if ( localStorage.getItem(sidebar_toggle_storage) == "closed" ) {
-    toggle_sidebar();    
-    }    
-    
-    </script>
+
         
         
         <div id='header_size_warning'></div>
@@ -100,6 +95,7 @@ require("templates/interface/php/wrap/wrap-elements/navigation-bars.php");
 	 
 		
 		<div class='align_left' id='content_wrapper'>
+            <div class="btc-page-heading"><div><h1 id="btc-page-title"><?=( $is_admin ? '管理后台' : '资产总览' )?></h1><p id="btc-page-description">查看行情与管理自己的监测设置。</p></div><span class="btc-view-label">私有监测空间</span></div>
 				
 				<?php
 				 

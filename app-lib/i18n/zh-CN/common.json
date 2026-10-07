@@ -189,7 +189,7 @@
   "System Temperature:": "系统温度：",
   "USED Memory (*not* including buffers / cache):": "已用内存（不含缓冲区与缓存）：",
   "FREE Disk Space:": "剩余磁盘空间：",
-  "Open Crypto Tracker Cache Size:": "Open Crypto Tracker 缓存大小：",
+  "Open Crypto Tracker Cache Size:": "BTC监测器 缓存大小：",
   "Average Server Header Size Limits": "常见服务器的请求头大小限制",
   "Web servers have a pre-set header size limit (which can be adjusted within it's own server configuration), which varies depending on the server software you are using.": "Web 服务器会限制请求头的大小，各种服务器软件的默认上限有所不同，可在相应的服务器配置中调整。",
   "IF THIS APP GOES OVER THOSE HEADER SIZE LIMITS, IT WILL CRASH!": "本应用的请求头一旦超出服务器限制，就会无法正常访问！",

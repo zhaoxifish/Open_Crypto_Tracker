@@ -124,6 +124,14 @@ $ct['admin_render_settings']['primary_marketcap_site']['is_notes'] = '<a href="h
 // SHOULD BE COMMA-DELIMITED: 'iframe_reset_backup_restore,iframe_apis'
 $ct['admin_render_settings']['is_refresh_admin'] = 'all';
 
+// Preserve legacy values for configuration compatibility; the workspace supplies its own theme and typography.
+foreach (array('google_font', 'default_font_size', 'default_theme') as $legacy_visual_key) {
+    $ct['admin_render_settings'][$legacy_visual_key] = array('is_hidden' => true);
+}
+?>
+<div class="btc-appearance-note"><strong>浅色工作台</strong><p>字体和间距会随屏幕大小适配。需要放大文字时，可使用浏览器的缩放功能。</p></div>
+<?php
+
 // $ct['admin']->admin_config_interface($conf_id, $interface_id)
 $ct['admin']->admin_config_interface('gen', 'general', $ct['admin_render_settings']);
 

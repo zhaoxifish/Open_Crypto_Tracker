@@ -59,7 +59,7 @@
 		$supported_exchange_list = trim($supported_exchange_list);
 		?>
 					
-		<p class='bitcoin' style='font-weight: bold;'><span class='red'>Did you just install this app?</span> If you would like to bootstrap the demo price chart data (get many months of market value historical data already pre-populated), <a href='https://github.com/taoteh1221/bootstrapping/raw/main/bootstrap-price-charts-data.zip' target='_blank'>download it from github</a>. Just replace your existing /cache/charts/spot_price_24hr_volume/archival folder with the one inside this download archive, and wait until the next background task runs fully (the app will detect the change and rebuild the [light] time period charts with the new chart data). It may take a few additional cron job / scheduled task runs (a couple hours for slower machines), for a full rebuild of all (light) time period charts.</p>
+		<p class='settings_notes'><strong>首次使用价格图表</strong><br />图表根据后台任务实际采集的行情生成。请先在管理后台的“资产跟踪 → 价格提醒与图表”中配置市场，并按 <a href='README.txt' target='_blank' rel='noopener'>运行说明</a>启用定时任务。数据会随采集逐步积累；刚启用时历史曲线可能为空，较长周期需要更多时间。</p>
 		 
 		<p class='bitcoin' style='font-weight: bold;'>Charts are only available to show for each asset properly configured in the Admin Config CHARTS AND ALERTS section. Charts (and price alerts) must be <a href='README.txt' target='_blank'>setup as a cron job or scheduled task on your app server</a> (if you are running the "Server Edition"), or <i>they will not work</i>. The chart's tab / page, and chart data caching can be disabled in the Admin Config "Price Alerts / Charts" section, if you choose to not setup a cron job.</p>
 					

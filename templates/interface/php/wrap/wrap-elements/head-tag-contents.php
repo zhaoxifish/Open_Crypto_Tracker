@@ -1,8 +1,9 @@
+<?php $set_ajax_loading_size = 1.3; ?>
 
      <!-- !!DEBUGGING!!: (debugging logic here) -->
      
 
-	<title>Open Crypto Tracker<?=( $is_admin ? ' - Admin Config' : '' )?></title>
+	<title>BTC监测器<?=( $is_admin ? ' · 管理后台' : '' )?></title>
     
 
      <meta charset="<?=$ct['dev']['charset_default']?>">
@@ -34,7 +35,7 @@
 	
 	<script src="app-lib/js/jquery/jquery-ui/jquery-ui.js"></script>
 
-	<script src="app-lib/js/root-javascript-combined.php"></script>
+	<script src="app-lib/js/root-javascript-combined.php?v=<?=filemtime('app-lib/js/functions.js')?>"></script>
 
     <!-- Local display translations: preserve original configuration / form values. -->
     <link rel="stylesheet" href="app-lib/i18n/zh-CN.css?v=<?=filemtime('app-lib/i18n/zh-CN.css')?>" />
@@ -517,7 +518,8 @@
 
      <!-- ALL CORE JAVASCRIPT VARS MUST BE INIT'D / CONFIG'D BEFORE LOADING INIT.JS AND RANDOM-TIPS.JS! -->
      
-	<script src="app-lib/js/init.js"></script>
+	<script src="app-lib/ui/workspace.js?v=<?=filemtime('app-lib/ui/workspace.js')?>"></script>
+	<script src="app-lib/js/init.js?v=<?=filemtime('app-lib/js/init.js')?>"></script>
 
 	<script src="app-lib/js/random-tips.js"></script>
 	
@@ -527,104 +529,7 @@
 	@import "templates/interface/css/tablesorter/theme.<?=$ct['sel_opt']['theme_selected']?>.css";
 	
 	
-     <?php
-     // ALL @IMPORT MUST BE AT VERY TOP OF ANY STYLE SECTION (BEFORE ANYTHING ELSE), SO BROWSERS WON'T IGNORE IT
-     // IF there is a configged google font
-     if ( isset($google_font_name) ) {
-     ?>
-     
-     @import "//fonts.googleapis.com/css?family=<?=$font_name_url_formatting?>&display=swap";
-
-     html, body {	
-         font-family: '<?=$google_font_name?>', sans-serif !important;	
-         font-weight: <?=$ct['dev']['global_font_weight']?> !important;
-     }
-     
-     <?php
-     }
-     else {
-     ?>
-     
-     html, body {	
-         font-family: sans-serif !important;	
-         font-weight: <?=$ct['dev']['global_font_weight']?> !important;
-     }
-     
-     <?php
-     }
-     ?>
-     
-	
-	.tablesorter-<?=$ct['sel_opt']['theme_selected']?> .header, .tablesorter-<?=$ct['sel_opt']['theme_selected']?> .tablesorter-header {
-     white-space: nowrap;
-	}
-
-
-     /* info icon size CSS selector */
-     <?php
-     // iframe info icon sizes are wonky for some reason in LINUX PHPDESKTOP (but works fine in modern browsers)
-     if ( $ct['app_container'] == 'phpdesktop' && $ct['app_platform'] == 'linux' ) {
-     $set_info_icon_size = $set_font_size * 1.6;
-     }
-     else {
-     $set_info_icon_size = $set_font_size * 2.0;
-     }
-     ?>
-     <?=$ct['dev']['info_icon_size_css_selector']?> {
-     height: <?=round($set_info_icon_size, 3)?>em !important;
-     width: auto !important;
-     }
-     
-     /* ajax loading size CSS selector */
-     <?php
-     // Run a multiplier, to slightly increase image size
-     $set_ajax_loading_size = $set_font_size * 1.3;
-     ?>
-     <?=$ct['dev']['ajax_loading_size_css_selector']?> {
-     height: <?=round($set_ajax_loading_size, 3)?>em !important;
-     width: auto !important;
-     }
-
-     /* password eye icon selector */
-     <?php
-     // Run a multiplier, to adjust password eye placement
-     $eye_top_right = $set_font_line_height * 0.22;
-     ?>
-     <?=$ct['dev']['password_eye_size_css_selector']?> {
-     top: <?=round($eye_top_right, 3)?>em;
-     right: <?=round($eye_top_right, 3)?>em;
-     transform: scale(var(--ggs,<?=$set_font_size?>));
-     }
-     
-     /* standard font size CSS selector */
-     <?=$ct['dev']['font_size_css_selector']?> {
-     font-size: <?=$set_font_size?>em !important;
-     line-height: <?=$set_font_line_height?>em !important;
-     font-weight: <?=$ct['dev']['global_font_weight']?> !important;
-     }
-
-     /* medium font size CSS selector */
-     <?=$ct['dev']['medium_font_size_css_selector']?> {
-     font-size: <?=$set_medium_font_size?>em !important;
-     line-height: <?=$set_medium_font_line_height?>em !important;
-     font-weight: <?=$ct['dev']['global_font_weight']?> !important;
-     }
-
-     /* small font size CSS selector */
-     <?=$ct['dev']['small_font_size_css_selector']?> {
-     font-size: <?=$set_small_font_size?>em !important;
-     line-height: <?=$set_small_font_line_height?>em !important;
-     font-weight: <?=$ct['dev']['small_font_weight']?> !important;
-     }
-
-     /* tiny font size CSS selector */
-     <?=$ct['dev']['tiny_font_size_css_selector']?> {
-     font-size: <?=$set_tiny_font_size?>em !important;
-     line-height: <?=$set_tiny_font_line_height?>em !important;
-     font-weight: <?=$ct['dev']['small_font_weight']?> !important;
-     }
-	
-
+     /* Font hierarchy is defined by the local workspace styles. */
      /* When printing the page from a browser, make it look good and fit nicely */
      @media print {
         
@@ -699,6 +604,9 @@
 	<script src="app-lib/js/highlight.min.js"></script>
 	
 
-	<link rel="shortcut icon" href="templates/interface/media/images/favicon.png">
-	<link rel="icon" href="templates/interface/media/images/favicon.png">
+	<link rel="shortcut icon" href="app-lib/ui/mark.svg">
+	<link rel="icon" href="app-lib/ui/mark.svg">
 
+
+    <link rel="stylesheet" href="app-lib/ui/shell.css?v=<?=filemtime('app-lib/ui/shell.css')?>" />
+    <link rel="stylesheet" href="app-lib/ui/forms.css?v=<?=filemtime('app-lib/ui/forms.css')?>" />

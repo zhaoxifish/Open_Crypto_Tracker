@@ -211,7 +211,7 @@ if (
 ) {
 ?>
  
-	<form id='reset_admin' action='' method ='post'>
+	<form id='reset_admin' class="numeric_format_safe" action='' method ='post'>
 				
     <div style="display: inline-block; padding-top: 1em; text-align: center; width: auto;">
 
