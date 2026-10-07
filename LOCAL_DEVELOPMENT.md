@@ -38,7 +38,7 @@ docker compose ps
 
 PHP 参数采用官方模板值：256M 内存、7M 上传、15M POST、50 秒输入限制、350 秒页面执行上限。应用内会按运行模式调整相关参数。
 
-源码目录挂载至容器，编辑 PHP、模板或静态文件后刷新页面即可；修改 Dockerfile 或运行配置后，先执行 `docker compose --profile cron down`，再执行 `docker compose up -d --build app`；如需后台采集，最后重新启动 cron，以重建它共享的网络。
+源码目录挂载至容器，编辑 PHP、模板或静态文件后刷新页面即可；修改 Dockerfile 或运行配置后，先执行 `docker compose --profile cron --profile monitor down`，再执行 `docker compose --profile monitor up -d --build app market-monitor`；如需后台采集，最后重新启动 cron，以重建它共享的网络。
 
 ## Windows / Chrome 消除证书提醒
 
@@ -84,12 +84,26 @@ Remove-Item -LiteralPath 'Cert:\CurrentUser\Root\6E645CE8FF714872FD2D5D9E8C518A9
 ```powershell
 docker compose logs --tail 100 app
 docker compose exec app sh -c 'tail -n 100 /var/www/html/cache/logs/app_log.log'
-docker compose --profile cron down
+docker compose --profile cron --profile monitor down
 ```
 
 `down` 停止并移除容器，但保留命名卷。再次运行 `up` 会继续使用已有数据。不要在需要保留配置和图表时使用 `down -v`。
 
 应用首次启动还会在源码根目录生成 `.htaccess`、`.user.ini`，并短暂创建域名检查文件。这些属于本地运行产物，已加入 Git 忽略规则。原版还会尝试删除 `.dev-status.json`，本开发环境将它单独只读挂载，保护 Git 工作区；Apache 同时禁止从网页访问该文件。
+
+## 币安 BTC/USDT 现货监控
+
+当前版本已加入独立的币安行情面板，入口为 [资产总览](https://localhost:8443/index.php#portfolio)。价格、滚动24小时涨跌幅、BTC成交量和USDT成交额均来自同一份币安现货响应，首页同时显示近24小时五分钟走势。
+
+```powershell
+docker compose --profile monitor up -d app market-monitor
+docker compose --profile monitor ps
+docker compose --profile monitor logs --tail 30 market-monitor
+```
+
+`market-monitor` 每60秒采集一次，图表历史每5分钟更新。它只读取公开市场数据，不需要账户密钥，不执行交易、不发送提醒，不改变原有资产估值设置。电脑及 Docker Desktop 需要保持运行。网页隐藏后暂停刷新，重新打开会读取最新缓存。
+
+更新采集端 PHP 后执行 `docker compose --profile monitor restart market-monitor`。故障时保留最后有效值并提示滞后。详见 [监控说明](app-lib/binance-monitor/README.md)。
 
 ## 可选：图表采集与提醒
 
@@ -113,12 +127,13 @@ docker compose --profile cron stop cron
 关闭正在使用的页面、暂停后台任务，然后备份缓存。以下示例将备份放在仓库外：
 
 ```powershell
-docker compose --profile cron stop cron
+docker compose --profile cron --profile monitor stop cron market-monitor
 New-Item -ItemType Directory -Force 'D:\git-work\backups\Open_Crypto_Tracker' | Out-Null
 $octBackupPath = 'D:\git-work\backups\Open_Crypto_Tracker\cache-' + (Get-Date -Format 'yyyyMMdd-HHmmss') + '.tar.gz'
 docker compose exec -T app tar -czf /tmp/oct-cache-backup.tar.gz -C /var/www/html cache
 docker compose cp app:/tmp/oct-cache-backup.tar.gz $octBackupPath
 Get-Item -LiteralPath $octBackupPath
+docker compose --profile monitor up -d market-monitor
 ```
 
 该备份包含私人配置和登录数据，请妥善保存。也可在管理员的“Reset / Backup & Restore”页面导出配置和图表备份。官方提醒：不同版本的旧配置不能未经检查直接恢复。
@@ -128,13 +143,13 @@ Get-Item -LiteralPath $octBackupPath
 先备份并提交自己的源码改动，确认 `git status --short` 无待处理变更，再同步。不要在存在未保存更改时切换分支。
 
 ```powershell
-docker compose --profile cron down
+docker compose --profile cron --profile monitor down
 git fetch upstream
 git switch main
 git merge --ff-only upstream/main
 git switch develop
 git merge main
-docker compose up -d --build app
+docker compose --profile monitor up -d --build app market-monitor
 ```
 
 `--ff-only` 失败时先检查分支差异；合并出现冲突时解决冲突并提交后，再继续启动验证。不要用强制重置覆盖自己的改动。
@@ -167,7 +182,7 @@ git config --local --unset http.proxy
 git config --local http.proxy http://127.0.0.1:7892
 ```
 
-## 本次验证记录
+## 原版首次部署验证记录（历史记录）
 
 2026-10-07（Asia/Shanghai）验证：
 

@@ -610,3 +610,5 @@
 
     <link rel="stylesheet" href="app-lib/ui/shell.css?v=<?=filemtime('app-lib/ui/shell.css')?>" />
     <link rel="stylesheet" href="app-lib/ui/forms.css?v=<?=filemtime('app-lib/ui/forms.css')?>" />
+    <link rel="stylesheet" href="app-lib/ui/binance-monitor.css?v=<?=filemtime('app-lib/ui/binance-monitor.css')?>" />
+    <script src="app-lib/ui/binance-monitor.js?v=<?=filemtime('app-lib/ui/binance-monitor.js')?>" defer></script>

@@ -11,6 +11,8 @@
 
 
 <div class='full_width_wrapper align_center'>
+
+<?php require($ct['base_dir'] . '/templates/interface/php/user/user-elements/binance-monitor.php'); ?>
 			
 			
 	   <div class='align_left' style='margin-top: 0.5em; margin-bottom: 1em;'>

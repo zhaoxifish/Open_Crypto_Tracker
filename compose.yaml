@@ -55,6 +55,32 @@ services:
         read_only: true
       - cache:/var/www/html/cache
 
+
+  # Public BTC/USDT spot monitoring only: no account access or notifications.
+  market-monitor:
+    profiles: [monitor]
+    image: open-crypto-tracker-local:php8.3
+    entrypoint: ["php", "/var/www/html/app-lib/binance-monitor/worker.php"]
+    user: www-data
+    init: true
+    restart: unless-stopped
+    depends_on:
+      app:
+        condition: service_healthy
+    volumes:
+      - type: bind
+        source: .
+        target: /var/www/html
+        read_only: true
+      - cache:/var/www/html/cache
+    healthcheck:
+      test: ["CMD", "php", "/var/www/html/app-lib/binance-monitor/worker.php", "--health"]
+      interval: 60s
+      timeout: 5s
+      retries: 3
+      start_period: 45s
+    stop_grace_period: 35s
+
 volumes:
   cache:
   local-certs:
