@@ -1,0 +1,60 @@
+name: open-crypto-tracker
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    image: open-crypto-tracker-local:php8.3
+    init: true
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "--insecure", "--silent", "--show-error", "--max-time", "5", "--output", "/dev/null", "https://localhost:8443/templates/interface/media/images/auto-preloaded/bitcoin-btc-logo.png"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+    ports:
+      - "127.0.0.1:8088:80"
+      - "127.0.0.1:8443:8443"
+    volumes:
+      - type: bind
+        source: .
+        target: /var/www/html
+      - type: bind
+        source: ./cache
+        target: /opt/oct-cache-seed
+        read_only: true
+      # Upstream deletes this Git-only metadata file at runtime; protect the checkout.
+      - type: bind
+        source: ./.dev-status.json
+        target: /var/www/html/.dev-status.json
+        read_only: true
+      - cache:/var/www/html/cache
+      - local-certs:/etc/apache2/local-certs
+
+  cron:
+    profiles: [cron]
+    image: open-crypto-tracker-local:php8.3
+    entrypoint: ["/usr/local/bin/oct-cron-loop"]
+    user: www-data
+    init: true
+    restart: unless-stopped
+    depends_on:
+      app:
+        condition: service_healthy
+    network_mode: "service:app"
+    volumes:
+      - type: bind
+        source: .
+        target: /var/www/html
+      # Upstream deletes this Git-only metadata file at runtime; protect the checkout.
+      - type: bind
+        source: ./.dev-status.json
+        target: /var/www/html/.dev-status.json
+        read_only: true
+      - cache:/var/www/html/cache
+
+volumes:
+  cache:
+  local-certs:

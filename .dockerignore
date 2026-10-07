@@ -1,0 +1,4 @@
+# Only runtime build inputs enter the image; application data remains local.
+**
+!.docker
+!.docker/**
