@@ -4803,6 +4803,7 @@ private_data = document.getElementsByClassName('private_data');
                     //console.log('Privacy Mode: Off');
                     
                     localStorage.setItem(priv_toggle_storage, 'off');
+                    window.dispatchEvent(new CustomEvent('btc-privacy-change', {detail: {enabled: false}}));
 
 
                         // Any stats are added to document title
@@ -5007,6 +5008,7 @@ private_data = document.getElementsByClassName('private_data');
         //console.log('Privacy Mode: On');
         
         localStorage.setItem(priv_toggle_storage, 'on');
+        window.dispatchEvent(new CustomEvent('btc-privacy-change', {detail: {enabled: true}}));
                   
         // It's now safe to show the interface (as we've hidden private data)
         $("#app_loading").hide(250, 'linear'); // 0.25 seconds

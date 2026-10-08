@@ -612,3 +612,5 @@
     <link rel="stylesheet" href="app-lib/ui/forms.css?v=<?=filemtime('app-lib/ui/forms.css')?>" />
     <link rel="stylesheet" href="app-lib/ui/binance-monitor.css?v=<?=filemtime('app-lib/ui/binance-monitor.css')?>" />
     <script src="app-lib/ui/binance-monitor.js?v=<?=filemtime('app-lib/ui/binance-monitor.js')?>" defer></script>
+    <link rel="stylesheet" href="app-lib/ui/binance-account-overview.css?v=<?=filemtime('app-lib/ui/binance-account-overview.css')?>" />
+    <script src="app-lib/ui/binance-account-overview.js?v=<?=filemtime('app-lib/ui/binance-account-overview.js')?>" defer></script>

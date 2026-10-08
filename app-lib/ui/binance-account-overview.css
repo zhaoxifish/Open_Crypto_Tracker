@@ -1,0 +1,55 @@
+/* Isolated balance summary. Keep values outside legacy portfolio forms and styles. */
+html.btc-monitor #binance-account-overview { min-width:0; margin:0 0 26px; padding:24px 26px 18px; border:1px solid #dce6f3; border-radius:16px; background:#fff; box-shadow:0 3px 12px rgb(27 61 108 / 3%); color:var(--btc-text); text-align:left; }
+html.btc-monitor #binance-account-overview [hidden] { display:none!important; }
+html.btc-monitor #binance-account-overview :is(p,dl,dd) { margin:0; }
+html.btc-monitor #binance-account-overview .bao-header { display:flex; align-items:center; justify-content:space-between; gap:18px; margin-bottom:22px; }
+html.btc-monitor #binance-account-overview .bao-heading { display:flex; align-items:center; gap:12px; min-width:0; }
+html.btc-monitor #binance-account-overview .bao-heading h3 { margin:0 0 4px; font-size:17px!important; font-weight:600; line-height:1.45!important; }
+html.btc-monitor #binance-account-overview .bao-heading p { color:var(--btc-muted); font-size:12px!important; line-height:1.6; }
+html.btc-monitor #binance-account-overview .bao-mark { display:grid; place-items:center; flex:0 0 40px; height:40px; border-radius:11px; background:#edf7f8; color:#188a94; }
+html.btc-monitor #binance-account-overview .bao-mark svg { width:21px; height:21px; }
+html.btc-monitor #binance-account-overview .bao-actions { display:flex; align-items:center; flex-wrap:wrap; gap:12px; }
+html.btc-monitor #binance-account-overview .bao-actions .btc-button { min-height:36px; padding:7px 10px; font-size:12px!important; }
+html.btc-monitor #binance-account-overview .bao-actions button:disabled { opacity:.5; cursor:not-allowed; }
+html.btc-monitor #binance-account-overview .bao-manage { color:var(--btc-primary)!important; font-size:12px!important; white-space:nowrap; text-decoration:none!important; }
+html.btc-monitor #binance-account-overview .bao-manage:hover { text-decoration:underline!important; }
+html.btc-monitor #binance-account-overview .bao-status { display:inline-flex; align-items:center; gap:6px; color:var(--btc-muted); font-size:12px!important; white-space:nowrap; }
+html.btc-monitor #binance-account-overview .bao-status::before { content:""; width:6px; height:6px; border-radius:50%; background:#99a7bb; }
+html.btc-monitor #binance-account-overview .bao-status[data-state="ready"] { color:var(--btc-success); }
+html.btc-monitor #binance-account-overview .bao-status[data-state="ready"]::before { background:var(--btc-success); }
+html.btc-monitor #binance-account-overview .bao-status:is([data-state="stale"],[data-state="error"]) { color:#a5681b; }
+html.btc-monitor #binance-account-overview .bao-status:is([data-state="stale"],[data-state="error"])::before { background:#c58b32; }
+html.btc-monitor #binance-account-overview .bao-placeholder { display:flex; align-items:center; justify-content:space-between; gap:18px; min-height:84px; padding:20px; border:1px dashed #dbe5f1; border-radius:10px; background:#fafcfe; color:#6c7e96; font-size:13px!important; line-height:1.7; }
+html.btc-monitor #binance-account-overview .bao-placeholder .btc-button { flex-shrink:0; }
+html.btc-monitor #binance-account-overview .bao-summary { display:grid; grid-template-columns:.75fr 1.25fr 1.25fr; gap:18px; margin:0 0 22px; }
+html.btc-monitor #binance-account-overview .bao-summary > div { min-width:0; padding:16px 18px; border:1px solid #e8eef6; border-radius:10px; background:#fbfcff; }
+html.btc-monitor #binance-account-overview .bao-summary dt { margin-bottom:7px; color:#60758f; font-size:12px!important; font-weight:400; }
+html.btc-monitor #binance-account-overview .bao-summary dt span { padding-left:5px; color:#97a4b5; font-size:10px!important; }
+html.btc-monitor #binance-account-overview .bao-summary dd { color:var(--btc-text); font-size:21px!important; font-weight:600; font-variant-numeric:tabular-nums; line-height:1.45; overflow-wrap:anywhere; }
+html.btc-monitor #binance-account-overview .bao-summary p { margin-top:6px; color:#8a98ab; font-size:10px!important; line-height:1.6; }
+html.btc-monitor #binance-account-overview .bao-table-scroll { max-width:100%; overflow:auto; border:1px solid #e9eff7; border-radius:9px; scrollbar-width:thin; }
+html.btc-monitor #binance-account-overview .bao-table { width:100%; min-width:520px; margin:0; border:0; border-collapse:collapse; background:#fff; font-size:13px!important; white-space:nowrap; }
+html.btc-monitor #binance-account-overview .bao-table th { padding:11px 16px; border:0; background:#f8fafd; color:#7788a0; font-size:11px!important; font-weight:500; text-align:left; }
+html.btc-monitor #binance-account-overview .bao-table td { padding:12px 16px; border:0; border-top:1px solid #edf2f8; background:transparent; color:#425873; font-size:13px!important; text-align:left; font-variant-numeric:tabular-nums; }
+html.btc-monitor #binance-account-overview .bao-table tbody tr:hover { background:#fbfcff; }
+html.btc-monitor #binance-account-overview .bao-table .bao-number { text-align:right; }
+html.btc-monitor #binance-account-overview .bao-table td:first-child { color:#294464; font-weight:600; }
+html.btc-monitor #binance-account-overview .bao-empty { padding:25px 12px 12px; color:#8797ac; font-size:13px!important; text-align:center; }
+html.btc-monitor #binance-account-overview .bao-footer { display:flex; flex-wrap:wrap; gap:4px 18px; margin-top:15px; color:#8a98aa; font-size:10px!important; line-height:1.8; }
+html.btc-monitor #binance-account-overview .bao-footer time { color:#6d819b; font-variant-numeric:tabular-nums; }
+html.btc-monitor #binance-account-overview .bao-notice { margin-top:13px; padding:11px 13px; border:1px solid #efe0c5; border-radius:8px; background:#fffbf3; color:#8c641f; font-size:12px!important; line-height:1.7; overflow-wrap:anywhere; }
+@media(max-width:1100px) { html.btc-monitor #binance-account-overview .bao-header { flex-wrap:wrap; } html.btc-monitor #binance-account-overview .bao-summary { grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; } }
+@media(max-width:640px) {
+  html.btc-monitor #binance-account-overview { padding:18px 16px 15px; border-radius:13px; }
+  html.btc-monitor #binance-account-overview .bao-header { align-items:flex-start; gap:14px; margin-bottom:18px; }
+  html.btc-monitor #binance-account-overview .bao-heading h3 { font-size:16px!important; }
+  html.btc-monitor #binance-account-overview .bao-mark { flex-basis:34px; height:34px; }
+  html.btc-monitor #binance-account-overview .bao-heading { gap:10px; }
+  html.btc-monitor #binance-account-overview .bao-actions { width:100%; gap:10px; }
+  html.btc-monitor #binance-account-overview .bao-actions .btc-button { min-height:42px; }
+  html.btc-monitor #binance-account-overview .bao-manage { margin-left:auto; }
+  html.btc-monitor #binance-account-overview .bao-placeholder { align-items:flex-start; flex-direction:column; padding:16px; gap:12px; }
+  html.btc-monitor #binance-account-overview .bao-summary { grid-template-columns:minmax(0,1fr); gap:10px; }
+  html.btc-monitor #binance-account-overview .bao-summary > div { padding:14px 15px; }
+  html.btc-monitor #binance-account-overview .bao-summary dd { font-size:20px!important; }
+}
