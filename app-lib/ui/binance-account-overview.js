@@ -16,6 +16,8 @@
         let pageLeft = false;
         let blocked = false;
         let hasSnapshot = false;
+        let balancesExpanded = false;
+        let balanceCount = 0;
         let controller = null;
         let generation = 0;
         let timer = null;
@@ -66,7 +68,18 @@
             return Number.isFinite(number) && number > 0 && Number.isFinite(new Date(number).getTime()) ? number : null;
         }
 
+        function updateExpansion() {
+            byId("bao-balances").classList.toggle("bao-collapsed", !balancesExpanded);
+            const button = byId("bao-expand");
+            button.hidden = balanceCount <= 5;
+            button.setAttribute("aria-expanded", String(balancesExpanded));
+            button.textContent = balanceCount <= 5 ? "展开全部余额" : balancesExpanded ? "收起明细" : "展开全部余额（" + balanceCount + " 种）";
+        }
+
         function clearData() {
+            balancesExpanded = false;
+            balanceCount = 0;
+            updateExpansion();
             hasSnapshot = false;
             byId('bao-data').hidden = true;
             byId('bao-balances').replaceChildren();
@@ -118,13 +131,13 @@
             if (data.connected !== true) {
                 clearData();
                 status('disconnected', '尚未连接');
-                placeholder('连接只读 API 后，即可在此查看币安现货余额。', '连接币安账户');
+                placeholder('连接只读 API 后，即可在此查看币安现货余额。', '设置账户连接', 'binance-account.php#connection');
                 return;
             }
             if (data.readOnly !== true || permissionErrors.includes(data.errorCode)) {
                 clearData();
                 status('error', '同步已暂停');
-                placeholder('只读连接验证未通过，余额已清空。请在账户管理中断开后重新配置只读密钥。', '管理币安账户');
+                placeholder('只读连接验证未通过，余额已清空。请在设置中断开后重新配置只读密钥。', '管理账户连接', 'binance-account.php#connection');
                 notice(safeError(data.error, '为保护账户，当前不展示余额。'));
                 return;
             }
@@ -161,6 +174,8 @@
                 fragment.append(row);
             }
             byId('bao-balances').replaceChildren(fragment);
+            balanceCount = balances.length;
+            updateExpansion();
             byId('bao-empty').hidden = balances.length > 0;
             text('bao-empty', sampled ? '现货账户暂无非零余额。' : '等待后台完成首次采集…');
             byId('bao-placeholder').hidden = true;
@@ -234,6 +249,7 @@
             else reactivate();
         }
 
+        byId('bao-expand').addEventListener('click', () => { balancesExpanded = !balancesExpanded; updateExpansion(); });
         refreshButton.addEventListener('click', () => refresh(true));
         window.addEventListener('btc-privacy-change', event => {
             privacyChanged(event.detail && typeof event.detail.enabled === 'boolean' ? event.detail.enabled : readPrivacy());

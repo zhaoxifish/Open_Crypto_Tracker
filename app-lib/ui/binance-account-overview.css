@@ -53,3 +53,6 @@ html.btc-monitor #binance-account-overview .bao-notice { margin-top:13px; paddin
   html.btc-monitor #binance-account-overview .bao-summary > div { padding:14px 15px; }
   html.btc-monitor #binance-account-overview .bao-summary dd { font-size:20px!important; }
 }
+
+html.btc-monitor #binance-account-overview .bao-collapsed tr:nth-child(n+6) { display:none; }
+html.btc-monitor #binance-account-overview .bao-expand { margin-top:12px; min-height:42px; font-size:12px!important; }

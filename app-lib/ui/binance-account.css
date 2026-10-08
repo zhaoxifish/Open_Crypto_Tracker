@@ -8,14 +8,9 @@ html.btc-account a { color:var(--ba-primary); text-decoration:none; }
 html.btc-account a:hover { text-decoration:underline; }
 html.btc-account :is(button,input,a,[tabindex]):focus-visible { outline:3px solid #96bdff; outline-offset:3px; }
 html.btc-account .ba-icon { width:18px; height:18px; flex:0 0 18px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
-html.btc-account .ba-sidebar { position:fixed; inset:0 auto 0 0; display:flex; flex-direction:column; width:232px; padding:30px 18px 22px; border-right:1px solid var(--ba-border); background:#fff; }
+html.btc-account .ba-sidebar { position:fixed; inset:0 auto 0 0; display:flex; flex-direction:column; width:232px; padding:30px 18px 22px; border-right:1px solid var(--ba-border); background:#fff; overflow-y:auto; }
 html.btc-account .ba-brand { display:flex; align-items:center; gap:11px; margin:0 6px 36px; color:var(--ba-text); font-size:20px; font-weight:650; letter-spacing:-.5px; text-decoration:none; }
 html.btc-account .ba-brand small { display:block; margin-top:2px; color:#8a99ad; font-size:11px; font-weight:400; letter-spacing:1px; }
-html.btc-account .ba-nav-label { margin:0 13px 9px; color:#8390a4; font-size:11px; }
-html.btc-account .ba-sidebar nav { display:grid; gap:5px; }
-html.btc-account .ba-sidebar nav a { display:flex; align-items:center; gap:12px; min-height:44px; padding:10px 13px; border-radius:9px; color:#53657b; font-size:13px; }
-html.btc-account .ba-sidebar nav a:hover { background:#f6f8fc; text-decoration:none; }
-html.btc-account .ba-sidebar nav a[aria-current] { background:#edf4ff; color:var(--ba-primary); font-weight:600; }
 html.btc-account .ba-sidebar-note { margin:auto 10px 0; color:#8997aa; font-size:11px; line-height:1.8; }
 html.btc-account .ba-workspace { margin-left:232px; min-width:0; }
 html.btc-account .ba-topbar { display:flex; justify-content:space-between; align-items:center; gap:16px; min-height:74px; padding:18px 32px; border-bottom:1px solid var(--ba-border); background:#fff; color:var(--ba-muted); font-size:12px; }
@@ -65,7 +60,13 @@ html.btc-account .ba-connected-summary { display:flex; flex-wrap:wrap; gap:8px 2
 html.btc-account .ba-connected-summary strong { margin-left:5px; color:#344c6d; font-weight:500; font-family:ui-monospace,Consolas,monospace; }
 html.btc-account .ba-message { margin-bottom:18px; padding:12px 15px; border:1px solid #eedaaf; border-radius:9px; background:#fffbf2; color:#94651f; font-size:13px; line-height:1.7; overflow-wrap:anywhere; }
 html.btc-account .ba-message[data-tone="success"] { background:#f0f9f5; border-color:#d3ebdf; color:#20724f; }
-html.btc-account .ba-connection > .ba-message { margin:19px 0 0; }
+html.btc-account .ba-state-bar { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:18px; padding:14px 18px; border:1px solid var(--ba-border); border-radius:10px; background:#fff; }
+html.btc-account .ba-state-bar > div { display:flex; align-items:center; flex-wrap:wrap; gap:7px 16px; }
+html.btc-account .ba-state-bar > a { flex-shrink:0; font-size:12px; }
+html.btc-account .ba-state-permission { color:#7c8ca1; font-size:11px; }
+html.btc-account .ba-assets-empty { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:15px; }
+html.btc-account .ba-assets-empty p { color:var(--ba-muted); font-size:13px; }
+html.btc-account #ba-connection-view .ba-card-heading { margin-bottom:18px; }
 html.btc-account .ba-login { display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-bottom:22px; color:var(--ba-muted); font-size:12px; }
 html.btc-account .ba-summary-grid { display:grid; grid-template-columns:1fr 1fr 1.35fr; gap:18px; margin-bottom:22px; }
 html.btc-account .ba-summary { min-width:0; padding:20px 22px; border:1px solid var(--ba-border); border-radius:13px; background:#fff; }
@@ -95,14 +96,13 @@ html.btc-account .ba-skip:focus { top:10px; }
   html.btc-account .ba-sidebar { position:static; width:auto; padding:17px 16px 12px; border-right:0; border-bottom:1px solid var(--ba-border); }
   html.btc-account .ba-brand { margin:0 1px 15px; font-size:18px; }
   html.btc-account .ba-brand img { width:32px; height:32px; }
-  html.btc-account .ba-brand small, html.btc-account .ba-sidebar-note, html.btc-account .ba-nav-label { display:none; }
-  html.btc-account .ba-sidebar nav { display:flex; flex-wrap:wrap; gap:5px; }
-  html.btc-account .ba-sidebar nav a { gap:7px; min-height:40px; padding:8px 11px; font-size:12px; }
+  html.btc-account .ba-brand small, html.btc-account .ba-sidebar-note { display:none; }
   html.btc-account .ba-workspace { margin-left:0; }
   html.btc-account .ba-topbar { padding:13px 18px; min-height:50px; font-size:11px; }
   html.btc-account .ba-topbar > span:first-child { gap:8px; }
   html.btc-account .ba-private { font-size:10px; }
   html.btc-account .ba-main { padding:22px 16px; }
+  html.btc-account .ba-state-bar { align-items:flex-start; flex-wrap:wrap; gap:10px; padding:14px 16px; }
   html.btc-account .ba-page-heading { flex-wrap:wrap; gap:14px; margin-bottom:20px; }
   html.btc-account h1 { font-size:25px; }
   html.btc-account .ba-card { padding:19px 16px; }

@@ -107,7 +107,7 @@ docker compose --profile monitor logs --tail 30 market-monitor
 
 ## 币安账户只读接入
 
-入口为 [币安账户](https://localhost:8443/binance-account.php)，也可以在左侧“行情与资产 → 币安账户”打开。先登录现有管理员账号；页面不会加载公共资产页的表单保存脚本。
+入口为 [我的资产](https://localhost:8443/binance-account.php)。首次连接或更换密钥，请打开 [设置](https://localhost:8443/workspace-settings.php) → 账户连接。先登录现有管理员账号；账户页面不会加载公共资产页的表单保存脚本。
 
 1. 在币安 API 管理中创建系统生成的 HMAC 密钥，只保留读取权限，关闭交易、提现、划转、合约等权限。
 2. 在本机账户页面填写 API Key 与 Secret Key，点击“验证并连接”。不要把凭据发到聊天或写入源码。开启严格两步验证时，连接和断开还需输入验证器动态码。
@@ -222,3 +222,16 @@ git config --local http.proxy http://127.0.0.1:7892
 - [系统要求检查](https://github.com/taoteh1221/Open_Crypto_Tracker/blob/main/app-lib/php/inline/system/system-checks.php)
 - [PHP 参数模板](https://github.com/taoteh1221/Open_Crypto_Tracker/blob/main/templates/back-end/root-app-directory-user-ini.template)
 - [故障排查](https://github.com/taoteh1221/Open_Crypto_Tracker/blob/main/TROUBLESHOOTING.txt)
+
+
+## 初学者工作台（2026-10-08）
+
+- **总览**：查看 BTC/USDT 现货行情和账户余额摘要。默认显示前 5 种非零余额，可展开全部；USDT 数量不是全账户估值。
+- **我的资产**：查看全部现货余额、BTC/USDT 挂单及最近成交；仅供查看。
+- **设置 → 账户连接**：首次配置或管理已保存的只读 API。已有连接无需重新填写密钥。离开连接视图会清空尚未提交的凭据。
+- **更多功能**：按需打开手动记账、历史图表、资讯、工具及高级管理。总览下方的手动资产区默认收起；已有手动持仓时仍默认展开。
+- **保存**：只有修改设置或手动数据后才出现。离开页面时沿用原来的未保存提示；查看币安余额无需保存。
+- **更新显示**：首页读取本机最新快照，不重载整个页面，也不会立即向币安发起采集。其他旧页面的“刷新页面”会保留未保存检查。
+- 手机端点击左上角菜单展开导航，可点遮罩、关闭按钮或按 Escape 收起；更多功能和高级选项支持键盘操作。
+
+实现边界、分步记录及验收结果见 [开发清单](docs/development/2026-10-08-beginner-workspace.md)。导航共用 `app-lib/ui/workspace-navigation.php`，旧页面通过 `workspace.js` 桥接原路由；私密账户页仅加载独立脚本。

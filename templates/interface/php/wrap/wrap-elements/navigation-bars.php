@@ -5,6 +5,9 @@
 <nav id="sidebar" aria-label="主导航">
   <a class="btc-brand" data-btc-go="portfolio" href="index.php#portfolio"><img class="btc-brand-mark" src="app-lib/ui/mark.svg" alt="" /><span><strong>BTC监测器</strong><small>行情、资产与链上洞察</small></span></a>
   <p class="btc-workspace-label">我的工作空间</p>
+  <?php require $ct['base_dir'] . '/app-lib/ui/workspace-navigation.php'; ?>
+  <div id="ws-legacy-routes" data-context="<?= $is_admin ? 'admin' : ($is_plugin ? 'plugin' : 'user') ?>" <?= (!$is_admin && !$is_plugin) ? 'hidden' : '' ?>>
+  <p class="ws-route-heading"><?= $is_plugin ? '扩展选项' : '高级管理' ?></p>
   <ul id="sidebar_menu" class="list-unstyled components">
 <!-- Admin area -->
             <li class="admin-nav-wrapper">
@@ -313,5 +316,6 @@
             
 
   </ul>
+  </div>
   <div class="btc-sidebar-footer"><div class="btc-mobile-account"><a id="pm_link2" class="btc-button" href="javascript:privacy_mode(true);" title="切换隐私模式">隐私模式</a><?php if ($ct['sec']->admin_logged_in()) { ?><a class="btc-button admin_logout" href="?logout=1&amp;admin_nonce=<?=$ct['sec']->admin_nonce('logout')?>">退出管理后台</a><?php } ?></div><button type="button" data-btc-about>关于与开源许可</button><p>BTC监测器 · 私有部署</p></div>
 </nav>

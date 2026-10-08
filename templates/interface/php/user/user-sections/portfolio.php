@@ -14,6 +14,9 @@
 
 <?php require($ct['base_dir'] . '/templates/interface/php/user/user-elements/binance-monitor.php'); ?>
 <?php require($ct['base_dir'] . '/templates/interface/php/user/user-elements/binance-account-overview.php'); ?>
+<details class="ws-manual-section" <?= (($_POST['submit_check'] ?? null) == 1 || $post_csv_import || $ui_cookies) ? 'open' : '' ?>>
+  <summary data-i18n="skip"><span>手动记录的资产 <small>可选</small></span><span class="ws-manual-hint">记账、成本与交易笔记 <span aria-hidden="true">⌄</span></span></summary>
+  <div class="ws-manual-content">
 			
 			
 	   <div class='align_left' style='margin-top: 0.5em; margin-bottom: 1em;'>
@@ -2007,6 +2010,8 @@ var server_header_defaults_content = '<h5 class="yellow tooltip_title">Average S
 				
 				
 				
+</div>
+</details>
 </div> <!-- full_width_wrapper END -->
 
 

@@ -2,9 +2,49 @@
 (function () {
   'use strict';
   if (!document.documentElement.classList.contains('btc-monitor')) return;
+  function overview_active() {
+    return !window.is_admin && !window.is_plugin && (!location.hash || location.hash === '#portfolio') &&
+      !!document.getElementById('portfolio')?.getClientRects().length;
+  }
+  function sync_refresh() {
+    const button = document.getElementById('ws-refresh');
+    if (!button) return;
+    const overview = overview_active();
+    const accountState = document.getElementById('bao-status')?.dataset.state;
+    const accountBusy = document.getElementById('bao-refresh')?.disabled && !['private','paused'].includes(accountState);
+    const busy = overview && (document.getElementById('bm-refresh')?.disabled || accountBusy);
+    button.disabled = !!busy;
+    button.setAttribute('aria-busy', String(!!busy));
+    button.title = overview ? '读取后台每 60 秒采集的行情与账户快照；不会立即向币安发起采集' : '重新加载当前页面；有未保存修改时会先提醒';
+    const label = document.getElementById('ws-refresh-label');
+    const value = busy ? '正在读取…' : overview ? '更新显示' : '刷新页面';
+    if (label && label.textContent !== value) label.textContent = value;
+    button.setAttribute('aria-label', value);
+  }
+  function sync_save() {
+    let privateMode = true;
+    try { privateMode = typeof priv_toggle_storage === 'undefined' || localStorage.getItem(priv_toggle_storage) === 'on'; } catch (_) {}
+    const dirty = window.is_admin ? window.unsaved_admin_config === true : window.unsaved_user_config === true;
+    const visible = dirty && !privateMode && !window.is_login_form && !document.body?.classList.contains('btc-auth');
+    document.querySelectorAll('[data-ws-save]').forEach(button => { button.hidden = !visible; });
+    const notice = document.getElementById('ws-save-status');
+    if (notice) notice.hidden = !visible;
+  }
+  // Keep the upstream dirty flags and existing submit handlers authoritative.
+  const markDirty = window.red_save_button;
+  if (typeof markDirty === 'function') window.red_save_button = function (...args) {
+    const result = markDirty.apply(this, args);
+    const target = window.is_admin && args[0] === 'iframe' ? window.parent : window;
+    target.dispatchEvent(new Event('btc-save-state'));
+    return result;
+  };
+  window.addEventListener('btc-save-state', sync_save);
+  window.addEventListener('btc-privacy-change', sync_save);
+  window.addEventListener('storage', sync_save);
+  window.addEventListener('hashchange', () => setTimeout(sync_save, 100));
   const titles = {
-    portfolio:['资产总览','查看持仓、市场行情与资产表现。'],
-    update:['管理资产','维护持仓数量与成本，构建自己的观察列表。'],
+    portfolio:['总览','查看 BTC 行情与币安现货资产，数据每分钟自动更新。'],
+    update:['手动记账','记录其他持仓数量与成本；币安账户余额由系统自动同步。'],
     settings:['偏好设置','按自己的习惯设置显示、提醒与数据保存方式。'],
     charts:['行情图表','从价格走势与成交量中，观察市场变化。'],
     news:['市场资讯','集中阅读已订阅的信息来源。'],
@@ -133,7 +173,41 @@
     const exec=window.zingchart.exec;
     window.zingchart.exec=function(id,command,options) { return exec.call(this,id,command,(/^(load|setdata)$/.test(command) && options?.data && typeof options.data==='object') ? {...options,data:light_data(options.data)} : options); };
   }
+  // Route common navigation through the existing tab and unsaved-change handlers.
+  document.addEventListener('click',event=>{
+    const link=event.target.closest('[data-btc-nav]');
+    if(!link || event.defaultPrevented || event.button!==0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || link.target==='_blank') return;
+    const destination=new URL(link.href,location.href);
+    if(destination.origin!==location.origin) return;
+    const oldLink=[...document.querySelectorAll('#ws-legacy-routes .all-nav a')].find(item=>item.href===link.href);
+    event.preventDefault();
+    if(oldLink) oldLink.click();
+    else if(typeof app_reloading_check==='function') app_reloading_check(0,link.getAttribute('href'));
+    else location.href=link.href;
+    setTimeout(update_heading,150);
+  });
   document.addEventListener('DOMContentLoaded',function () {
+    document.querySelector('.btc-topbar')?.classList.add('ws-refresh-ready');
+    document.body.classList.add('ws-refresh-ready');
+    document.getElementById('ws-refresh')?.addEventListener('click', event => {
+      event.preventDefault();
+      if (overview_active()) {
+        document.getElementById('bm-refresh')?.click();
+        document.getElementById('bao-refresh')?.click();
+        sync_refresh();
+      } else if (typeof app_reloading_check === 'function') app_reloading_check(0);
+    });
+    const refreshObserver = new MutationObserver(sync_refresh);
+    ['bm-refresh','bao-refresh','bao-status'].forEach(id => {
+      const element = document.getElementById(id);
+      if (element) refreshObserver.observe(element, {attributes:true, attributeFilter:['disabled','data-state']});
+    });
+    sync_refresh();
+    sync_save();
+    const saveObserver = new MutationObserver(sync_save);
+    document.querySelectorAll('[data-ws-save]').forEach(button => saveObserver.observe(button, {attributes:true, attributeFilter:['class']}));
+    document.addEventListener('input', () => setTimeout(sync_save, 0));
+    document.addEventListener('change', () => setTimeout(sync_save, 0));
     document.querySelector('[data-btc-menu]')?.addEventListener('click',()=>set_menu(!document.body.classList.contains('btc-menu-open')));
     document.querySelector('[data-btc-overlay]')?.addEventListener('click',()=>set_menu(false));
     document.addEventListener('keydown',event=>{ if(event.key==='Escape') set_menu(false); });
@@ -147,7 +221,7 @@
     }));
     document.querySelectorAll('#sidebar .all-nav a').forEach(a=>a.addEventListener('click',()=>{ if(!a.classList.contains('dropdown-toggle')) set_menu(false); setTimeout(update_heading,150); }));
     setTimeout(()=>{
-      decorate(); update_heading(); set_menu(false);
+      decorate(); update_heading(); set_menu(false); sync_refresh();
       let queued=false;
       new MutationObserver(mutations=>{
         if (queued || !mutations.some(m=>m.addedNodes.length)) return;
@@ -155,6 +229,6 @@
       }).observe(document.body,{childList:true,subtree:true});
     },100);
   });
-  window.addEventListener('hashchange',()=>setTimeout(()=>{sync_submenu();update_heading();},80));
+  window.addEventListener('hashchange',()=>setTimeout(()=>{sync_submenu();update_heading();sync_refresh();},80));
   window.addEventListener('resize',()=>{if(!document.body.classList.contains('btc-menu-open')) set_menu(false);});
 })();

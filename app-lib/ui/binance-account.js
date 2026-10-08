@@ -33,10 +33,39 @@
     let generation = 0;
     let timer = null;
     let messageKind = null;
+    let currentView = null;
 
     function text(id, value) {
         const element = byId(id);
         if (element.textContent !== value) element.textContent = value;
+    }
+
+    function connectionView() { return location.hash === '#connection'; }
+
+    function setAssetsPlaceholder(message, showLink = false) {
+        byId('ba-assets-empty').hidden = false;
+        text('ba-assets-empty-text', message);
+        byId('ba-assets-connect-link').hidden = !showLink;
+    }
+
+    function updateView(focusHeading = false) {
+        const nextView = connectionView() ? 'connection' : 'assets';
+        if (currentView === 'connection' && nextView !== 'connection') clearCredentials();
+        currentView = nextView;
+        const managing = nextView === 'connection';
+        byId('ba-connection-view').hidden = !managing;
+        byId('ba-assets-view').hidden = managing;
+        byId('ba-settings-crumb').hidden = !managing;
+        byId('ba-settings-separator').hidden = !managing;
+        text('ba-current-area', managing ? '账户连接' : '我的资产');
+        text('ba-page-title', managing ? '账户连接' : '我的资产');
+        text('ba-page-description', managing ? '设置币安只读连接，验证权限或断开账户。' : '只读查看现货余额，以及 BTC/USDT 的挂单与最近成交。');
+        text('ba-view-link', managing ? '查看我的资产' : '账户连接设置');
+        byId('ba-view-link').setAttribute('href', managing ? '#assets' : '#connection');
+        document.title = (managing ? '账户连接' : '我的资产') + ' · BTC监测器';
+        document.body.dataset.accountView = nextView;
+        updateControls();
+        if (focusHeading) byId('ba-page-title').focus({preventScroll: true});
     }
 
     function safeText(value, fallback = '—') {
@@ -108,10 +137,11 @@
         setTime('ba-permission-time', null);
         byId('ba-snapshot-error').hidden = true;
         text('ba-snapshot-error', '');
+        setAssetsPlaceholder('等待重新读取账户状态…');
     }
 
     function updateControls() {
-        const enabled = !busy && !authExpired && Boolean(csrfToken);
+        const enabled = connectionView() && !busy && !authExpired && Boolean(csrfToken);
         apiKey.disabled = !enabled || connected;
         secret.disabled = !enabled || connected;
         otp.disabled = !enabled || !requiresOtp;
@@ -168,6 +198,7 @@
             setStatus('disconnected', '未连接');
             text('ba-connection-description', '在本机填写 API 凭据，验证只读权限后连接。');
             text('ba-form-note', 'API 凭据仅发送到本应用的同源接口。');
+            setAssetsPlaceholder('尚未连接币安账户。完成只读连接后，即可查看现货余额与成交记录。', true);
             return;
         }
 
@@ -176,7 +207,7 @@
         byId('ba-connected-summary').hidden = false;
         text('ba-key-hint', safeText(data.keyHint));
         text('ba-connection-description', paused ? '同步已暂停，请断开连接后重新配置只读密钥。' :
-            '已连接现货账户，后台每 60 秒采集一次；刷新按钮只读取已采集的快照。');
+            '已连接现货账户，后台每 60 秒采集一次；更新显示只读取已采集的快照。');
         text('ba-form-note', '断开后停止账户采集；重新查看时需要再次连接。');
         const permissions = data.permissions || {};
         text('ba-permission', paused ? '只读连接验证未通过' : permissions.readOnly === true && data.readOnly === true ? '只读权限已验证' : '只读权限待验证');
@@ -186,6 +217,7 @@
         const scopeValid = data.scope && data.scope.market === 'BTCUSDT' && data.scope.accountType === 'SPOT';
         if (!scopeValid) {
             byId('ba-account-data').hidden = true;
+            setAssetsPlaceholder('账户数据范围暂未确认，请检查连接状态。', true);
             for (const id of ['ba-balances', 'ba-orders', 'ba-trades']) byId(id).replaceChildren();
             setStatus('error', '数据范围待确认');
             byId('ba-snapshot-error').hidden = false;
@@ -194,16 +226,18 @@
         }
 
         byId('ba-account-data').hidden = paused;
+        if (paused) setAssetsPlaceholder('同步已暂停，账户明细已清空。请检查并重新配置只读连接。', true);
+        else byId('ba-assets-empty').hidden = true;
         const items = value => Array.isArray(value) ? value.filter(item => item && typeof item === 'object') : [];
-        const balances = items(data.balances).filter(item => [item.free, item.locked, item.total].some(nonzero));
+        const balances = (paused ? [] : items(data.balances)).filter(item => [item.free, item.locked, item.total].some(nonzero));
         balances.sort((a, b) => safeText(a.asset).localeCompare(safeText(b.asset)));
         const forMarket = item => !item.symbol || item.symbol === 'BTCUSDT';
-        const orders = items(data.openOrders).filter(forMarket).sort((a, b) => (timestamp(b.time) || 0) - (timestamp(a.time) || 0));
-        const trades = items(data.trades).filter(forMarket).sort((a, b) => (timestamp(b.time) || 0) - (timestamp(a.time) || 0)).slice(0, 100);
-        const sampled = timestamp(data.sampledAt) !== null;
+        const orders = (paused ? [] : items(data.openOrders)).filter(forMarket).sort((a, b) => (timestamp(b.time) || 0) - (timestamp(a.time) || 0));
+        const trades = (paused ? [] : items(data.trades)).filter(forMarket).sort((a, b) => (timestamp(b.time) || 0) - (timestamp(a.time) || 0)).slice(0, 100);
+        const sampled = !paused && timestamp(data.sampledAt) !== null;
         text('ba-balance-count', sampled ? String(balances.length) : '—');
         text('ba-order-count', sampled ? String(orders.length) : '—');
-        setTime('ba-sampled-at', data.sampledAt);
+        setTime('ba-sampled-at', paused ? null : data.sampledAt);
         const nextRetry = timestamp(data.nextRetryAt);
         text('ba-retry-info', nextRetry !== null && (data.stale || data.status === 'error') ? `下次尝试：${formattedTime(nextRetry)}` : '后台每 60 秒采集一次');
 
@@ -273,7 +307,8 @@
         byId('ba-login').hidden = false;
         setStatus('error', '登录已失效');
         text('ba-connection-description', '登录已失效，账户数据与输入框已清空。');
-        setMessage('请重新登录管理后台，再从导航中的“币安账户”返回此页。', 'auth');
+        setAssetsPlaceholder('登录已失效，账户数据已清空。请重新登录后查看。');
+        setMessage('请重新登录管理后台，再从导航中的“我的资产”返回此页。', 'auth');
     }
 
     async function readResponse(response) {
@@ -283,7 +318,7 @@
 
     function responseError(response, envelope) {
         if (response.status === 429) return safeText(envelope && envelope.error, '请求较频繁，请稍后重试。');
-        if (response.status === 403) return safeText(envelope && envelope.error, '页面验证已过期，请刷新显示后重试。');
+        if (response.status === 403) return safeText(envelope && envelope.error, '页面验证已过期，请更新显示后重试。');
         return safeText(envelope && envelope.error, '暂时无法读取账户服务，请稍后重试。');
     }
 
@@ -307,6 +342,7 @@
             if (response.status === 401) { expireSession(); return; }
             if (!response.ok || !envelope || envelope.ok !== true) {
                 setStatus(connected ? 'stale' : 'error', connected ? '数据滞后' : '账户服务暂不可用');
+                if (!connected) setAssetsPlaceholder('暂未取得账户数据，请点击“更新显示”重试。');
                 setMessage(responseError(response, envelope) + (connected ? ' 当前保留上次采集的快照。' : ''), 'refresh');
                 return;
             }
@@ -315,6 +351,7 @@
         } catch (error) {
             if (current !== generation) return;
             setStatus(connected ? 'stale' : 'error', connected ? '数据滞后' : '账户服务暂不可用');
+            if (!connected) setAssetsPlaceholder('暂未取得账户数据，请点击“更新显示”重试。');
             setMessage((error.name === 'AbortError' ? '读取账户快照超时，将自动重试。' : '暂时无法连接本机账户服务，将自动重试。') + (connected ? ' 当前保留上次采集的快照。' : ''), 'refresh');
         } finally {
             window.clearTimeout(timeout);
@@ -328,7 +365,7 @@
     }
 
     async function sendAction(action) {
-        if (busy || authExpired || !csrfToken) return;
+        if (!connectionView() || busy || authExpired || !csrfToken) return;
         if (action === 'connect' && !form.reportValidity()) return;
         if (requiresOtp && !/^[0-9]{6}$/.test(otp.value.trim())) {
             setMessage('请输入验证器中的 6 位动态码。', 'action');
@@ -369,7 +406,7 @@
             acceptEnvelope(envelope);
             setMessage(action === 'connect' ? '只读连接已建立，后台将开始采集账户快照。' : '已断开连接，账户采集已停止。', 'action', 'success');
         } catch (error) {
-            if (current === generation) setMessage(error.name === 'AbortError' ? '请求超时。请先刷新显示，确认连接状态后再试。' : '未能确认操作结果。请刷新显示，确认连接状态后再试。', 'action');
+            if (current === generation) setMessage(error.name === 'AbortError' ? '请求超时。请先更新显示，确认连接状态后再试。' : '未能确认操作结果。请更新显示，确认连接状态后再试。', 'action');
         } finally {
             body = null;
             window.clearTimeout(timeout);
@@ -391,6 +428,11 @@
     });
     disconnectButton.addEventListener('click', () => sendAction('disconnect'));
     refreshButton.addEventListener('click', () => readSnapshot(true));
+    window.addEventListener('hashchange', () => updateView(true));
+    document.querySelector('.ba-skip').addEventListener('click', event => {
+        event.preventDefault();
+        byId('ba-main').focus();
+    });
     document.addEventListener('visibilitychange', () => {
         clearTimer();
         if (document.hidden) {
@@ -420,8 +462,9 @@
         updateControls();
     });
     window.addEventListener('pageshow', event => {
-        if (event.persisted) { authExpired = false; readSnapshot(true); }
+        if (event.persisted) { authExpired = false; updateView(); readSnapshot(true); }
     });
     clearCredentials();
+    updateView();
     readSnapshot();
 })();

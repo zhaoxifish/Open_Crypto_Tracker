@@ -1,0 +1,67 @@
+/* Shared navigation for the legacy workspace and the independent private account view. */
+:is(html.btc-monitor,html.btc-account) .ws-primary-nav { display:grid; gap:5px; margin:0 0 18px; }
+:is(html.btc-monitor,html.btc-account) .ws-primary-nav a { display:flex!important; align-items:center; gap:11px; min-height:44px; padding:11px 13px!important; border-radius:9px; color:#53657b!important; font-size:14px!important; font-weight:500; text-decoration:none!important; }
+:is(html.btc-monitor,html.btc-account) .ws-primary-nav a:hover { background:#f2f6fc!important; }
+:is(html.btc-monitor,html.btc-account) .ws-primary-nav a[aria-current="page"] { background:#eaf2ff!important; color:#155dca!important; font-weight:650; }
+.ws-icon { width:19px; height:19px; flex-shrink:0; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
+:is(html.btc-monitor,html.btc-account) .ws-more-menu { border-top:1px solid #e5ecf5; padding-top:9px; margin-top:8px; }
+:is(html.btc-monitor,html.btc-account) .ws-more-menu > summary { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px 13px; color:#667a94; font-size:13px!important; cursor:pointer; border-radius:8px; list-style:none; }
+.ws-more-menu > summary::-webkit-details-marker { display:none; }
+.ws-more-menu[open] > summary .ws-chevron { transform:rotate(180deg); }
+:is(html.btc-monitor,html.btc-account) .ws-more-menu nav { display:grid; gap:3px; padding:0 0 8px; }
+:is(html.btc-monitor,html.btc-account) .ws-more-menu nav a { min-height:40px; display:flex; align-items:center; padding:9px 13px; color:#61718a!important; text-decoration:none!important; border-radius:8px; font-size:13px!important; }
+:is(html.btc-monitor,html.btc-account) .ws-more-menu a:hover, :is(html.btc-monitor,html.btc-account) .ws-more-menu a[aria-current="page"] { background:#edf4ff; color:#155dca!important; }
+:is(html.btc-monitor,html.btc-account) :is(.ws-primary-nav a,.ws-more-menu summary,.ws-more-menu a):focus-visible { outline:3px solid #96bdff; outline-offset:2px; }
+html.btc-monitor #ws-legacy-routes[hidden] { display:none!important; }
+html.btc-monitor #ws-legacy-routes .user-nav-wrapper { display:none!important; }
+html.btc-monitor #ws-legacy-routes[data-context="admin"] .plugin-nav-wrapper, html.btc-monitor #ws-legacy-routes[data-context="plugin"] .admin-nav-wrapper { display:none!important; }
+html.btc-monitor #ws-legacy-routes #sidebar_menu > li > a { display:none!important; }
+html.btc-monitor #ws-legacy-routes #sidebar_menu > li > ul.collapse { display:block!important; }
+.ws-route-heading { color:#8390a3; font-size:11px; margin:22px 13px 8px; }
+.ws-mobile-toggle { display:none; }
+.ws-mobile-overlay { display:none; }
+@media(max-width:760px) {
+  html.btc-account .ws-primary-nav { display:grid; }
+  html.btc-account .ws-more-menu nav { display:grid; }
+}
+
+html.btc-monitor .ws-manual-section { border:1px solid #dce6f3; border-radius:13px; background:#fff; text-align:left; margin:0 0 24px; min-width:0; }
+html.btc-monitor .ws-manual-section > summary { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:19px 22px; cursor:pointer; color:#284362; font-size:15px!important; font-weight:600; list-style:none; }
+html.btc-monitor .ws-manual-section > summary::-webkit-details-marker { display:none; }
+html.btc-monitor .ws-manual-section small { margin-left:9px; padding:3px 7px; border-radius:4px; background:#f1f5fa; color:#8190a3; font-size:11px!important; font-weight:400; }
+html.btc-monitor .ws-manual-hint { color:#8595a9; font-size:12px!important; font-weight:400; }
+html.btc-monitor .ws-manual-content { padding:0 20px 20px; min-width:0; }
+html.btc-monitor .ws-manual-section summary:focus-visible { outline:3px solid #96bdff; outline-offset:2px; border-radius:13px; }
+@media(max-width:640px) { html.btc-monitor .ws-manual-section > summary { padding:17px 16px; flex-wrap:wrap; } html.btc-monitor .ws-manual-content { padding:0 12px 16px; } }
+
+html.btc-monitor .btc-topbar [data-ws-save][hidden], html.btc-monitor #ws-save-status[hidden] { display:none!important; }
+html.btc-monitor #ws-save-status { color:#9a6417; font-size:12px!important; }
+@media(max-width:640px) { html.btc-monitor #ws-save-status { display:none; } }
+
+html.btc-monitor body.ws-refresh-ready #portfolio :is(#bm-refresh,#bao-refresh) { display:none!important; }
+html.btc-monitor #ws-refresh:disabled { cursor:wait; opacity:.65; }
+
+/* Mobile navigation is enhanced only after the standalone drawer controls are ready. */
+html.btc-account .ws-mobile-close { display:none; }
+html.btc-account body.ws-account-nav-ready .ws-topbar-trail { display:flex; flex-wrap:wrap; align-items:center; gap:12px; min-width:0; }
+html.btc-account :is(.ws-mobile-toggle,.ws-mobile-close) { width:44px; height:44px; padding:10px; flex:0 0 44px; align-items:center; justify-content:center; border:1px solid #dce5f0; border-radius:8px; color:#536b8b; background:#fff; cursor:pointer; font:inherit; }
+html.btc-account :is(.ws-mobile-toggle,.ws-mobile-close):hover { background:#f2f6fc; }
+html.btc-account .ws-mobile-overlay[hidden] { display:none!important; }
+@media(max-width:760px) {
+  html.btc-account body.ws-account-nav-ready .ba-sidebar { position:fixed; inset:0 auto 0 0; z-index:1002; display:flex; width:250px; max-width:calc(100vw - 48px); height:100vh; height:100dvh; padding:18px 16px 24px; border:0; border-right:1px solid #e2e8f0; overflow-x:hidden; overflow-y:auto; overscroll-behavior:contain; transform:translateX(-100%); visibility:hidden; transition:transform .18s ease; }
+  html.btc-account body.ws-menu-open .ba-sidebar { transform:translateX(0); visibility:visible; }
+  html.btc-account body.ws-menu-open { overflow:hidden; }
+  html.btc-account body.ws-account-nav-ready .ws-mobile-toggle, html.btc-account body.ws-account-nav-ready .ws-mobile-close { display:inline-flex; }
+  html.btc-account body.ws-account-nav-ready .ws-mobile-close { align-self:flex-end; margin:0 0 14px; }
+  html.btc-account body.ws-account-nav-ready .ba-brand { flex-shrink:0; margin:0 1px 28px; }
+  html.btc-account body.ws-account-nav-ready .ba-brand small { display:block; }
+  html.btc-account body.ws-account-nav-ready .ba-sidebar-note { display:block; padding-top:24px; }
+  html.btc-account body.ws-account-nav-ready .ba-workspace { margin-left:0; }
+  html.btc-account body.ws-account-nav-ready .ba-topbar { gap:10px; min-height:68px; padding:12px 16px; }
+  html.btc-account body.ws-account-nav-ready .ws-topbar-trail { flex:1; gap:6px; }
+  html.btc-account body.ws-account-nav-ready .ba-topbar > :last-child:not(.ws-topbar-trail) { flex-shrink:0; }
+  html.btc-account body.ws-menu-open .ws-mobile-overlay { display:block; position:fixed; inset:0; z-index:1001; width:100%; height:100%; padding:0; border:0; border-radius:0; background:#20345266; cursor:pointer; }
+}
+@media(max-width:380px) { html.btc-account body.ws-account-nav-ready .ba-topbar .ba-private { display:none; } }
+@media(prefers-reduced-motion:reduce) { html.btc-account body.ws-account-nav-ready .ba-sidebar { transition:none; } }
+@media print { html.btc-account :is(.ws-mobile-toggle,.ws-mobile-close,.ws-mobile-overlay) { display:none!important; } }
