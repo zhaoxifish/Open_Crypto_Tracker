@@ -208,7 +208,7 @@ require("templates/interface/php/wrap/wrap-elements/navigation-bars.php");
 				
 				?>
 		 
-				<div id='background_loading' class='align_center loading bitcoin'><img src="templates/interface/media/images/auto-preloaded/loader.gif" height='17' alt="" style='vertical-align: middle;' /> <span id='background_loading_span' style='font-weight: bold !important;'></span></div>
+				<div id="background_loading" class="btc-loading-notice loading" role="status" aria-live="polite" aria-atomic="true"><span class="btc-loading-content"><span class="btc-loading-spinner" aria-hidden="true"></span><span id="background_loading_span"></span></span></div>
 		
 					
 <!-- PRIMARY header.php END -->

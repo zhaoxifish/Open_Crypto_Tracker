@@ -190,3 +190,12 @@ html.btc-monitor #portfolio #admin_conf_quick_links legend strong { color:var(--
 html.btc-monitor #portfolio #admin_conf_quick_links fieldset>div { display:none; }
 html.btc-monitor .btc-table-heading { font-size:14px!important; color:var(--btc-text); }
 html.btc-monitor #portfolio .btc-table-scroll>table#coins_table { display:table!important; width:100%!important; min-width:1080px!important; table-layout:auto!important; }
+
+/* Compact background status; leave display to the existing task lifecycle. */
+html.btc-monitor #background_loading { opacity:1; width:fit-content!important; max-width:min(100%,42rem)!important; min-width:0!important; min-height:0!important; margin:0 0 16px!important; padding:9px 12px!important; border:1px solid #dce8f8!important; border-radius:9px!important; background:#f0f6ff!important; box-shadow:none!important; color:#61718a!important; font-size:13px!important; font-weight:400!important; line-height:1.6!important; text-align:left!important; }
+html.btc-monitor #background_loading .btc-loading-content { display:flex; align-items:flex-start; gap:9px; min-width:0; }
+html.btc-monitor #background_loading_span { min-width:0; font-size:13px!important; font-weight:400!important; line-height:1.6; overflow-wrap:anywhere; }
+html.btc-monitor #background_loading_span a { text-decoration:underline; text-underline-offset:3px; }
+html.btc-monitor #background_loading .btc-loading-spinner { width:14px; height:14px; flex:0 0 14px; margin-top:3px; border:2px solid #cbdcf4; border-top-color:#3978d4; border-radius:50%; animation:btc-status-spin .9s linear infinite; }
+@keyframes btc-status-spin { to { transform:rotate(360deg); } }
+@media(prefers-reduced-motion:reduce) { html.btc-monitor #background_loading .btc-loading-spinner { animation:none; } }

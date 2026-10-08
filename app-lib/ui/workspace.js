@@ -42,6 +42,11 @@
   window.addEventListener('btc-privacy-change', sync_save);
   window.addEventListener('storage', sync_save);
   window.addEventListener('hashchange', () => setTimeout(sync_save, 100));
+  // Restyle normal task messages while preserving explicit warning colors and lifecycle.
+  const loadingNotice = window.background_loading_notices;
+  if (typeof loadingNotice === 'function') window.background_loading_notices = function (message, color = '#61718a') {
+    return loadingNotice.call(this, message, color);
+  };
   const titles = {
     portfolio:['总览','查看 BTC 行情与币安现货资产，数据每分钟自动更新。'],
     update:['手动记账','记录其他持仓数量与成本；币安账户余额由系统自动同步。'],
