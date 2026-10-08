@@ -16,8 +16,9 @@ COPY .docker/apache-local.conf /etc/apache2/sites-available/oct-local.conf
 COPY .docker/php-local.ini /usr/local/etc/php/conf.d/zz-oct-local.ini
 COPY .docker/entrypoint.sh /usr/local/bin/oct-entrypoint
 COPY .docker/cron-loop.sh /usr/local/bin/oct-cron-loop
+COPY .docker/account-storage-init.sh /usr/local/bin/oct-account-storage-init
 
-RUN chmod 755 /usr/local/bin/oct-entrypoint /usr/local/bin/oct-cron-loop \
+RUN chmod 755 /usr/local/bin/oct-entrypoint /usr/local/bin/oct-cron-loop /usr/local/bin/oct-account-storage-init \
     && a2ensite oct-local
 
 WORKDIR /var/www/html

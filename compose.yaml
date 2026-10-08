@@ -8,6 +8,9 @@ services:
     image: open-crypto-tracker-local:php8.3
     init: true
     restart: unless-stopped
+    depends_on:
+      account-storage-init:
+        condition: service_completed_successfully
     healthcheck:
       test: ["CMD", "curl", "--fail", "--insecure", "--silent", "--show-error", "--max-time", "5", "--output", "/dev/null", "https://localhost:8443/templates/interface/media/images/auto-preloaded/bitcoin-btc-logo.png"]
       interval: 30s
@@ -32,6 +35,8 @@ services:
         read_only: true
       - cache:/var/www/html/cache
       - local-certs:/etc/apache2/local-certs
+      - account-data:/var/lib/btc-monitor-account
+      - account-key:/var/lib/btc-monitor-account-key:ro
 
   cron:
     profiles: [cron]
@@ -81,6 +86,48 @@ services:
       start_period: 45s
     stop_grace_period: 35s
 
+  # Initialize encryption material once, without any network access.
+  account-storage-init:
+    image: open-crypto-tracker-local:php8.3
+    entrypoint: ["/usr/local/bin/oct-account-storage-init"]
+    network_mode: none
+    read_only: true
+    restart: "no"
+    volumes:
+      - account-data:/var/lib/btc-monitor-account
+      - account-key:/var/lib/btc-monitor-account-key
+
+  # Private read-only spot account collector; credentials never enter the public cache.
+  account-monitor:
+    profiles: [monitor]
+    image: open-crypto-tracker-local:php8.3
+    entrypoint: ["php", "/var/www/html/app-lib/binance-account/worker.php"]
+    user: www-data
+    init: true
+    restart: unless-stopped
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    depends_on:
+      app:
+        condition: service_healthy
+    volumes:
+      - type: bind
+        source: .
+        target: /var/www/html
+        read_only: true
+      - account-data:/var/lib/btc-monitor-account
+      - account-key:/var/lib/btc-monitor-account-key:ro
+    healthcheck:
+      test: ["CMD", "php", "/var/www/html/app-lib/binance-account/worker.php", "--health"]
+      interval: 60s
+      timeout: 5s
+      retries: 3
+      start_period: 45s
+    stop_grace_period: 35s
+
 volumes:
   cache:
   local-certs:
+  account-data:
+  account-key:

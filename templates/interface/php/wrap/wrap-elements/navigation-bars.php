@@ -242,6 +242,7 @@
                 <ul class="user-nav all-nav collapse list-unstyled" id="userSubmenu">
           
                 <li class='sidebar-item'><a href='index.php#portfolio' title='View your portfolio.'>资产总览</a></li>
+                <li class='sidebar-item'><a href='binance-account.php' title='管理员专属：只读查看币安现货账户'>币安账户</a></li>
                 
                 <li class='sidebar-item update_portfolio_link'><a class='update_portfolio_link' id='update_link_2' href='index.php#update' title='Update your portfolio data.'>管理资产</a></li>
      

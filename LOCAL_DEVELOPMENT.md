@@ -38,7 +38,7 @@ docker compose ps
 
 PHP 参数采用官方模板值：256M 内存、7M 上传、15M POST、50 秒输入限制、350 秒页面执行上限。应用内会按运行模式调整相关参数。
 
-源码目录挂载至容器，编辑 PHP、模板或静态文件后刷新页面即可；修改 Dockerfile 或运行配置后，先执行 `docker compose --profile cron --profile monitor down`，再执行 `docker compose --profile monitor up -d --build app market-monitor`；如需后台采集，最后重新启动 cron，以重建它共享的网络。
+源码目录挂载至容器，编辑 PHP、模板或静态文件后刷新页面即可；修改 Dockerfile 或运行配置后，先执行 `docker compose --profile cron --profile monitor down`，再执行 `docker compose --profile monitor up -d --build app market-monitor account-monitor`；如需后台采集，最后重新启动 cron，以重建它共享的网络。
 
 ## Windows / Chrome 消除证书提醒
 
@@ -96,7 +96,7 @@ docker compose --profile cron --profile monitor down
 当前版本已加入独立的币安行情面板，入口为 [资产总览](https://localhost:8443/index.php#portfolio)。价格、滚动24小时涨跌幅、BTC成交量和USDT成交额均来自同一份币安现货响应，首页同时显示近24小时五分钟走势。
 
 ```powershell
-docker compose --profile monitor up -d app market-monitor
+docker compose --profile monitor up -d app market-monitor account-monitor
 docker compose --profile monitor ps
 docker compose --profile monitor logs --tail 30 market-monitor
 ```
@@ -104,6 +104,26 @@ docker compose --profile monitor logs --tail 30 market-monitor
 `market-monitor` 每60秒采集一次，图表历史每5分钟更新。它只读取公开市场数据，不需要账户密钥，不执行交易、不发送提醒，不改变原有资产估值设置。电脑及 Docker Desktop 需要保持运行。网页隐藏后暂停刷新，重新打开会读取最新缓存。
 
 更新采集端 PHP 后执行 `docker compose --profile monitor restart market-monitor`。故障时保留最后有效值并提示滞后。详见 [监控说明](app-lib/binance-monitor/README.md)。
+
+## 币安账户只读接入
+
+入口为 [币安账户](https://localhost:8443/binance-account.php)，也可以在左侧“行情与资产 → 币安账户”打开。先登录现有管理员账号；页面不会加载公共资产页的表单保存脚本。
+
+1. 在币安 API 管理中创建系统生成的 HMAC 密钥，只保留读取权限，关闭交易、提现、划转、合约等权限。
+2. 在本机账户页面填写 API Key 与 Secret Key，点击“验证并连接”。不要把凭据发到聊天或写入源码。开启严格两步验证时，连接和断开还需输入验证器动态码。
+3. 只读验证成功后，后台每60秒同步全部非零现货余额，以及 BTC/USDT 当前挂单和最近100笔成交。数量按原币种显示，未折算总资产，也不把最近100笔成交当作完整成本/盈亏记录。
+
+```powershell
+docker compose --profile monitor up -d app market-monitor account-monitor
+docker compose --profile monitor ps
+docker compose --profile monitor logs --tail 20 account-monitor
+```
+
+尚未配置密钥时，账户采集服务显示未连接、健康待命，不发起账户请求。连接失败时提示原因；当前网络探测曾返回官方账户接口 HTTP 451，应以页面实际结果为准。该错误表示地区/服务可用性限制，程序不会更换域名绕过限制。
+
+私密账户数据和密钥不在公共行情缓存内：账户数据使用 `account-data` 命名卷，加密主密钥使用独立 `account-key` 卷，均在站点目录之外；主密钥对应用与采集器只读。`account-storage-init` 只初始化缺失且没有遗留数据的存储，不重置原有密钥。普通缓存备份不包含这两个卷；恢复账户接入需保留二者，丢失主密钥无法解密旧数据，可在明确清除旧接入后重新配置。不要使用 `docker compose down -v` 删除持久卷。
+
+“断开连接”清除本机密钥及账户快照，不能代替币安网站上的密钥撤销。完整说明见 [账户模块说明](app-lib/binance-account/README.md)。新模块默认只接受 `https://localhost:8443` 与 `https://127.0.0.1:8443` 来源；换域名部署时必须显式设置服务端 `BTC_ACCOUNT_ORIGINS`（逗号分隔的精确HTTPS来源），并配置对应可信证书。
 
 ## 可选：图表采集与提醒
 
@@ -127,13 +147,13 @@ docker compose --profile cron stop cron
 关闭正在使用的页面、暂停后台任务，然后备份缓存。以下示例将备份放在仓库外：
 
 ```powershell
-docker compose --profile cron --profile monitor stop cron market-monitor
+docker compose --profile cron --profile monitor stop cron market-monitor account-monitor
 New-Item -ItemType Directory -Force 'D:\git-work\backups\Open_Crypto_Tracker' | Out-Null
 $octBackupPath = 'D:\git-work\backups\Open_Crypto_Tracker\cache-' + (Get-Date -Format 'yyyyMMdd-HHmmss') + '.tar.gz'
 docker compose exec -T app tar -czf /tmp/oct-cache-backup.tar.gz -C /var/www/html cache
 docker compose cp app:/tmp/oct-cache-backup.tar.gz $octBackupPath
 Get-Item -LiteralPath $octBackupPath
-docker compose --profile monitor up -d market-monitor
+docker compose --profile monitor up -d market-monitor account-monitor
 ```
 
 该备份包含私人配置和登录数据，请妥善保存。也可在管理员的“Reset / Backup & Restore”页面导出配置和图表备份。官方提醒：不同版本的旧配置不能未经检查直接恢复。
@@ -149,7 +169,7 @@ git switch main
 git merge --ff-only upstream/main
 git switch develop
 git merge main
-docker compose --profile monitor up -d --build app market-monitor
+docker compose --profile monitor up -d --build app market-monitor account-monitor
 ```
 
 `--ff-only` 失败时先检查分支差异；合并出现冲突时解决冲突并提交后，再继续启动验证。不要用强制重置覆盖自己的改动。
